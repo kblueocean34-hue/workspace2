@@ -1,4 +1,7 @@
-import {CalendarWrapper, CalHeader, DayCell, Grid, DayName, CalTopMargin} from "../stylesjs/Content.styles";
+import {useState, useEffect} from "react";
+import {CalendarWrapper, CalHeader, DayCell, Tooltip, Grid, DayName, CalTopMargin} from "../stylesjs/Content.styles";
+import {Holiday} from "../types/holiday";
+import { fetchHolidays } from "../api/holidays";
 
 const Calendar=({year = new Date().getFullYear()})=> {
     
@@ -8,16 +11,38 @@ const Calendar=({year = new Date().getFullYear()})=> {
     const lastDate = new Date(year, month + 1, 0).getDate();
     //month + 1 다음달 날짜를 0으로 주면 이전달의 마지막날
     //12월이 30일 인지 31일인지 자동으로 계산
-    const today = new Date();//현재 날짜와 시간을 가져옵니다
+
+//add
+const [holidays, setHolidays] = useState<Holiday[]>([]);
+
+useEffect(()=>{fetchHolidays(year).then(setHolidays);},[year]);
+
+const today = new Date();//현재 날짜와 시간을 가져옵니다
 const isThisMonth = today.getFullYear() === year && today.getMonth() === month;
+
+//add
+const getHoliday = (day:number) => holidays.find(h => h.date === day);
+
 const days = [];//달력의 모든칸을 저장할 배열 나중에 {days}로 화면에 출력됨
 
 //달력 앞부분에 빈칸 만들기
 for (let i = 0; i < firstDay; i++){
 days.push(<DayCell key={`empty-${i}`} isEmpty/>);
 }
+for(let d = 1; d <= lastDate; d++){
+    const holiday = getHoliday(d);
 
-//실제 날짜 채우기
+    days.push(
+<DayCell key={d} isToday={isThisMonth && today.getDate() === d} isHoliday={!!holiday}>
+{d}   
+{holiday && <Tooltip>{holiday.name}</Tooltip>}
+{holiday?.name === "성탄절" && " 🎄"} 
+</DayCell>
+    )
+}
+
+
+/*실제 날짜 채우기
 for(let d=1; d <= lastDate; d++){ //1일부터 30일 또는 31일까지 반복
 const isToday = isThisMonth && today.getDate() === d;
 //오늘 날짜인지 확인 = 이번달이고 날짜 숫자가 오늘과 같을때
@@ -27,7 +52,7 @@ const isToday = isThisMonth && today.getDate() === d;
             {d}
         </DayCell>
     );
-}
+}*/
 
 return(
     <>
