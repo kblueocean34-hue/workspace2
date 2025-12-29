@@ -1,7 +1,8 @@
-import {useState, useEffect} from "react";
+import {useState, useEffect, useMemo} from "react";
 import {CalendarWrapper, CalHeader, DayCell, Tooltip, Grid, DayName, CalTopMargin} from "../stylesjs/Content.styles";
 import {Holiday} from "../types/holiday";
 import { fetchHolidays } from "../api/holidays";
+import {holidays as getHolidays} from "@kyungseopk1m/holidays-kr";
 
 const Calendar=({year = new Date().getFullYear()})=> {
     

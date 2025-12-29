@@ -4,6 +4,7 @@ import SideBar from "../include/SideBar";
 import {Container, Row, Col} from "react-bootstrap";
 import {Left, Right, Flex} from "../stylesjs/Content.styles";
 import Calendar from "../3_common/Calendar";
+import Calendar2 from "../3_common/Calendar2";
 
 const MyPage = () => {
     return(
@@ -21,7 +22,7 @@ const MyPage = () => {
 
             </Left>
             <Right>
-<Calendar/>             
+<Calendar2/>             
             </Right>
         </Flex>
         </Col>

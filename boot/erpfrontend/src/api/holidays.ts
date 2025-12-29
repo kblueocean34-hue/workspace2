@@ -1,5 +1,6 @@
 import {Holiday} from "../types/holiday";
 
+
 export const fetchHolidays = async(
 /*
 export : → 다른 파일에서도 이 함수를 쓸 수 있게 함
