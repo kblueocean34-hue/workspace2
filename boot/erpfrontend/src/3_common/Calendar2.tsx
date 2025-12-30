@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useMemo, useState, useEffect, useRef } from "react";
 //useState (컴포넌트 안에서 값을 저장하기 위한  react훅)
 //useMemo (→ 계산이 오래 걸리는 값을 기억해두고 필요할 때만 다시 계산하도록 도와줌)
 import { holidays as holidayData } from "@kyungseopk1m/holidays-kr";
@@ -12,33 +12,92 @@ interface RawHoliday {//공휴일 하나의 형태를 정의
 }
 
 const ANIMATION_TIME = 300;
+const FIXED_HEIGHT = 700; //6주기준
 
 const Calendar2 = () => {//달력을 그려주는 React함수 컴포넌트
 
   const [currentDate, setCurrentDate] = useState(new Date());//현재 날짜 가져오기
   
-  const [isAnimating, setIsAnimating] = useState(false); //예니메이션 상태관리
-const [direction, setDirection ] = useState<"prev" | "next" | "today">("today");
+const [isAnimating, setIsAnimating] = useState(false); //예니메이션 상태관리
+//const [direction, setDirection ] = useState<"prev" | "next" | "today">("today");
+const [slideDir, setSlideDir] = useState<"prev"|"next">("next");
+const [isMobile, setIsMobile] = useState(false);
+
+const startX = useRef<number | null>(null);
+const todayRef = useRef<HTMLDivElement | null>(null);
 
   const year = currentDate.getFullYear();//현재 년도 
   const month = currentDate.getMonth(); // 0~11
 
-//add 공통 월 변경 함수 (연타 방지)
-const changeMonth = (newDate: Date, dir:typeof direction) => {
-  if (isAnimating) return;
-  setIsAnimating(true);
-  setDirection(dir);
-  setCurrentDate(newDate);
-  setTimeout(() => setIsAnimating(false), ANIMATION_TIME);
-}
-
-  //add 20251230 오늘날짜
+    //add 20251230 오늘날짜
   const today = new Date();
   const todayYear = today.getFullYear();
   const todayMonth = today.getMonth();
   const todayDate = today.getDate();
 
-//이전 / 다음달 함수 만들기
+useEffect(() => {/*모바일 감지 */
+  const mq = window.matchMedia("(max-width:480px)");
+  const handler = () => setIsMobile(mq.matches);
+  handler();
+  mq.addEventListener("change", handler);
+  return () => mq.removeEventListener("change", handler);
+},[]);
+//오늘 날짜 자동 스크롤
+useEffect(() => {
+  if(year === todayYear && month === todayMonth && todayRef.current){
+    todayRef.current.scrollIntoView({
+      behavior:"smooth", block:"center",
+    })
+  }
+},[year, month]);
+
+//add 공통 월 변경 함수 (연타 방지)
+const changeMonth = (dir:"prev"|"next") => {
+  if(isAnimating) return;
+  setIsAnimating(true);
+  setSlideDir(dir);
+
+  setTimeout(() => {
+    setCurrentDate(prev =>
+      new Date(
+        prev.getFullYear(),
+        prev.getMonth() + (dir === "next" ? 1 : -1),
+        1
+      )
+    );
+    setIsAnimating(false);
+  }, ANIMATION_TIME);
+};
+
+const goPrevMonth = () => changeMonth("prev");
+const goNextMonth = () => changeMonth("next");
+const goToday = () => 
+  setCurrentDate(new Date(todayYear, todayMonth, 1));
+
+/* */
+const onTouchStart = (e:React.TouchEvent) => {
+  startX.current = e.touches[0].clientX;
+}
+
+const onTouchEnd = (e:React.TouchEvent) => {
+  if(startX.current === null) return;
+  const diff = e.changedTouches[0].clientX -startX.current;
+  if(Math.abs(diff) > 50){
+    diff > 0 ? goPrevMonth() : goNextMonth();
+  }
+  startX.current = null;
+}
+/*const changeMonth = (newDate: Date, dir:typeof direction) => {
+  if (isAnimating) return;
+  setIsAnimating(true);
+  setDirection(dir);
+  setCurrentDate(newDate);
+  setTimeout(() => setIsAnimating(false), ANIMATION_TIME);
+}*/
+
+
+
+/*이전 / 다음달 함수 만들기
 const goPrevMonth = () => {
   changeMonth(
     new Date(year, month - 1, 1),
@@ -58,7 +117,7 @@ const goToday = () => {
     new Date(todayYear, todayMonth, 1),
 "today"
   );
-}
+}*/
 /*const goPrevMonth = () => { 노멀한
   setCurrentDate(prev => new Date(prev.getFullYear(), prev.getMonth() -1, 1));
 }
@@ -105,6 +164,11 @@ if (month === 11 && !holidays.some(h => String(h.date) === `${year}1225`)) {
   const lastDate = new Date(year, month + 1, 0).getDate();
   //이번달의 마지막 날짜를 계산
 
+
+  const weekNames = isMobile
+      ? ["일", "월", "화", "수", "목", "금", "토"]
+    : ["일요일", "월요일", "화요일", "수요일", "목요일", "금요일", "토요일"];
+
   return (
     <CalTopMargin>
     <Wrapper>
@@ -125,23 +189,28 @@ disabled={year === todayYear && month === todayMonth}
 {/*예니메이션 컨테이너 */}
 <div
 style={{
-width:"100%",
-transition:`all ${ANIMATION_TIME}ms ease`,
-transform:direction === "next" ? "translateX(0)" 
-: direction === "prev" ? "translateX(0)" 
-: "translateY(0)",
-opacity: isAnimating ? 0.4 : 1,
+  position:"relative",
+  overflow:"hidden",
+  minHeight:FIXED_HEIGHT,
 }}
-
+onTouchStart={onTouchStart}
+onTouchEnd={onTouchEnd}
 >
-
+  {/*슬라이드*/}
+<div 
+style={{
+  display:"flex", width:"200%",
+  transform: isAnimating ? slideDir === "next" ? "translateX(-50%)" :"translateX(50)":"translateX(0)",
+  transition:`transform ${ANIMATION_TIME}ms ease`,
+}}
+>
+  {[0, 1].map(i => (
+    <div key={i} style={{width:"50%"}}>
       <Grid>
-        {/* 요일 */}
-        {["일", "월", "화", "수", "목", "금", "토"].map(day => (
+        {weekNames.map(day =>(
           <DayName key={day}>{day}</DayName>
         ))}
-{/*요일을 한줄로 출력 */}
-        {/* 빈칸 */}
+
         {Array.from({ length: firstDay }).map((_, idx) => (
           <div key={`empty-${idx}`} />
         ))}
@@ -169,19 +238,18 @@ const isToday = year === todayYear && month === todayMonth && day === todayDate;
           return (
             <div
               key={day}
+              ref={isToday ? todayRef:null}
               style={{
                 height: 50,
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
+                margin:2,
+                borderRadius:8,
                 background: isHoliday ? "#ffefc3" : "#f4f4f4",
-                borderRadius: 8,
-                color: isSunday ? "red": isSaturday ? "blue" : "#333",
-                border:isToday ? "2px solid #1976d2" : "none",
-                margin: 2,
-                fontWeight: isToday ? "bold" : "normal",
+color:
+weekday === 0 ? "red" : weekday === 6 ? "blue" : "#333",
+border:isToday ? "2px solid #1976d2" : "none",
+fontWeight:isToday ? "bold" : "normal", display:"flex", alignItems:"center",
               }}
-              title={holiday?.name || ""}
+              title={holiday?.name}
             >
               {day} {isChristmas && "🎄"}
             </div>
@@ -189,9 +257,23 @@ const isToday = year === todayYear && month === todayMonth && day === todayDate;
         })}
       </Grid>
       </div>
+  ))}
+  </div>
+  </div>
     </Wrapper>
     </CalTopMargin>
   );
 };
 
 export default Calendar2;
+
+/*
+style={{
+width:"100%",
+transition:`all ${ANIMATION_TIME}ms ease`,
+transform:direction === "next" ? "translateX(0)" 
+: direction === "prev" ? "translateX(0)" 
+: "translateY(0)",
+opacity: isAnimating ? 0.4 : 1,
+}}
+*/
