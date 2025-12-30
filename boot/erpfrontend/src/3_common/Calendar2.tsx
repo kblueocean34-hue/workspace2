@@ -16,27 +16,32 @@ interface RawHoliday {
   name: string;
 }
 
-const ANIMATION_TIME = 300;
-const FIXED_HEIGHT = 360; // 6주 기준
+//상수들 (고정값)
+const ANIMATION_TIME = 300;//애니메이션 시간
+const FIXED_HEIGHT = 360; // 달력 높이
 
 const Calendar2 = () => {
   const [currentDate, setCurrentDate] = useState(new Date());
+  //애니메이션 중인지 (연타방지)
   const [isAnimating, setIsAnimating] = useState(false);
+  //왼쪽으로 가는지 / 오른쪽으로 가는지
   const [slideDir, setSlideDir] = useState<"prev" | "next">("next");
+  //모바일 인지 아닌지
   const [isMobile, setIsMobile] = useState(false);
 
   const startX = useRef<number | null>(null);
-  const todayRef = useRef<HTMLDivElement | null>(null);
-
-  const year = currentDate.getFullYear();
+//dom직접 접근 
+const todayRef = useRef<HTMLDivElement | null>(null);
+//스와이프 시작 위치 저장 오늘 날짜 칸으로 스크롤 하기위해 사용
+const year = currentDate.getFullYear();
   const month = currentDate.getMonth();
+//오늘 날짜 미리 저장
+const today = new Date();
+const todayYear = today.getFullYear();
+const todayMonth = today.getMonth();
+const todayDate = today.getDate();
 
-  const today = new Date();
-  const todayYear = today.getFullYear();
-  const todayMonth = today.getMonth();
-  const todayDate = today.getDate();
-
-  /* 모바일 감지 */
+  /* 모바일 감지 480이하이면 모바일로 판단*/
   useEffect(() => {
     const mq = window.matchMedia("(max-width:480px)");
     const handler = () => setIsMobile(mq.matches);
@@ -46,6 +51,7 @@ const Calendar2 = () => {
   }, []);
 
   /* 오늘 날짜 자동 스크롤 */
+  //이번달이 오늘이 속한 달이면 오늘 날짜칸이 자동으로 보이게 스크롤
   useEffect(() => {
     if (year === todayYear && month === todayMonth && todayRef.current) {
       todayRef.current.scrollIntoView({
@@ -57,6 +63,7 @@ const Calendar2 = () => {
 
   /* 월 변경 함수 (연타 방지) */
   const changeMonth = (dir: "prev" | "next") => {
+    //버튼 연타 방지 에니에이션 실행 300ms뒤에 달 변경
     if (isAnimating) return;
     setIsAnimating(true);
     setSlideDir(dir);
@@ -94,6 +101,7 @@ const Calendar2 = () => {
 
   /* 연도별 공휴일 + 성탄절 */
   const rawHolidays = useMemo<RawHoliday[]>(() => {
+    //현재 연도 공휴일만 필터 성탄절 직접추가 불필요한 재계산 방지
     let holidays: RawHoliday[] = [];
     if (Array.isArray(holidayData)) {
       holidays = holidayData
