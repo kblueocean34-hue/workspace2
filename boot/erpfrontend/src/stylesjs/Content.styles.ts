@@ -11,12 +11,12 @@ display:flex;
 `;
 
 export const Left = styled.div`
-width:10%;
+width:20%;
 height:100vh;
 background-color:#fff;
 `;
 export const Right = styled.div`
-width:90%;
+width:80%;
 height:100vh;
 background-color:#fff;
 `;
@@ -99,4 +99,7 @@ border:none;
 &:hover{
 font-size:19px;
 }
+`;
+export const CalendarRow = styled.div`
+display:flex; align-items:stretch; font-family:sans-serif;
 `;

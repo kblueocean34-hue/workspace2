@@ -5,6 +5,7 @@ import {Container, Row, Col} from "react-bootstrap";
 import {Left, Right, Flex} from "../stylesjs/Content.styles";
 import Calendar from "../3_common/Calendar";
 import Calendar2 from "../3_common/Calendar2";
+import SmallCalendar from "../3_common/SmallCalendar";
 
 const MyPage = () => {
     return(
@@ -19,7 +20,7 @@ const MyPage = () => {
         <Col>
         <Flex>
             <Left>
-
+<SmallCalendar/>
             </Left>
             <Right>
 <Calendar2/>             
