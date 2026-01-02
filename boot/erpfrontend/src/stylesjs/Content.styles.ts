@@ -170,7 +170,7 @@ font-size:12px; color:#666;
 `;
 
 export const Dates2 = styled.div`
-display:grid; grid-template-columns:repeat(7, 1fr)
+display:grid; grid-template-columns:repeat(7, 1fr);
 grid-auto-rows:40px;
 gap:4px;
 `;
