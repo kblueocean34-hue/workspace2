@@ -1,5 +1,6 @@
 package port.sm.erp.entity;
 
+import java.time.LocalDate;
 import java.time.LocalTime;
 
 import javax.persistence.Column;
@@ -33,6 +34,10 @@ public class CalendarEvent {
 	
 	@Column(nullable=false)
 	private Long userId;
+	
+	/*날짜 필수*/
+	@Column(nullable=false)
+	private LocalDate eventDate;
 	
 	@Column(nullable = false, length = 100)
 	  private String title;
