@@ -15,9 +15,13 @@ import{
 Fixed, Modal,  ModalTitle, ModalDate
 } from "../stylesjs/Modal.styles";
 import {
-  BtnGroup
+  BtnGroup,
+  MainBtn,
+  GrayBtn
 } from "../stylesjs/Button.styles";
 import api from "../api";
+import { JustifyContent, W49 } from "../stylesjs/Util.styles";
+import { InsertTitle, InsertMemo, TimeInput } from "../stylesjs/Input.styles";
 
 interface RawHoliday {
   date: number; // YYYYMMDD
@@ -410,12 +414,6 @@ const Calendar2 = () => {
                 {selectedDayEvents.map((ev) => (
                   <div
                     key={ev.id}
-                    style={{
-                      border: "1px solid #eee",
-                      borderRadius: 10,
-                      padding: 10,
-                      marginBottom: 8,
-                    }}
                   >
                     <div style={{ display: "flex", justifyContent: "space-between", gap: 8 }}>
                       <b style={{ flex: 1, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
@@ -439,37 +437,45 @@ const Calendar2 = () => {
             )}
 
             {/* ✅ 새 일정 추가 */}
-            <input
+            <InsertTitle
               placeholder="제목"
               value={form.title}
-              onChange={(e) => setForm((p) => ({ ...p, title: e.target.value }))}
-              style={{ width: "100%", padding: 10, marginBottom: 8 }}
+              onChange={(e:any) => setForm((p) => ({ ...p, title: e.target.value }))}
+              
             />
-            <textarea
+            <InsertMemo
               placeholder="메모"
               value={form.memo}
-              onChange={(e) => setForm((p) => ({ ...p, memo: e.target.value }))}
-              style={{ width: "100%", padding: 10, height: 80, marginBottom: 8 }}
+              onChange={(e:any) => setForm((p) => ({ ...p, memo: e.target.value }))}
+              
             />
-            <div style={{ display: "flex", gap: 8, marginBottom: 12 }}>
-              <input
+            <JustifyContent>
+              <W49>
+              <TimeInput
                 type="time"
                 value={form.startTime}
-                onChange={(e) => setForm((p) => ({ ...p, startTime: e.target.value }))}
+                onChange={(e:any) => setForm((p) => ({ ...p, startTime: e.target.value }))}
                 style={{ flex: 1, padding: 10 }}
               />
-              <input
+              </W49>
+              <W49>
+              <TimeInput
                 type="time"
                 value={form.endTime}
-                onChange={(e) => setForm((p) => ({ ...p, endTime: e.target.value }))}
+                onChange={(e:any) => setForm((p) => ({ ...p, endTime: e.target.value }))}
                 style={{ flex: 1, padding: 10 }}
               />
-            </div>
+              </W49>
+            </JustifyContent>
 
-            <BtnGroup>
-              <button onClick={() => setIsModalOpen(false)}>닫기</button>
-              <button onClick={saveEvent}>저장</button>
-            </BtnGroup>
+          
+              <JustifyContent>
+               <W49><GrayBtn onClick={() => setIsModalOpen(false)}>닫기</GrayBtn></W49> 
+               <W49><MainBtn onClick={saveEvent}>저장</MainBtn></W49>
+              </JustifyContent>
+              
+              
+          
           </Modal>
         </Fixed>
       )}
