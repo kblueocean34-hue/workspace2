@@ -6737,3 +6737,6 @@ Binding(CTRL+SHIFT+T,
 
 !ENTRY org.eclipse.lsp4e 4 0 2026-01-07 10:51:09.091
 !MESSAGE 10:51:09.090 [pool-13-thread-1] INFO  o.s.i.v.c.l.u.ParentProcessWatcher - The tasklist command: 'cmd /c "tasklist /FI "PID eq 26260" | findstr 26260"' returns 255
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 10:51:24.027
+!MESSAGE 10:51:23.997 [pool-14-thread-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Invalidate AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/resources/application.properties
