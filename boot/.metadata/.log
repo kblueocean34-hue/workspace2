@@ -2669,3 +2669,1188 @@ Binding(CTRL+SHIFT+T,
 
 !ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:26:52.852
 !MESSAGE 09:26:52.850 [pool-14-thread-1] INFO  o.s.i.v.c.l.u.SimpleTextDocumentService - Closed: file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+!SESSION 2026-01-07 09:42:03.766 -----------------------------------------------
+eclipse.buildId=4.37.0.20250905-1455
+java.version=21.0.9
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=ko_KR
+Framework arguments:  -product org.eclipse.epp.package.jee.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.jee.product
+
+!ENTRY ch.qos.logback.classic 1 0 2026-01-07 09:42:06.319
+!MESSAGE Activated before the state location was initialized. Retry after the state location is initialized.
+
+!ENTRY org.eclipse.lemminx.uber-jar 4 0 2026-01-07 09:42:06.650
+!MESSAGE bundle org.eclipse.lemminx.uber-jar:0.31.0 (615) Component descriptor entry 'OSGI-INF/*.xml' not found
+
+!ENTRY ch.qos.logback.classic 1 0 2026-01-07 09:42:08.272
+!MESSAGE Logback config file: D:\dev_hwang\workspace\boot\.metadata\.plugins\org.eclipse.m2e.logback\logback.2.7.100.20250418-1315.xml
+
+!ENTRY org.eclipse.ui 2 0 2026-01-07 09:42:08.979
+!MESSAGE Warnings while parsing the commands from the 'org.eclipse.ui.commands' and 'org.eclipse.ui.actionDefinitions' extension points.
+!SUBENTRY 1 org.eclipse.ui 2 0 2026-01-07 09:42:08.979
+!MESSAGE Commands should really have a category: plug-in='org.springframework.tooling.boot.ls', id='spring.initializr.addStarters', categoryId='org.eclipse.lsp4e.commandCategory'
+
+!ENTRY org.eclipse.ui 2 0 2026-01-07 09:42:09.454
+!MESSAGE Warnings while parsing the commands from the 'org.eclipse.ui.commands' and 'org.eclipse.ui.actionDefinitions' extension points.
+!SUBENTRY 1 org.eclipse.ui 2 0 2026-01-07 09:42:09.454
+!MESSAGE Commands should really have a category: plug-in='org.springframework.tooling.boot.ls', id='spring.initializr.addStarters', categoryId='org.eclipse.lsp4e.commandCategory'
+
+!ENTRY org.eclipse.egit.ui 2 0 2026-01-07 09:42:17.629
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\PC'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:42:18.847
+!MESSAGE 09:42:18.837 [Simple-Language-Server main thread] INFO  o.s.i.v.b.a.BootVersionValidationConfig - Started Boot Version reconciler
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:42:19.123
+!MESSAGE 09:42:19.122 [Simple-Language-Server main thread] INFO  o.s.i.v.b.jdt.ls.JdtLsProjectCache - INIT CLASSPATH LISTENER enableClasspath=true
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:42:19.235
+!MESSAGE 09:42:19.232 [Simple-Language-Server main thread] INFO  o.s.i.v.boot.app.SpringSymbolIndex - update settings of spring indexer - done
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:42:19.243
+!MESSAGE 09:42:19.241 [Simple-Language-Server main thread] INFO  o.s.i.v.b.j.l.v.SpringProcessConnectorRemote - updating settings for remote processses to track - done
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:42:19.983
+!MESSAGE 09:42:19.244 [Simple-Language-Server main thread] INFO  o.s.i.v.b.j.l.v.SpringProcessConnectorRemote - updating settings for remote processses to track - done
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:42:20.029
+!MESSAGE 09:42:20.027 [pool-6-thread-1] INFO  o.s.i.v.b.j.u.SpringFactoriesIndexer - scan factories files used cached data: erp - no. of cached symbols retrieved: 0
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:42:21.604
+!MESSAGE 09:42:20.215 [pool-6-thread-1] INFO  o.s.i.v.b.j.utils.SpringIndexerJava - scan java files, AST parse, chunk 0 for files: 19
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:42:21.843
+!MESSAGE 09:42:21.664 [Project-Reconciler-1] INFO  o.s.i.v.boot.app.RestTemplateFactory - Env var https_proxy: null
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:42:21.844
+!MESSAGE 09:42:21.843 [pool-6-thread-1] INFO  o.s.i.v.b.j.utils.SpringIndexerJava - reconciling stats - counter: 21
+
+!ENTRY org.eclipse.jface 2 0 2026-01-07 09:42:26.733
+!MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
+!SUBENTRY 1 org.eclipse.jface 2 0 2026-01-07 09:42:26.733
+!MESSAGE A conflict occurred for CTRL+SHIFT+T:
+Binding(CTRL+SHIFT+T,
+	ParameterizedCommand(Command(org.eclipse.jdt.ui.navigate.open.type,Open Type,
+		Open a type in a Java editor,
+		Category(org.eclipse.ui.category.navigate,Navigate,null,true),
+		WorkbenchHandlerServiceHandler("org.eclipse.jdt.ui.navigate.open.type"),
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+Binding(CTRL+SHIFT+T,
+	ParameterizedCommand(Command(org.eclipse.lsp4e.symbolInWorkspace,Go to Symbol in Workspace,
+		,
+		Category(org.eclipse.lsp4e.category,Language Servers,null,true),
+		WorkbenchHandlerServiceHandler("org.eclipse.lsp4e.symbolInWorkspace"),
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:43:58.789
+!MESSAGE 09:43:14.490 [pool-3-thread-3] INFO  o.s.i.v.c.l.u.SimpleTextDocumentService - hover computation done in 6ms
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:44:03.559
+!MESSAGE 09:44:03.553 [Simple-Language-Server main thread] INFO  o.s.i.v.c.l.u.SimpleWorkspaceService - file changed event: [file:///D:/dev_hwang/workspace/boot/erp/src/main/resources/application.properties]
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:44:03.845
+!MESSAGE 09:44:03.844 [pool-6-thread-1] INFO  o.s.i.v.b.j.utils.SpringIndexerJava - additional reconciling with complete index triggered for: [D:\dev_hwang\workspace\boot\erp\src\main\java\port\sm\erp\controller\MemberController.java, D:\dev_hwang\workspace\boot\erp\src\main\java\port\sm\erp\controller\AuthController.java, D:\dev_hwang\workspace\boot\erp\src\main\java\port\sm\erp\controller\CalendarEventController.java]
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:44:04.503
+!MESSAGE 09:44:04.501 [Simple-Language-Server main thread] INFO  o.s.i.v.boot.app.SpringSymbolIndex - Update document [file changed]: file:///D:/dev_hwang/workspace/boot/erp/bin/main/application.properties
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:44:04.504
+!MESSAGE 09:44:04.503 [Simple-Language-Server main thread] INFO  o.s.i.v.boot.app.SpringSymbolIndex - Update document [file changed]: file:///D:/dev_hwang/workspace/boot/erp/bin/main/application.properties
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:44:09.337
+!MESSAGE 09:44:09.335 [pool-14-thread-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Invalidate AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/resources/application.properties
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:44:11.493
+!MESSAGE 09:44:10.935 [Simple-Language-Server main thread] INFO  o.s.i.v.c.l.u.SimpleWorkspaceService - file changed event: [file:///D:/dev_hwang/workspace/boot/erp/src/main/resources/application.properties]
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:44:32.245
+!MESSAGE 09:44:32.244 [Simple-Language-Server main thread] INFO  o.s.i.v.boot.app.SpringSymbolIndex - Update document [file changed]: file:///D:/dev_hwang/workspace/boot/erp/.gradle/8.14.3/gc.properties
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:44:32.276
+!MESSAGE 09:44:32.272 [pool-6-thread-1] INFO  o.s.i.v.b.j.u.SpringFactoriesIndexer - scan factories files for symbols for project: erp - no. of files: 0
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:44:32.403
+!MESSAGE 09:44:32.280 [pool-6-thread-1] INFO  o.s.i.v.b.j.u.SpringFactoriesIndexer - scan factories files for symbols for project: erp took ms: 8
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:44:32.658
+!MESSAGE 09:44:32.524 [Simple-Language-Server main thread] INFO  o.s.i.v.b.j.s.StereotypeCatalogRegistry - stereotype catalog registry reset for project 'erp'
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:44:32.668
+!MESSAGE 09:44:32.663 [pool-6-thread-1] INFO  o.s.i.v.b.j.u.SpringFactoriesIndexer - scan factories files for symbols for project: erp took ms: 6
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:45:39.000
+!MESSAGE 09:44:32.758 [pool-6-thread-1] INFO  o.s.i.v.b.j.utils.SpringIndexerJava - reconciling stats - timer: 90
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:45:39.002
+!MESSAGE 09:44:32.758 [pool-6-thread-1] INFO  o.s.i.v.b.j.utils.SpringIndexerJava - scan java files for symbols for project: erp took ms: 90
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:45:39.003
+!MESSAGE 09:45:28.934 [pool-13-thread-1] INFO  o.s.i.v.c.l.u.ParentProcessWatcher - The tasklist command: 'cmd /c "tasklist /FI "PID eq 26260" | findstr 26260"' returns 255
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:46:50.140
+!MESSAGE 09:46:50.139 [pool-14-thread-1] INFO  o.s.i.v.c.l.u.SimpleTextDocumentService - change arrived: 1
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:46:50.150
+!MESSAGE 09:46:50.147 [pool-3-thread-5] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: work item submitted for doc file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:46:50.375
+!MESSAGE 09:46:50.374 [pool-5-thread-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Finished parsing CU for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:46:50.381
+!MESSAGE 09:46:50.379 [pool-3-thread-5] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: end work on AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:46:50.655
+!MESSAGE 09:46:50.394 [pool-3-thread-6] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: end work on AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:46:50.830
+!MESSAGE 09:46:50.664 [Reconciler-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: end work on AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:46:50.841
+!MESSAGE 09:46:50.839 [pool-3-thread-6] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: work item submitted for doc file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:46:52.526
+!MESSAGE 09:46:52.526 [pool-3-thread-6] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: end work on AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:46:57.427
+!MESSAGE 09:46:57.425 [pool-14-thread-1] INFO  o.s.i.v.c.l.u.SimpleTextDocumentService - change message work done in 1ms
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:46:57.558
+!MESSAGE 09:46:57.557 [pool-3-thread-4] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: work item submitted for doc file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:46:57.595
+!MESSAGE 09:46:57.592 [pool-5-thread-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Finished parsing CU for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:46:58.418
+!MESSAGE 09:46:58.289 [pool-14-thread-1] INFO  o.s.i.v.c.l.u.SimpleTextDocumentService - change message work done in 1ms
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:46:58.794
+!MESSAGE 09:46:58.794 [Reconciler-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: start work on AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:46:58.918
+!MESSAGE 09:46:58.918 [pool-14-thread-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Invalidate AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:46:59.049
+!MESSAGE 09:46:59.048 [pool-3-thread-6] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: work item submitted for doc file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:46:59.715
+!MESSAGE 09:46:59.064 [pool-3-thread-6] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: start work on AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:46:59.724
+!MESSAGE 09:46:59.723 [pool-3-thread-4] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: start work on AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:46:59.725
+!MESSAGE 09:46:59.723 [pool-3-thread-6] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: start work on AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:46:59.726
+!MESSAGE 09:46:59.723 [pool-3-thread-4] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: end work on AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:46:59.727
+!MESSAGE 09:46:59.723 [pool-3-thread-6] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: end work on AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:47:00.781
+!MESSAGE 09:47:00.780 [pool-3-thread-6] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: work item submitted for doc file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:47:00.803
+!MESSAGE 09:47:00.803 [pool-5-thread-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Finished parsing CU for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:47:02.606
+!MESSAGE 09:47:00.945 [Reconciler-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: work item submitted for doc file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:47:02.627
+!MESSAGE 09:47:02.624 [pool-5-thread-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Finished parsing CU for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:47:03.314
+!MESSAGE 09:47:03.310 [pool-5-thread-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Finished parsing CU for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:47:03.791
+!MESSAGE 09:47:03.790 [pool-3-thread-6] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: work item submitted for doc file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:47:03.803
+!MESSAGE 09:47:03.802 [pool-5-thread-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Finished parsing CU for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:47:04.310
+!MESSAGE 09:47:03.871 [pool-14-thread-1] INFO  o.s.i.v.c.l.u.SimpleTextDocumentService - change arrived: 11
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:47:04.324
+!MESSAGE 09:47:04.323 [pool-5-thread-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Finished parsing CU for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:47:04.324
+!MESSAGE 09:47:04.323 [pool-3-thread-4] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: start work on AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:47:05.541
+!MESSAGE 09:47:04.375 [Reconciler-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: start work on AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:47:05.542
+!MESSAGE 09:47:05.540 [pool-5-thread-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Finished parsing CU for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:47:05.543
+!MESSAGE 09:47:05.541 [pool-3-thread-4] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: end work on AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:47:05.607
+!MESSAGE 09:47:05.606 [pool-14-thread-1] INFO  o.s.i.v.c.l.u.SimpleTextDocumentService - change arrived: 14
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:47:06.055
+!MESSAGE 09:47:06.043 [pool-3-thread-4] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: work item submitted for doc file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:47:06.056
+!MESSAGE 09:47:06.054 [pool-5-thread-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Finished parsing CU for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:47:06.117
+!MESSAGE 09:47:06.116 [Reconciler-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: work item submitted for doc file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:47:06.117
+!MESSAGE 09:47:06.116 [Reconciler-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: start work on AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:47:06.450
+!MESSAGE 09:47:06.450 [pool-14-thread-1] INFO  o.s.i.v.c.l.u.SimpleTextDocumentService - change message work done in 1ms
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:47:06.590
+!MESSAGE 09:47:06.552 [pool-5-thread-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Started parsing CU for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:47:06.591
+!MESSAGE 09:47:06.589 [pool-14-thread-1] INFO  o.s.i.v.c.l.u.SimpleTextDocumentService - change arrived: 16
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:47:07.070
+!MESSAGE 09:47:07.052 [pool-3-thread-6] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: work item submitted for doc file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:47:07.853
+!MESSAGE 09:47:07.774 [pool-14-thread-1] INFO  o.s.i.v.c.l.u.SimpleTextDocumentService - change message work done in 1ms
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:47:08.559
+!MESSAGE 09:47:08.559 [pool-3-thread-6] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: work item submitted for doc file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:47:08.569
+!MESSAGE 09:47:08.568 [pool-5-thread-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Finished parsing CU for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:47:08.631
+!MESSAGE 09:47:08.631 [pool-14-thread-1] INFO  o.s.i.v.c.l.u.SimpleTextDocumentService - change arrived: 27
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:47:08.633
+!MESSAGE 09:47:08.633 [pool-14-thread-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Invalidate AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:47:09.046
+!MESSAGE 09:47:09.045 [pool-14-thread-1] INFO  o.s.i.v.c.l.u.SimpleTextDocumentService - change arrived: 30
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:47:09.051
+!MESSAGE 09:47:09.049 [pool-14-thread-1] INFO  o.s.i.v.c.l.u.SimpleTextDocumentService - change message work done in 0ms
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:47:09.069
+!MESSAGE 09:47:09.057 [pool-3-thread-5] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: work item submitted for doc file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:47:09.072
+!MESSAGE 09:47:09.068 [pool-3-thread-7] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: start work on AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:47:09.075
+!MESSAGE 09:47:09.074 [pool-14-thread-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Invalidate AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:47:09.620
+!MESSAGE 09:47:09.082 [pool-3-thread-6] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: end work on AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:47:10.334
+!MESSAGE 09:47:10.333 [pool-14-thread-1] INFO  o.s.i.v.c.l.u.SimpleTextDocumentService - change arrived: 33
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:47:10.754
+!MESSAGE 09:47:10.417 [pool-14-thread-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Invalidate AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:47:10.906
+!MESSAGE 09:47:10.757 [pool-14-thread-1] INFO  o.s.i.v.c.l.u.SimpleTextDocumentService - change message work done in 1ms
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:47:10.906
+!MESSAGE 09:47:10.905 [pool-14-thread-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Invalidate AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:47:11.198
+!MESSAGE 09:47:10.951 [pool-5-thread-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Started parsing CU for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:47:11.199
+!MESSAGE 09:47:11.181 [pool-14-thread-1] INFO  o.s.i.v.c.l.u.SimpleTextDocumentService - change arrived: 41
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:47:11.199
+!MESSAGE 09:47:11.197 [pool-14-thread-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Invalidate AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:47:11.478
+!MESSAGE 09:47:11.478 [pool-3-thread-6] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: work item submitted for doc file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:47:11.520
+!MESSAGE 09:47:11.490 [pool-3-thread-7] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: end work on AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:47:11.981
+!MESSAGE 09:47:11.981 [pool-5-thread-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Started parsing CU for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:47:16.086
+!MESSAGE 09:47:11.989 [pool-5-thread-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Finished parsing CU for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:47:16.087
+!MESSAGE 09:47:11.989 [pool-3-thread-7] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: start work on AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:47:16.087
+!MESSAGE 09:47:11.989 [pool-3-thread-6] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: end work on AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:47:16.768
+!MESSAGE 09:47:16.768 [pool-5-thread-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Finished parsing CU for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:47:16.795
+!MESSAGE 09:47:16.768 [Reconciler-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: end work on AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:47:16.833
+!MESSAGE 09:47:16.831 [pool-14-thread-1] INFO  o.s.i.v.c.l.u.SimpleTextDocumentService - change message work done in 0ms
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:47:17.282
+!MESSAGE 09:47:17.210 [pool-3-thread-7] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: end work on AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:47:17.704
+!MESSAGE 09:47:17.703 [pool-5-thread-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Started parsing CU for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:47:17.714
+!MESSAGE 09:47:17.714 [pool-3-thread-6] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: start work on AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:47:17.715
+!MESSAGE 09:47:17.714 [pool-3-thread-7] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: start work on AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:47:18.081
+!MESSAGE 09:47:17.805 [Reconciler-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: end work on AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:47:18.255
+!MESSAGE 09:47:18.255 [pool-14-thread-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Invalidate AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:47:18.266
+!MESSAGE 09:47:18.257 [pool-14-thread-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Invalidate AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:47:18.585
+!MESSAGE 09:47:18.581 [pool-14-thread-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Invalidate AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:47:18.783
+!MESSAGE 09:47:18.594 [pool-14-thread-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Invalidate AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:47:18.784
+!MESSAGE 09:47:18.782 [pool-14-thread-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Invalidate AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:47:19.296
+!MESSAGE 09:47:19.296 [pool-14-thread-1] INFO  o.s.i.v.c.l.u.SimpleTextDocumentService - change message work done in 1ms
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:47:19.429
+!MESSAGE 09:47:19.428 [pool-14-thread-1] INFO  o.s.i.v.c.l.u.SimpleTextDocumentService - change arrived: 78
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:47:19.429
+!MESSAGE 09:47:19.428 [pool-14-thread-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Invalidate AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:47:19.751
+!MESSAGE 09:47:19.742 [pool-5-thread-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Started parsing CU for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:47:19.751
+!MESSAGE 09:47:19.750 [pool-5-thread-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Finished parsing CU for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:47:20.202
+!MESSAGE 09:47:20.200 [Reconciler-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: work item submitted for doc file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:47:20.202
+!MESSAGE 09:47:20.201 [Reconciler-1] INFO  o.s.i.v.b.j.r.JdtReconciler - reconciling (JDT): file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java done in 1ms
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:47:20.203
+!MESSAGE 09:47:20.201 [Reconciler-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: end work on AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:47:21.276
+!MESSAGE 09:47:20.781 [pool-14-thread-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Invalidate AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:47:21.278
+!MESSAGE 09:47:21.276 [pool-3-thread-7] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: work item submitted for doc file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:47:21.279
+!MESSAGE 09:47:21.276 [pool-3-thread-6] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: work item submitted for doc file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:47:22.292
+!MESSAGE 09:47:22.292 [pool-3-thread-6] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: work item submitted for doc file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:47:22.531
+!MESSAGE 09:47:22.301 [pool-14-thread-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Invalidate AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:47:22.532
+!MESSAGE 09:47:22.531 [pool-14-thread-1] INFO  o.s.i.v.c.l.u.SimpleTextDocumentService - change arrived: 98
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:47:22.815
+!MESSAGE 09:47:22.805 [pool-5-thread-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Started parsing CU for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:47:22.817
+!MESSAGE 09:47:22.815 [pool-3-thread-6] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: start work on AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:47:23.319
+!MESSAGE 09:47:23.318 [pool-14-thread-1] INFO  o.s.i.v.c.l.u.SimpleTextDocumentService - change arrived: 104
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:47:23.319
+!MESSAGE 09:47:23.318 [pool-14-thread-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Invalidate AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:47:23.624
+!MESSAGE 09:47:23.623 [pool-14-thread-1] INFO  o.s.i.v.c.l.u.SimpleTextDocumentService - change arrived: 108
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:47:23.633
+!MESSAGE 09:47:23.632 [pool-14-thread-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Invalidate AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:47:23.792
+!MESSAGE 09:47:23.791 [pool-5-thread-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Started parsing CU for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:47:23.794
+!MESSAGE 09:47:23.791 [pool-3-thread-6] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: work item submitted for doc file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:47:23.798
+!MESSAGE vices.GenericEndpoint.notify(GenericEndpoint.java:152)
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:47:23.799
+!MESSAGE 	at org.eclipse.lsp4j.jsonrpc.RemoteEndpoint.handleNotification(RemoteEndpoint.java:220)
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:47:23.799
+!MESSAGE 	at org.eclipse.lsp4j.jsonrpc.RemoteEndpoint.consume(RemoteEndpoint.java:187)
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:47:23.800
+!MESSAGE 	at org.springframework.ide.vscode.commons.languageserver.util.ParentProcessWatcher.lambda$apply$0(ParentProcessWatcher.java:129)
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:47:23.802
+!MESSAGE 	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer.handleMessage(StreamMessageProducer.java:194)
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:47:23.803
+!MESSAGE 	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer.listen(StreamMessageProducer.java:94)
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:47:23.804
+!MESSAGE 	at org.eclipse.lsp4j.jsonrpc.json.ConcurrentMessageProcessor.run(ConcurrentMessageProcessor.java:113)
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:47:23.805
+!MESSAGE 	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572)
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:47:23.805
+!MESSAGE 	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:47:23.807
+!MESSAGE 	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:47:23.807
+!MESSAGE 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:47:23.807
+!MESSAGE 	at java.base/java.lang.Thread.run(Thread.java:1583)
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:47:23.808
+!MESSAGE Caused by: java.util.concurrent.CancellationException: null
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:47:23.809
+!MESSAGE 	at java.base/java.util.concurrent.CompletableFuture.cancel(CompletableFuture.java:2510)
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:47:23.810
+!MESSAGE 	... 26 common frames omitted
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:47:24.718
+!MESSAGE 09:47:23.819 [pool-5-thread-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Finished parsing CU for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:47:24.866
+!MESSAGE 09:47:24.865 [pool-14-thread-1] INFO  o.s.i.v.c.l.u.SimpleTextDocumentService - change arrived: 119
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:47:24.866
+!MESSAGE 09:47:24.865 [pool-14-thread-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Invalidate AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:47:25.019
+!MESSAGE 09:47:25.019 [pool-14-thread-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Invalidate AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:47:25.103
+!MESSAGE 09:47:25.102 [pool-14-thread-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Invalidate AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:47:25.115
+!MESSAGE 09:47:25.114 [pool-14-thread-1] INFO  o.s.i.v.c.l.u.SimpleTextDocumentService - change arrived: 123
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:47:25.275
+!MESSAGE 09:47:25.183 [pool-14-thread-1] INFO  o.s.i.v.c.l.u.SimpleTextDocumentService - change message work done in 0ms
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:47:26.005
+!MESSAGE 09:47:25.322 [pool-3-thread-6] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: work item submitted for doc file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:47:26.006
+!MESSAGE 09:47:26.000 [pool-14-thread-1] INFO  o.s.i.v.c.l.u.SimpleTextDocumentService - change arrived: 131
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:47:26.006
+!MESSAGE 09:47:26.000 [pool-14-thread-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Invalidate AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:47:29.509
+!MESSAGE 09:47:29.489 [pool-3-thread-6] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: work item submitted for doc file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:47:35.435
+!MESSAGE 09:47:35.434 [pool-5-thread-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Started parsing CU for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:47:35.449
+!MESSAGE 09:47:35.441 [pool-5-thread-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Finished parsing CU for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:47:41.353
+!MESSAGE 09:47:41.352 [pool-5-thread-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Finished parsing CU for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:47:42.769
+!MESSAGE 09:47:41.944 [pool-3-thread-7] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: work item submitted for doc file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:47:43.152
+!MESSAGE 09:47:43.137 [pool-3-thread-6] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: work item submitted for doc file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:47:43.398
+!MESSAGE 09:47:43.397 [pool-14-thread-1] INFO  o.s.i.v.c.l.u.SimpleTextDocumentService - change arrived: 145
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:47:43.398
+!MESSAGE 09:47:43.397 [pool-14-thread-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Invalidate AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:47:46.225
+!MESSAGE 09:47:45.719 [pool-3-thread-6] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: work item submitted for doc file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:47:46.226
+!MESSAGE 09:47:46.213 [pool-5-thread-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Started parsing CU for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:47:46.227
+!MESSAGE 09:47:46.222 [pool-3-thread-7] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: start work on AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:47:46.721
+!MESSAGE 09:47:46.238 [pool-14-thread-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Invalidate AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:47:46.721
+!MESSAGE 09:47:46.720 [pool-3-thread-6] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: end work on AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:47:48.893
+!MESSAGE 09:47:46.940 [Reconciler-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: work item submitted for doc file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:47:48.894
+!MESSAGE 09:47:48.892 [pool-3-thread-6] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: end work on AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:47:49.368
+!MESSAGE 09:47:49.367 [pool-14-thread-1] INFO  o.s.i.v.c.l.u.SimpleTextDocumentService - change message work done in 1ms
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:47:49.377
+!MESSAGE 09:47:49.377 [pool-3-thread-6] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: work item submitted for doc file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:47:49.420
+!MESSAGE 09:47:49.419 [pool-3-thread-7] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: work item submitted for doc file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:47:49.421
+!MESSAGE 09:47:49.419 [pool-3-thread-6] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: work item submitted for doc file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:47:49.422
+!MESSAGE 09:47:49.419 [pool-3-thread-7] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: start work on AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:47:49.424
+!MESSAGE 09:47:49.419 [pool-3-thread-6] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: start work on AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:47:49.576
+!MESSAGE 09:47:49.575 [pool-14-thread-1] INFO  o.s.i.v.c.l.u.SimpleTextDocumentService - change arrived: 154
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:47:49.576
+!MESSAGE 09:47:49.575 [pool-14-thread-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Invalidate AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:47:57.708
+!MESSAGE 09:47:50.083 [Reconciler-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: work item submitted for doc file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:47:57.709
+!MESSAGE 09:47:57.708 [pool-3-thread-7] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: work item submitted for doc file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:47:59.254
+!MESSAGE 09:47:59.253 [pool-5-thread-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Started parsing CU for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:47:59.254
+!MESSAGE 09:47:59.253 [pool-3-thread-6] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: work item submitted for doc file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:47:59.268
+!MESSAGE 09:47:59.264 [pool-5-thread-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Finished parsing CU for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:47:59.776
+!MESSAGE 09:47:59.776 [pool-3-thread-7] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: end work on AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:48:00.046
+!MESSAGE 09:48:00.045 [pool-14-thread-1] INFO  o.s.i.v.c.l.u.SimpleTextDocumentService - change arrived: 162
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:48:00.046
+!MESSAGE 09:48:00.045 [pool-14-thread-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Invalidate AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:48:00.255
+!MESSAGE 09:48:00.255 [pool-3-thread-6] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: work item submitted for doc file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:48:00.293
+!MESSAGE 09:48:00.264 [pool-3-thread-6] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: end work on AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:48:00.760
+!MESSAGE 09:48:00.759 [Reconciler-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: work item submitted for doc file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:48:00.761
+!MESSAGE 09:48:00.759 [Reconciler-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: start work on AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:48:02.375
+!MESSAGE 09:48:02.374 [pool-3-thread-7] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: work item submitted for doc file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:48:02.375
+!MESSAGE 09:48:02.374 [pool-3-thread-6] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: work item submitted for doc file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:48:02.385
+!MESSAGE 09:48:02.385 [pool-3-thread-7] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: end work on AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:48:05.075
+!MESSAGE 09:48:04.136 [pool-5-thread-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Finished parsing CU for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:48:05.143
+!MESSAGE 09:48:05.143 [pool-3-thread-6] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: work item submitted for doc file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:48:06.418
+!MESSAGE 09:48:05.151 [pool-3-thread-6] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: end work on AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:48:07.180
+!MESSAGE 09:48:07.179 [pool-5-thread-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Started parsing CU for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:48:07.180
+!MESSAGE 09:48:07.179 [pool-3-thread-6] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: work item submitted for doc file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:48:07.193
+!MESSAGE 09:48:07.187 [pool-5-thread-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Finished parsing CU for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:48:07.628
+!MESSAGE 09:48:07.626 [Simple-Language-Server main thread] INFO  o.s.i.v.c.l.u.SimpleWorkspaceService - file changed event: [file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java]
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:48:07.802
+!MESSAGE 09:48:07.630 [Simple-Language-Server main thread] INFO  o.s.i.v.boot.app.SpringSymbolIndex - Update document [file changed]: file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:48:08.163
+!MESSAGE 09:48:08.161 [pool-3-thread-7] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: work item submitted for doc file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:48:08.165
+!MESSAGE 09:48:08.163 [pool-3-thread-6] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: start work on AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:48:21.990
+!MESSAGE 09:48:08.266 [ForkJoinPool.commonPool-worker-3] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Removing and cleaning up name env for project file:/D:/dev_hwang/workspace/boot/erp
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:48:21.991
+!MESSAGE 09:48:09.237 [pool-5-thread-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Finished parsing CU for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:48:21.992
+!MESSAGE 09:48:09.237 [pool-3-thread-7] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: start work on AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:48:25.235
+!MESSAGE 09:48:22.601 [pool-5-thread-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Parsed successfully CU for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:48:25.235
+!MESSAGE 09:48:22.601 [pool-3-thread-7] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: start work on AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:48:25.235
+!MESSAGE 09:48:24.674 [pool-3-thread-6] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: work item submitted for doc file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:48:25.236
+!MESSAGE 09:48:25.234 [pool-5-thread-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Started parsing CU for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:48:25.748
+!MESSAGE 09:48:25.747 [pool-5-thread-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Started parsing CU for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:48:25.758
+!MESSAGE 09:48:25.755 [pool-5-thread-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Finished parsing CU for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:48:27.070
+!MESSAGE 09:48:26.059 [Reconciler-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: end work on AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:48:27.645
+!MESSAGE 09:48:27.645 [pool-3-thread-7] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: work item submitted for doc file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:48:27.646
+!MESSAGE 09:48:27.645 [pool-5-thread-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Started parsing CU for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:48:29.672
+!MESSAGE 09:48:27.655 [pool-3-thread-6] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: end work on AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:48:31.142
+!MESSAGE 09:48:29.974 [pool-3-thread-6] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: work item submitted for doc file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:48:31.143
+!MESSAGE 09:48:31.141 [pool-14-thread-1] INFO  o.s.i.v.c.l.u.SimpleTextDocumentService - change arrived: 195
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:48:31.143
+!MESSAGE 09:48:31.141 [pool-14-thread-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Invalidate AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:48:31.771
+!MESSAGE 09:48:31.610 [pool-3-thread-6] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: work item submitted for doc file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:48:32.275
+!MESSAGE 09:48:32.274 [pool-3-thread-7] INFO  o.s.i.v.boot.app.SpringSymbolIndex - Update document [didSave event]: file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:48:32.297
+!MESSAGE 09:48:32.296 [Simple-Language-Server main thread] INFO  o.s.i.v.c.l.u.SimpleWorkspaceService - file changed event: [file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java]
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:48:33.068
+!MESSAGE 09:48:32.954 [Simple-Language-Server main thread] INFO  o.s.i.v.c.l.u.SimpleWorkspaceService - file changed event: [file:///D:/dev_hwang/workspace/boot/erp/bin/main/port/sm/erp/security/JwtUtil.class]
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:48:33.545
+!MESSAGE 09:48:33.525 [pool-3-thread-7] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: start work on AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:48:44.715
+!MESSAGE 09:48:44.715 [pool-3-thread-7] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: work item submitted for doc file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:48:44.717
+!MESSAGE 09:48:44.715 [pool-3-thread-6] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: work item submitted for doc file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:48:44.760
+!MESSAGE 09:48:44.759 [Reconciler-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: work item submitted for doc file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:48:44.760
+!MESSAGE 09:48:44.759 [Reconciler-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: start work on AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:48:51.434
+!MESSAGE 09:48:50.165 [pool-3-thread-6] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: work item submitted for doc file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:48:51.434
+!MESSAGE 09:48:51.433 [pool-14-thread-1] INFO  o.s.i.v.c.l.u.SimpleTextDocumentService - change arrived: 206
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:48:51.995
+!MESSAGE 09:48:51.994 [pool-3-thread-7] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: work item submitted for doc file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:48:53.076
+!MESSAGE 09:48:53.076 [pool-14-thread-1] INFO  o.s.i.v.c.l.u.SimpleTextDocumentService - change arrived: 213
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:48:53.589
+!MESSAGE 09:48:53.589 [Reconciler-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: work item submitted for doc file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:48:53.591
+!MESSAGE 09:48:53.589 [Reconciler-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: start work on AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:48:54.932
+!MESSAGE 09:48:54.930 [pool-14-thread-1] INFO  o.s.i.v.c.l.u.SimpleTextDocumentService - change arrived: 219
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:48:54.932
+!MESSAGE 09:48:54.930 [pool-14-thread-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Invalidate AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:48:54.943
+!MESSAGE 09:48:54.942 [pool-14-thread-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Invalidate AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:48:55.110
+!MESSAGE 09:48:55.110 [pool-14-thread-1] INFO  o.s.i.v.c.l.u.SimpleTextDocumentService - change message work done in 1ms
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:48:55.126
+!MESSAGE 09:48:55.125 [pool-14-thread-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Invalidate AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:48:55.199
+!MESSAGE 09:48:55.199 [pool-14-thread-1] INFO  o.s.i.v.c.l.u.SimpleTextDocumentService - change arrived: 224
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:48:55.699
+!MESSAGE 09:48:55.453 [pool-14-thread-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Invalidate AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:48:55.700
+!MESSAGE 09:48:55.699 [pool-3-thread-7] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: end work on AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:48:56.568
+!MESSAGE 09:48:56.567 [pool-14-thread-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Invalidate AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:48:56.957
+!MESSAGE 09:48:56.724 [pool-14-thread-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Invalidate AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:48:57.130
+!MESSAGE 09:48:57.130 [pool-14-thread-1] INFO  o.s.i.v.c.l.u.SimpleTextDocumentService - change message work done in 2ms
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:49:00.172
+!MESSAGE 09:48:58.692 [pool-5-thread-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Started parsing CU for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:49:00.380
+!MESSAGE 09:49:00.380 [pool-14-thread-1] INFO  o.s.i.v.c.l.u.SimpleTextDocumentService - change arrived: 243
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:49:00.678
+!MESSAGE 09:49:00.677 [pool-5-thread-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Started parsing CU for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:49:00.894
+!MESSAGE 09:49:00.892 [Reconciler-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: work item submitted for doc file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:49:00.895
+!MESSAGE 09:49:00.893 [Reconciler-1] INFO  o.s.i.v.b.j.r.JdtReconciler - reconciling (JDT): file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java done in 1ms
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:49:00.895
+!MESSAGE 09:49:00.893 [Reconciler-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: end work on AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:49:01.207
+!MESSAGE 09:49:01.206 [pool-5-thread-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Parsed successfully CU for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:49:01.927
+!MESSAGE 09:49:01.926 [pool-3-thread-7] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: work item submitted for doc file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:49:01.929
+!MESSAGE 09:49:01.926 [pool-5-thread-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Started parsing CU for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:49:02.426
+!MESSAGE 09:49:01.934 [pool-3-thread-6] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: start work on AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:49:03.182
+!MESSAGE 09:49:02.487 [Reconciler-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: start work on AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:49:05.379
+!MESSAGE 09:49:03.188 [pool-5-thread-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Finished parsing CU for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:49:05.379
+!MESSAGE 09:49:03.706 [pool-3-thread-6] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: work item submitted for doc file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:49:05.380
+!MESSAGE 09:49:05.378 [pool-14-thread-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Invalidate AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:49:05.465
+!MESSAGE 09:49:05.455 [pool-3-thread-6] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: work item submitted for doc file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:49:05.467
+!MESSAGE 09:49:05.465 [pool-3-thread-6] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: start work on AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:49:06.359
+!MESSAGE 09:49:06.358 [pool-14-thread-1] INFO  o.s.i.v.c.l.u.SimpleTextDocumentService - change arrived: 252
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:49:06.554
+!MESSAGE 09:49:06.540 [pool-14-thread-1] INFO  o.s.i.v.c.l.u.SimpleTextDocumentService - change message work done in 0ms
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:49:06.554
+!MESSAGE 09:49:06.552 [pool-14-thread-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Invalidate AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:49:06.827
+!MESSAGE 09:49:06.826 [pool-3-thread-6] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: work item submitted for doc file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:49:07.366
+!MESSAGE 09:49:06.833 [pool-5-thread-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Finished parsing CU for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:49:07.366
+!MESSAGE 09:49:07.365 [pool-14-thread-1] INFO  o.s.i.v.c.l.u.SimpleTextDocumentService - change arrived: 256
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:49:07.366
+!MESSAGE 09:49:07.365 [pool-14-thread-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Invalidate AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:49:09.813
+!MESSAGE 09:49:08.011 [pool-5-thread-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Finished parsing CU for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:49:13.164
+!MESSAGE 09:49:09.878 [pool-14-thread-1] INFO  o.s.i.v.c.l.u.SimpleTextDocumentService - change message work done in 1ms
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:49:13.166
+!MESSAGE 09:49:13.163 [pool-3-thread-7] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: start work on AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:49:13.166
+!MESSAGE 09:49:13.163 [pool-3-thread-6] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: work item submitted for doc file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:49:13.167
+!MESSAGE 09:49:13.163 [pool-3-thread-6] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: start work on AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:49:13.481
+!MESSAGE 09:49:13.480 [pool-14-thread-1] INFO  o.s.i.v.c.l.u.SimpleTextDocumentService - change arrived: 270
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:49:13.481
+!MESSAGE 09:49:13.480 [pool-14-thread-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Invalidate AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:49:14.106
+!MESSAGE 09:49:14.105 [pool-3-thread-7] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: work item submitted for doc file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:49:14.107
+!MESSAGE 09:49:14.105 [pool-5-thread-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Started parsing CU for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:49:14.583
+!MESSAGE 09:49:14.581 [pool-14-thread-1] INFO  o.s.i.v.c.l.u.SimpleTextDocumentService - change arrived: 278
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:49:14.960
+!MESSAGE 09:49:14.960 [pool-14-thread-1] INFO  o.s.i.v.c.l.u.SimpleTextDocumentService - change arrived: 281
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:49:14.961
+!MESSAGE 09:49:14.960 [pool-14-thread-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Invalidate AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:49:15.070
+!MESSAGE 09:49:14.965 [pool-14-thread-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Invalidate AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:49:18.283
+!MESSAGE 09:49:17.436 [pool-14-thread-1] INFO  o.s.i.v.c.l.u.SimpleTextDocumentService - change arrived: 286
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:49:18.283
+!MESSAGE 09:49:17.436 [pool-14-thread-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Invalidate AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:49:18.283
+!MESSAGE 09:49:18.025 [pool-14-thread-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Invalidate AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:49:19.430
+!MESSAGE 09:49:19.429 [pool-14-thread-1] INFO  o.s.i.v.c.l.u.SimpleTextDocumentService - change arrived: 299
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:49:20.124
+!MESSAGE 09:49:20.124 [pool-14-thread-1] INFO  o.s.i.v.c.l.u.SimpleTextDocumentService - change message work done in 1ms
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:49:20.141
+!MESSAGE 09:49:20.140 [pool-14-thread-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Invalidate AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:49:20.901
+!MESSAGE 09:49:20.901 [pool-14-thread-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Invalidate AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:49:21.166
+!MESSAGE 09:49:21.018 [pool-14-thread-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Invalidate AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:49:21.174
+!MESSAGE 09:49:21.174 [pool-5-thread-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Started parsing CU for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:49:21.183
+!MESSAGE 09:49:21.181 [pool-5-thread-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Finished parsing CU for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:49:21.184
+!MESSAGE 09:49:21.181 [pool-3-thread-7] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: start work on AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:49:21.205
+!MESSAGE 09:49:21.204 [pool-14-thread-1] INFO  o.s.i.v.c.l.u.SimpleTextDocumentService - change arrived: 314
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:49:21.735
+!MESSAGE 09:49:21.735 [Reconciler-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: work item submitted for doc file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:49:21.938
+!MESSAGE 09:49:21.741 [pool-5-thread-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Finished parsing CU for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:49:21.938
+!MESSAGE 09:49:21.937 [pool-14-thread-1] INFO  o.s.i.v.c.l.u.SimpleTextDocumentService - change message work done in 2ms
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:49:23.378
+!MESSAGE 09:49:23.377 [pool-14-thread-1] INFO  o.s.i.v.c.l.u.SimpleTextDocumentService - doc save event: file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:49:23.397
+!MESSAGE 09:49:23.394 [Simple-Language-Server main thread] INFO  o.s.i.v.boot.app.SpringSymbolIndex - Update document [file changed]: file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:49:23.516
+!MESSAGE 09:49:23.514 [pool-3-thread-8] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: work item submitted for doc file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:49:23.521
+!MESSAGE 09:49:23.521 [pool-5-thread-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Finished parsing CU for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:49:23.558
+!MESSAGE 09:49:23.557 [pool-6-thread-1] INFO  o.s.i.v.b.j.utils.SpringIndexerJava - Start scanning affected files for types [port.sm.erp.security.JwtUtil]
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:49:24.016
+!MESSAGE 09:49:24.016 [ForkJoinPool.commonPool-worker-3] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Removing and cleaning up name env for project file:/D:/dev_hwang/workspace/boot/erp
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:49:33.167
+!MESSAGE 09:49:33.157 [pool-3-thread-7] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: work item submitted for doc file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:49:36.477
+!MESSAGE 09:49:34.287 [Reconciler-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: end work on AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:49:36.477
+!MESSAGE 09:49:36.476 [Reconciler-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: end work on AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:49:36.496
+!MESSAGE 09:49:36.492 [pool-3-thread-7] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: start work on AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:49:36.496
+!MESSAGE 09:49:36.492 [pool-3-thread-8] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: work item submitted for doc file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:49:36.497
+!MESSAGE 09:49:36.492 [pool-3-thread-8] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: start work on AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:49:36.530
+!MESSAGE 09:49:36.509 [pool-14-thread-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Invalidate AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:49:36.530
+!MESSAGE 09:49:36.529 [pool-14-thread-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Invalidate AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:49:37.434
+!MESSAGE 09:49:36.945 [pool-14-thread-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Invalidate AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:49:38.935
+!MESSAGE 09:49:38.935 [pool-14-thread-1] INFO  o.s.i.v.c.l.u.SimpleTextDocumentService - change arrived: 333
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:49:39.374
+!MESSAGE 09:49:39.374 [pool-5-thread-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Started parsing CU for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:49:40.781
+!MESSAGE 09:49:39.382 [pool-5-thread-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Finished parsing CU for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:49:40.781
+!MESSAGE 09:49:39.452 [Reconciler-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: end work on AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:50:06.305
+!MESSAGE 09:49:41.885 [pool-3-thread-7] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: work item submitted for doc file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:50:06.306
+!MESSAGE 09:50:06.305 [pool-14-thread-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Invalidate AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:50:06.802
+!MESSAGE 09:50:06.802 [pool-3-thread-7] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: work item submitted for doc file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:50:07.347
+!MESSAGE 09:50:07.258 [pool-14-thread-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Invalidate AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:50:07.859
+!MESSAGE 09:50:07.654 [pool-14-thread-1] INFO  o.s.i.v.c.l.u.SimpleTextDocumentService - change message work done in 2ms
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:50:08.948
+!MESSAGE 09:50:08.782 [pool-14-thread-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Invalidate AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:50:11.346
+!MESSAGE 09:50:09.205 [pool-3-thread-8] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: work item submitted for doc file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:50:11.346
+!MESSAGE 09:50:10.552 [pool-14-thread-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Invalidate AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:50:11.358
+!MESSAGE 09:50:11.357 [pool-14-thread-1] INFO  o.s.i.v.c.l.u.SimpleTextDocumentService - change arrived: 368
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:50:11.533
+!MESSAGE 09:50:11.421 [pool-14-thread-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Invalidate AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:50:11.703
+!MESSAGE 09:50:11.535 [pool-14-thread-1] INFO  o.s.i.v.c.l.u.SimpleTextDocumentService - change message work done in 0ms
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:50:11.704
+!MESSAGE 09:50:11.703 [pool-14-thread-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Invalidate AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:50:12.093
+!MESSAGE 09:50:12.071 [pool-5-thread-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Finished parsing CU for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:50:15.121
+!MESSAGE 09:50:13.786 [pool-14-thread-1] INFO  o.s.i.v.c.l.u.SimpleTextDocumentService - change arrived: 376
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:50:15.334
+!MESSAGE 09:50:15.315 [pool-14-thread-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Invalidate AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:50:15.337
+!MESSAGE 09:50:15.323 [pool-5-thread-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Started parsing CU for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:50:15.339
+!MESSAGE 09:50:15.323 [pool-3-thread-8] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: work item submitted for doc file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:50:15.348
+!MESSAGE 09:50:15.347 [pool-3-thread-8] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: work item submitted for doc file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:50:15.358
+!MESSAGE 09:50:15.357 [pool-5-thread-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Finished parsing CU for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:50:15.358
+!MESSAGE 09:50:15.357 [pool-3-thread-8] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: end work on AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:50:15.422
+!MESSAGE 09:50:15.422 [pool-14-thread-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Invalidate AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:50:15.653
+!MESSAGE 09:50:15.652 [pool-14-thread-1] INFO  o.s.i.v.c.l.u.SimpleTextDocumentService - change arrived: 391
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:50:15.668
+!MESSAGE 09:50:15.659 [pool-14-thread-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Invalidate AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:50:15.669
+!MESSAGE 09:50:15.668 [pool-14-thread-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Invalidate AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:50:15.851
+!MESSAGE 09:50:15.847 [pool-14-thread-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Invalidate AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:50:15.866
+!MESSAGE 09:50:15.856 [pool-3-thread-6] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: work item submitted for doc file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:50:16.354
+!MESSAGE 09:50:15.870 [pool-3-thread-7] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: end work on AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:50:16.356
+!MESSAGE 09:50:16.354 [pool-5-thread-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Started parsing CU for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:50:16.362
+!MESSAGE 09:50:16.362 [pool-5-thread-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Finished parsing CU for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:50:16.363
+!MESSAGE 09:50:16.362 [pool-3-thread-7] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: start work on AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:50:16.381
+!MESSAGE 09:50:16.380 [Reconciler-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: work item submitted for doc file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:50:16.381
+!MESSAGE 09:50:16.380 [Reconciler-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: start work on AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:50:17.024
+!MESSAGE 09:50:16.508 [pool-14-thread-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Invalidate AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:50:18.175
+!MESSAGE 09:50:17.040 [pool-3-thread-7] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: start work on AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:50:18.693
+!MESSAGE 09:50:18.310 [pool-14-thread-1] INFO  o.s.i.v.c.l.u.SimpleTextDocumentService - change arrived: 400
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:50:18.694
+!MESSAGE 09:50:18.310 [pool-14-thread-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Invalidate AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:50:18.789
+!MESSAGE 09:50:18.695 [pool-14-thread-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Invalidate AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:50:19.437
+!MESSAGE 09:50:18.934 [pool-3-thread-9] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: start work on AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:50:19.437
+!MESSAGE 09:50:18.934 [pool-3-thread-9] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: end work on AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:50:19.498
+!MESSAGE 09:50:19.496 [pool-14-thread-1] INFO  o.s.i.v.c.l.u.SimpleTextDocumentService - change arrived: 413
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:50:19.514
+!MESSAGE 09:50:19.514 [pool-14-thread-1] INFO  o.s.i.v.c.l.u.SimpleTextDocumentService - change arrived: 415
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:50:19.516
+!MESSAGE 09:50:19.514 [pool-14-thread-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Invalidate AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:50:19.932
+!MESSAGE 09:50:19.784 [pool-14-thread-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Invalidate AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:50:20.954
+!MESSAGE 09:50:20.677 [pool-14-thread-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Invalidate AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:50:21.430
+!MESSAGE 09:50:21.055 [pool-14-thread-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Invalidate AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:50:21.430
+!MESSAGE 09:50:21.429 [pool-14-thread-1] INFO  o.s.i.v.c.l.u.SimpleTextDocumentService - change arrived: 427
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:50:21.848
+!MESSAGE 09:50:21.555 [pool-14-thread-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Invalidate AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:50:21.848
+!MESSAGE 09:50:21.847 [pool-14-thread-1] INFO  o.s.i.v.c.l.u.SimpleTextDocumentService - change arrived: 432
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:50:21.849
+!MESSAGE 09:50:21.847 [pool-14-thread-1] INFO  o.s.i.v.c.l.u.SimpleTextDocumentService - change message work done in 0ms
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:50:22.191
+!MESSAGE 09:50:22.190 [pool-3-thread-9] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: work item submitted for doc file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:50:22.214
+!MESSAGE 09:50:22.213 [pool-14-thread-1] INFO  o.s.i.v.c.l.u.SimpleTextDocumentService - change arrived: 437
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:50:22.335
+!MESSAGE 09:50:22.323 [pool-14-thread-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Invalidate AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:50:22.697
+!MESSAGE 09:50:22.697 [pool-5-thread-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Parsed successfully CU for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:50:22.698
+!MESSAGE 09:50:22.697 [pool-3-thread-7] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: start work on AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:50:22.698
+!MESSAGE 09:50:22.697 [pool-3-thread-9] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: start work on AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:50:22.941
+!MESSAGE 09:50:22.941 [pool-14-thread-1] INFO  o.s.i.v.c.l.u.SimpleTextDocumentService - change arrived: 442
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:50:22.965
+!MESSAGE 09:50:22.964 [pool-3-thread-7] INFO  o.s.i.v.boot.app.SpringSymbolIndex - Update document [didSave event]: file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:50:22.981
+!MESSAGE 09:50:22.980 [Simple-Language-Server main thread] INFO  o.s.i.v.boot.app.SpringSymbolIndex - Update document [file changed]: file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:50:23.182
+!MESSAGE 09:50:22.983 [Simple-Language-Server main thread] INFO  o.s.i.v.boot.app.SpringSymbolIndex - Update document [file changed]: file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:50:23.187
+!MESSAGE 09:50:23.184 [pool-5-thread-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Started parsing CU for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:50:23.226
+!MESSAGE 09:50:23.225 [pool-3-thread-7] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: work item submitted for doc file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:50:23.233
+!MESSAGE 09:50:23.233 [pool-3-thread-7] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: end work on AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:51:09.770
+!MESSAGE 09:51:09.770 [pool-13-thread-1] INFO  o.s.i.v.c.l.u.ParentProcessWatcher - The tasklist command: 'cmd /c "tasklist /FI "PID eq 26260" | findstr 26260"' returns 255
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:52:40.420
+!MESSAGE 09:51:29.906 [pool-13-thread-1] INFO  o.s.i.v.c.l.u.ParentProcessWatcher - The tasklist command: 'cmd /c "tasklist /FI "PID eq 26260" | findstr 26260"' returns 255
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:53:10.625
+!MESSAGE 09:53:10.624 [pool-13-thread-1] INFO  o.s.i.v.c.l.u.ParentProcessWatcher - The tasklist command: 'cmd /c "tasklist /FI "PID eq 26260" | findstr 26260"' returns 255
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:53:24.388
+!MESSAGE 09:53:24.284 [pool-3-thread-11] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: work item submitted for doc file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/security/JwtUtil.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 09:54:00.769
+!MESSAGE 09:54:00.769 [pool-13-thread-1] INFO  o.s.i.v.c.l.u.ParentProcessWatcher - The tasklist command: 'cmd /c "tasklist /FI "PID eq 26260" | findstr 26260"' returns 255

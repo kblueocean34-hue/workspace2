@@ -12,7 +12,13 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
 
-@Component
+/*
+만들고(generateToken)
+검증하고(validateToken)
+안에 들어 있는 정보를 꺼내는 역활(getClaims)를 합니다
+*/
+@Component//spring이 자동으로 객체(Bean)로 만들어서 관리하게 해줍니다
+//JWT로그인한 사용자를 증명하는 전자신분증
 public class JwtUtil {
 
     /* ⚠️ 최소 32바이트 이상
