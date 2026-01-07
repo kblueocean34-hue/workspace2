@@ -3,7 +3,17 @@ import Top from "../include/Top";
 import {Wrapper, DflexColumn, Content, Ctap}
 from "../styled/Sales.styles";
 import {Container, Row, Col, Tab, Tabs} from "react-bootstrap";
+import { BaseTable } from "../styled/Table.styles";
+import { ColGroup } from "../commons/ColGroup";
+
+
+
+
 const SalesManagement = () => {
+
+
+
+
     return(
         <>
 <Wrapper>
@@ -24,7 +34,9 @@ className="mb-3"
 fill
 >
 <Tab eventKey="order" title="수주관리">
-
+<BaseTable>
+<ColGroup columns={[]}/>
+</BaseTable>
 </Tab>
 <Tab eventKey="delivery" title="납품관리">
     
