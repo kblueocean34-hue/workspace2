@@ -10019,3 +10019,165 @@ java.lang.InterruptedException
 
 !ENTRY org.eclipse.lsp4e 4 0 2026-01-07 14:06:46.212
 !MESSAGE 14:06:46.210 [pool-5-thread-32] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Finished parsing CU for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/controller/CalendarEventController.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 14:07:43.545
+!MESSAGE 14:07:33.450 [pool-13-thread-1] INFO  o.s.i.v.c.l.u.ParentProcessWatcher - The tasklist command: 'cmd /c "tasklist /FI "PID eq 10608" | findstr 10608"' returns 255
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 14:08:03.677
+!MESSAGE 14:08:03.677 [pool-13-thread-1] INFO  o.s.i.v.c.l.u.ParentProcessWatcher - The tasklist command: 'cmd /c "tasklist /FI "PID eq 10608" | findstr 10608"' returns 255
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 14:09:54.570
+!MESSAGE 14:09:34.428 [pool-13-thread-1] INFO  o.s.i.v.c.l.u.ParentProcessWatcher - The tasklist command: 'cmd /c "tasklist /FI "PID eq 10608" | findstr 10608"' returns 255
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 14:10:24.791
+!MESSAGE 14:10:24.790 [pool-13-thread-1] INFO  o.s.i.v.c.l.u.ParentProcessWatcher - The tasklist command: 'cmd /c "tasklist /FI "PID eq 10608" | findstr 10608"' returns 255
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 14:11:55.481
+!MESSAGE 14:10:55.002 [pool-13-thread-1] INFO  o.s.i.v.c.l.u.ParentProcessWatcher - The tasklist command: 'cmd /c "tasklist /FI "PID eq 10608" | findstr 10608"' returns 255
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 14:12:10.653
+!MESSAGE 14:12:10.653 [pool-14-thread-1] INFO  o.s.i.v.c.l.u.SimpleTextDocumentService - change arrived: 1
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 14:12:12.069
+!MESSAGE 14:12:12.065 [pool-3-thread-88] INFO  o.s.i.v.c.j.JdtLsJavadocProvider - Fetching javadoc Loracle/jdbc/OracleDriver; took 44 ms
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 14:12:15.049
+!MESSAGE 14:12:12.069 [pool-3-thread-88] INFO  o.s.i.v.c.l.u.SimpleTextDocumentService - hover computation done in 252ms
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 14:12:15.179
+!MESSAGE 14:12:15.178 [pool-14-thread-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Invalidate AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/resources/application.properties
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 14:12:15.994
+!MESSAGE 14:12:15.994 [pool-14-thread-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Invalidate AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/resources/application.properties
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 14:12:17.240
+!MESSAGE 14:12:17.106 [Simple-Language-Server main thread] INFO  o.s.i.v.c.l.u.SimpleWorkspaceService - file changed event: [file:///D:/dev_hwang/workspace/boot/erp/src/main/resources/application.properties]
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 14:12:25.625
+!MESSAGE 14:12:17.359 [pool-6-thread-1] INFO  o.s.i.v.b.j.utils.SpringIndexerJava - additional reconciling with complete index triggered for: [D:\dev_hwang\workspace\boot\erp\src\main\java\port\sm\erp\controller\MemberController.java, D:\dev_hwang\workspace\boot\erp\src\main\java\port\sm\erp\controller\AuthController.java, D:\dev_hwang\workspace\boot\erp\src\main\java\port\sm\erp\controller\CalendarEventController.java]
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 14:12:27.036
+!MESSAGE 14:12:27.035 [pool-14-thread-1] INFO  o.s.i.v.c.l.u.SimpleTextDocumentService - change arrived: 6
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 14:12:27.036
+!MESSAGE 14:12:27.035 [pool-14-thread-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Invalidate AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/resources/application.properties
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 14:12:30.692
+!MESSAGE 14:12:30.692 [pool-14-thread-1] INFO  o.s.i.v.c.l.u.SimpleTextDocumentService - change arrived: 8
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 14:12:31.702
+!MESSAGE 14:12:31.535 [Simple-Language-Server main thread] INFO  o.s.i.v.boot.app.SpringSymbolIndex - Update document [file changed]: file:///D:/dev_hwang/workspace/boot/erp/src/main/resources/application.properties
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 14:12:47.799
+!MESSAGE 14:12:32.488 [pool-6-thread-1] INFO  o.s.i.v.b.j.utils.SpringIndexerJava - additional reconciling with complete index triggered for: [D:\dev_hwang\workspace\boot\erp\src\main\java\port\sm\erp\controller\MemberController.java, D:\dev_hwang\workspace\boot\erp\src\main\java\port\sm\erp\controller\AuthController.java, D:\dev_hwang\workspace\boot\erp\src\main\java\port\sm\erp\controller\CalendarEventController.java]
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 14:12:47.810
+!MESSAGE 14:12:47.805 [Simple-Language-Server main thread] INFO  o.s.i.v.b.j.s.StereotypeCatalogRegistry - stereotype catalog registry reset for project 'erp'
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 14:12:47.816
+!MESSAGE 14:12:47.811 [pool-5-thread-33] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Started parsing CU for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/entity/CalendarEvent.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 14:12:47.897
+!MESSAGE 14:12:47.896 [pool-5-thread-33] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Finished parsing CU for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/entity/CalendarEvent.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 14:12:47.942
+!MESSAGE 14:12:47.932 [pool-5-thread-34] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Finished parsing CU for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/controller/CalendarEventController.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 14:12:47.943
+!MESSAGE 14:12:47.934 [pool-3-thread-90] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: start work on AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/controller/CalendarEventController.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 14:12:48.099
+!MESSAGE 14:12:48.099 [Simple-Language-Server main thread] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Removing and cleaning up name env for project file:/D:/dev_hwang/workspace/boot/erp
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 14:12:48.109
+!MESSAGE 14:12:48.108 [pool-3-thread-87] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: work item submitted for doc file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/entity/CalendarEvent.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 14:12:48.277
+!MESSAGE 14:12:48.110 [pool-3-thread-88] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: work item submitted for doc file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/controller/CalendarEventController.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 14:12:48.278
+!MESSAGE 14:12:48.166 [pool-3-thread-90] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: start work on AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/entity/CalendarEvent.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 14:12:48.278
+!MESSAGE 14:12:48.206 [pool-3-thread-89] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: end work on AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/controller/CalendarEventController.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 14:12:48.313
+!MESSAGE 14:12:48.312 [pool-6-thread-1] INFO  o.s.i.v.b.j.utils.SpringIndexerJava - reconciling stats - timer: 516
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 14:12:48.321
+!MESSAGE 14:12:48.317 [pool-6-thread-1] INFO  o.s.i.v.b.j.u.SpringFactoriesIndexer - scan factories files for symbols for project: erp took ms: 5
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 14:13:35.723
+!MESSAGE 14:12:48.401 [pool-6-thread-1] INFO  o.s.i.v.b.j.utils.SpringIndexerJava - scan java files restored cached dependency data: 0 - no. of cached dependencies: {}
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 14:13:35.724
+!MESSAGE 14:12:56.257 [pool-14-thread-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Invalidate AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/resources/application.properties
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 14:14:16.047
+!MESSAGE 14:14:16.046 [pool-13-thread-1] INFO  o.s.i.v.c.l.u.ParentProcessWatcher - The tasklist command: 'cmd /c "tasklist /FI "PID eq 10608" | findstr 10608"' returns 255
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 14:15:26.562
+!MESSAGE 14:14:36.190 [pool-13-thread-1] INFO  o.s.i.v.c.l.u.ParentProcessWatcher - The tasklist command: 'cmd /c "tasklist /FI "PID eq 10608" | findstr 10608"' returns 255
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 14:15:56.940
+!MESSAGE 14:15:46.802 [pool-13-thread-1] INFO  o.s.i.v.c.l.u.ParentProcessWatcher - The tasklist command: 'cmd /c "tasklist /FI "PID eq 10608" | findstr 10608"' returns 255
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 14:16:37.270
+!MESSAGE 14:16:27.179 [pool-13-thread-1] INFO  o.s.i.v.c.l.u.ParentProcessWatcher - The tasklist command: 'cmd /c "tasklist /FI "PID eq 10608" | findstr 10608"' returns 255
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 14:17:47.812
+!MESSAGE 14:17:47.812 [pool-13-thread-1] INFO  o.s.i.v.c.l.u.ParentProcessWatcher - The tasklist command: 'cmd /c "tasklist /FI "PID eq 10608" | findstr 10608"' returns 255
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 14:18:28.191
+!MESSAGE 14:18:28.191 [pool-13-thread-1] INFO  o.s.i.v.c.l.u.ParentProcessWatcher - The tasklist command: 'cmd /c "tasklist /FI "PID eq 10608" | findstr 10608"' returns 255
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 14:18:58.519
+!MESSAGE 14:18:58.518 [pool-13-thread-1] INFO  o.s.i.v.c.l.u.ParentProcessWatcher - The tasklist command: 'cmd /c "tasklist /FI "PID eq 10608" | findstr 10608"' returns 255
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 14:22:20.415
+!MESSAGE 14:20:29.332 [pool-13-thread-1] INFO  o.s.i.v.c.l.u.ParentProcessWatcher - The tasklist command: 'cmd /c "tasklist /FI "PID eq 10608" | findstr 10608"' returns 255
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 14:23:51.252
+!MESSAGE 14:23:51.252 [pool-13-thread-1] INFO  o.s.i.v.c.l.u.ParentProcessWatcher - The tasklist command: 'cmd /c "tasklist /FI "PID eq 10608" | findstr 10608"' returns 255
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 14:25:32.207
+!MESSAGE 14:25:01.890 [pool-13-thread-1] INFO  o.s.i.v.c.l.u.ParentProcessWatcher - The tasklist command: 'cmd /c "tasklist /FI "PID eq 10608" | findstr 10608"' returns 255
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 14:28:23.921
+!MESSAGE 14:28:13.843 [pool-13-thread-1] INFO  o.s.i.v.c.l.u.ParentProcessWatcher - The tasklist command: 'cmd /c "tasklist /FI "PID eq 10608" | findstr 10608"' returns 255
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 14:29:44.745
+!MESSAGE 14:29:44.744 [pool-13-thread-1] INFO  o.s.i.v.c.l.u.ParentProcessWatcher - The tasklist command: 'cmd /c "tasklist /FI "PID eq 10608" | findstr 10608"' returns 255
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 14:30:15.048
+!MESSAGE 14:30:15.047 [pool-13-thread-1] INFO  o.s.i.v.c.l.u.ParentProcessWatcher - The tasklist command: 'cmd /c "tasklist /FI "PID eq 10608" | findstr 10608"' returns 255
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 14:30:45.345
+!MESSAGE 14:30:45.345 [pool-13-thread-1] INFO  o.s.i.v.c.l.u.ParentProcessWatcher - The tasklist command: 'cmd /c "tasklist /FI "PID eq 10608" | findstr 10608"' returns 255
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 14:31:15.586
+!MESSAGE 14:31:15.586 [pool-13-thread-1] INFO  o.s.i.v.c.l.u.ParentProcessWatcher - The tasklist command: 'cmd /c "tasklist /FI "PID eq 10608" | findstr 10608"' returns 255
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 14:32:26.271
+!MESSAGE 14:32:26.270 [pool-13-thread-1] INFO  o.s.i.v.c.l.u.ParentProcessWatcher - The tasklist command: 'cmd /c "tasklist /FI "PID eq 10608" | findstr 10608"' returns 255
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 14:34:07.201
+!MESSAGE 14:32:56.537 [pool-13-thread-1] INFO  o.s.i.v.c.l.u.ParentProcessWatcher - The tasklist command: 'cmd /c "tasklist /FI "PID eq 10608" | findstr 10608"' returns 255
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 14:35:48.173
+!MESSAGE 14:35:48.172 [pool-13-thread-1] INFO  o.s.i.v.c.l.u.ParentProcessWatcher - The tasklist command: 'cmd /c "tasklist /FI "PID eq 10608" | findstr 10608"' returns 255
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 14:37:19.041
+!MESSAGE 14:37:19.041 [pool-13-thread-1] INFO  o.s.i.v.c.l.u.ParentProcessWatcher - The tasklist command: 'cmd /c "tasklist /FI "PID eq 10608" | findstr 10608"' returns 255
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 14:37:49.292
+!MESSAGE 14:37:49.291 [pool-13-thread-1] INFO  o.s.i.v.c.l.u.ParentProcessWatcher - The tasklist command: 'cmd /c "tasklist /FI "PID eq 10608" | findstr 10608"' returns 255
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 14:38:49.862
+!MESSAGE 14:38:49.861 [pool-13-thread-1] INFO  o.s.i.v.c.l.u.ParentProcessWatcher - The tasklist command: 'cmd /c "tasklist /FI "PID eq 10608" | findstr 10608"' returns 255
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 14:39:40.331
+!MESSAGE 14:39:40.329 [pool-13-thread-1] INFO  o.s.i.v.c.l.u.ParentProcessWatcher - The tasklist command: 'cmd /c "tasklist /FI "PID eq 10608" | findstr 10608"' returns 255
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-07 14:40:10.594
+!MESSAGE 14:40:10.593 [pool-13-thread-1] INFO  o.s.i.v.c.l.u.ParentProcessWatcher - The tasklist command: 'cmd /c "tasklist /FI "PID eq 10608" | findstr 10608"' returns 255
