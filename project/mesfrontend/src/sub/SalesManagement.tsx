@@ -2,21 +2,14 @@ import Lnb from "../include/Lnb";
 import Top from "../include/Top";
 import {Wrapper, DflexColumn, Content, Ctap}
 from "../styled/Sales.styles";
-import {Container, Row, Col, Tab, Tabs} from "react-bootstrap";
-import { BaseTable, Thead,Tbody,Tfoot, Tr, Th, Td } from "../styled/Table.styles";
-import { ColGroup } from "../commons/ColGroup";
+import {Container, Row, Col, Tab, Tabs, Table} from "react-bootstrap";
+//import { BaseTable, Thead,Tbody,Tfoot, Tr, Th, Td } from "../styled/Table.styles";
+//import { ColGroup } from "../commons/ColGroup";
 import { Group, Left, Right,  Text6} from "../styled/Component.styles";
 import {Time, Select, Search, Submit,} from "../styled/Input.styles";
 
-
-
-
 const SalesManagement = () => {
-
-
-
-
-    return(
+return(
         <>
 <Wrapper>
     <Lnb/>
@@ -50,8 +43,42 @@ className="mb-3"
 fill
 >
 <Tab eventKey="orders" title="수주관리">
+<Table responsive>
+    <thead>
+        <tr>
+<th>#</th> 
+{Array.from({length:14}).map((_, index) => (
+    <th key={index}>Table heading</th>
+))}           
+        </tr>
+    </thead>
+</Table>
 
 
+</Tab>
+<Tab eventKey="delivery" title="납품관리">
+    
+</Tab>
+<Tab eventKey="search" title="수주내역조회">
+    
+</Tab>
+<Tab eventKey="dsearch" title="납품내역조회">
+    
+</Tab>
+</Tabs>
+</Ctap>
+                </Col>
+            </Row>
+        </Container>
+    </DflexColumn>
+</Wrapper>
+        </>
+    )
+}
+
+export default SalesManagement;
+
+/*
 <BaseTable>
     <ColGroup columns={[]}/>
     <Thead variant="dark">
@@ -85,25 +112,4 @@ fill
         </Tr>
     </Tfoot>
 </BaseTable>
-</Tab>
-<Tab eventKey="delivery" title="납품관리">
-    
-</Tab>
-<Tab eventKey="search" title="수주내역조회">
-    
-</Tab>
-<Tab eventKey="dsearch" title="납품내역조회">
-    
-</Tab>
-</Tabs>
-</Ctap>
-                </Col>
-            </Row>
-        </Container>
-    </DflexColumn>
-</Wrapper>
-        </>
-    )
-}
-
-export default SalesManagement;
+*/
