@@ -5,8 +5,13 @@ width:100%;
 display:flex; 
 `;
 export const DflexColumn = styled.div`
-display:flex; 
+display:flex;
 flex-direction:column;
+`;
+export const DflexColumn2 = styled.div`
+display:flex;
+justify-content:space-between;
+align-items:center;
 `;
 export const Content = styled.div`
 width:100%;

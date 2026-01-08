@@ -12,3 +12,22 @@ export const Text6 = styled.h6`
 font-size:12px; font-weight:400;
 letter-spacing:-3%;
 `;
+
+export const Span = styled.span`
+display:flex;
+justify-content:flex-start;
+align-items:center;
+flex-direction:column;
+`;
+
+export const Dflex = styled.div`
+display:flex;
+justify-content:flex-start;
+align-items:center;
+`;
+
+export const DflexEnd = styled.div`
+display:flex;
+justify-content:flex-end;
+align-items:center;
+`;
