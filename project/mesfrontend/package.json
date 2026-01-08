@@ -17,12 +17,14 @@
     "@types/styled-components": "^5.1.36",
     "axios": "^1.13.2",
     "bootstrap": "^5.3.8",
+    "file-saver": "^2.0.5",
     "react": "^19.1.1",
     "react-bootstrap": "^2.10.10",
     "react-dom": "^19.1.1",
     "react-router-dom": "^7.9.6",
     "sass": "^1.93.3",
-    "styled-components": "^6.1.19"
+    "styled-components": "^6.1.19",
+    "xlsx": "^0.18.5"
   },
   "devDependencies": {
     "@eslint/js": "^9.36.0",

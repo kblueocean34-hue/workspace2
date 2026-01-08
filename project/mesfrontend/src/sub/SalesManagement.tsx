@@ -150,6 +150,8 @@ fill
 export default SalesManagement;
 
 /*
+npm install xlsx file-saver
+
 <BaseTable>
     <ColGroup columns={[]}/>
     <Thead variant="dark">
