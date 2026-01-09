@@ -1,3 +1,4 @@
+import {useState} from "react";
 import Lnb from "../include/Lnb";
 import Top from "../include/Top";
 import {Wrapper, DflexColumn, DflexColumn2,Content, Ctap}
@@ -12,6 +13,22 @@ import { saveAs } from "file-saver";
 
 
 const SalesManagement = () => {
+
+const [form, setForm] = useState({
+  orderDate: "",
+  customerCode: "",
+  customerName: "",
+  itemCode: "",
+  itemName: "",
+  orderQty: "",
+  price: "",
+  deliveryDate: "",
+  remark: "",
+});
+
+const handleChange = e => {
+  setForm({ ...form, [e.target.name]: e.target.value });
+};
 
 const handleExcelDownload = () => {
     // ✔️ 엑셀에 들어갈 데이터 (헤더 + row)
