@@ -70,50 +70,41 @@ const [rows, setRows] =useState<TableRow[]>([]);
   };
 
 //목록 조회 (서버 -> rows)
+//목록 조회 (서버 -> rows)
 const fetchOrders = async () => {
- 
-  //add
   const token = localStorage.getItem("token");
 
   console.log("[orders] token exists?", Boolean(token));
   console.log("[orders] request url:", `${API_BASE}/api/sales/orders`);
 
-
-  const res = await fetch(`${API_BASE}/api/sales/orders`,{
-    method: "GET", credentials:"include",
-    headers:{
-      "Content-Type":"application/json",
-      ...(token ?{Authorization: `Bearer ${token}`}:{}),
-    }
+  const res = await fetch(`${API_BASE}/api/sales/orders`, {
+    method: "GET",
+    credentials: "include",
+    headers: {
+      "Content-Type": "application/json",
+      ...(token ? { Authorization: `Bearer ${token}` } : {}),
+    },
   });
 
+  // ✅ body는 딱 1번만 읽기
   const raw = await res.text();
   console.log("[orders] status:", res.status);
   console.log("[orders] body:", raw);
 
+  // ✅ 실패면 raw를 이미 읽었으니 그대로 출력/에러
+  if (!res.ok) {
+    throw new Error(`목록 조회 실패:${res.status}`);
+  }
 
-  if(!res.ok)throw new Error(`목록 조회 실패:${res.status}`);
-  const list:any[] = await res.json();//서버응답(json)을 배열로 받기
-// fetch 로 받아온 응답(res)에서 본문(body)을 json으로 파싱 any[] “일단 형태 신경 안 쓰고 배열로 받는다”는 뜻 (타입 안전성은 약함)
-  const mapped:TableRow[] = list.map((o) => {
-/*
-list의 각요소 (각 수주 1건)을 o라고 두고
-map은 원본 배열길이 그대로 새 배열을 만들어서 리턴
-결과가 mapped이고 이건 화면 테이블에 바로 넣기 종흔 형태(TableRow[])로 바꾼거
-*/
-const qty = Number(o.orderQty ?? 0);//숫자형 안전 변환
-//?? (Nullish coalescing) 
-/*
-o.orderQty가 null 또는 undefined면 0을 쓰겠다는 뜻.
-0은 “값이 없음”으로 처리하지 않음 (중요!)
-||를 쓰면 0도 falsy라서 대체돼버릴 수 있음.
-??는 null/undefined만 대체하니까 더 안전.
-*/
-const price = Number(o.price ?? 0);
-const amount = Number(o.amount ?? qty * price);
+  // ✅ 성공이면 raw를 JSON으로 파싱
+  const list: any[] = raw ? JSON.parse(raw) : [];
 
-//테이블 한행을 배열로 만드는 곳
-    return[
+  const mapped: TableRow[] = list.map((o) => {
+    const qty = Number(o.orderQty ?? 0);
+    const price = Number(o.price ?? 0);
+    const amount = Number(o.amount ?? qty * price);
+
+    return [
       o.orderDate ?? "",
       o.customerCode ?? "",
       o.customerName ?? "",
@@ -127,8 +118,9 @@ const amount = Number(o.amount ?? qty * price);
       "미납",
       o.remark ?? "-",
       "보기",
-    ] //테이블에 한줄
+    ];
   });
+
   setRows(mapped);
 };
 
@@ -222,11 +214,16 @@ const openCreate = () => {
     try {
       setSaving(true);
 
+      const token = localStorage.getItem("token");
+
       // ✅ 실제 백엔드 POST
       const res = await fetch(`${API_BASE}/api/sales/orders`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        credentials:"include", //add 
+        headers: {
+           "Content-Type": "application/json",
+          ...(token ? {Authorization:`Bearer ${token}`}:{}),
+          },
+        //credentials:"include", //add 
         body: JSON.stringify(payload),
       });
 
