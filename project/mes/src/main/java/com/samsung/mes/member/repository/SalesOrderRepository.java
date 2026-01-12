@@ -10,5 +10,6 @@ import com.samsung.mes.member.entity.SalesOrder;
 public interface SalesOrderRepository extends JpaRepository<SalesOrder, Long> {
 
 	//기간 조회
-List<SalesOrder> findByOrderDateBetweenOrderByOrderDateDesc(LocalDate form, LocalDate to);
+List<SalesOrder> findByOrderDateBetweenOrderByOrderDateDesc(LocalDate from, LocalDate to);
+List<SalesOrder> findAllByOrderByOrderDateDesc();
 }

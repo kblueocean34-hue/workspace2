@@ -54,7 +54,22 @@ SalesOrder saved = repo.save(//DB저장
     
 //목록조회
 public List<SalesOrderResponse> list(LocalDate from, LocalDate to) {
-	LocalDate today = LocalDate.now();
+	
+	if(from == null && to == null) {
+		return repo.findAllByOrderByOrderDateDesc().stream().map(this::toResponse).toList();
+	}
+	
+	//일부만 들어오면 기본값 보정
+    LocalDate today = LocalDate.now();
+    if (to == null) to = today;
+    if (from == null) from = today.minusDays(30);
+
+    return repo.findByOrderDateBetweenOrderByOrderDateDesc(from, to)
+               .stream()
+               .map(this::toResponse)
+               .toList();
+	
+	/*LocalDate today = LocalDate.now();
 	
 	if (to == null) to = today;
 	if (from == null) from = today.minusDays(30);
@@ -65,7 +80,7 @@ public List<SalesOrderResponse> list(LocalDate from, LocalDate to) {
 	
 	.stream()
 	.map(this::toResponse) //엔티티 -> 응답 DTO
-	.toList();
+	.toList();*/
 }
 
 	//단건조회

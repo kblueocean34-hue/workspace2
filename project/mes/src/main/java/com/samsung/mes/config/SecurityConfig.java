@@ -59,7 +59,7 @@ public class SecurityConfig{
 		.requestMatchers("/members/login","/members/register","/members/logout").permitAll()
 		.requestMatchers("/api/**").permitAll()
 		.requestMatchers("/api/sales/orders/**").permitAll()
-		.requestMatchers("/error").permitAll()
+		.requestMatchers("/", "/error", "/favicon.ico").permitAll()
 		.anyRequest().authenticated()//위에서 허용한것 빼고는 전부 로그인(인증)된 사용자만 접근가능
 		);
 		return http.build();

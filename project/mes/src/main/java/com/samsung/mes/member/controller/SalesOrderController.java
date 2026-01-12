@@ -38,8 +38,8 @@ public class SalesOrderController {
 	//수주목록조회(기간)
 	@GetMapping
 	public List<SalesOrderResponse> list(
-			 @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate from,
-	            @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate to
+@RequestParam(name = "from", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate from,
+@RequestParam(name = "to", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate to
 			){
 		return service.list(from, to);
 	}
