@@ -2,6 +2,15 @@ import styled from "styled-components";
 /*
 npm install styled-components
 */
+import One from "../icon/One";
+import Two from "../icon/Two";
+import { IconWrap } from "../stylesjs/Content.styles";
+import Three from "../icon/Three";
+import Four from "../icon/Four";
+import Five from "../icon/Five";
+import Six from "../icon/Six";
+import Seven from "../icon/Seven";
+
 const SidebarWrapper = styled.div`
 width:80px;
 height:100%;
@@ -29,22 +38,27 @@ const SideBar = () => {
     return(
         <>
         <SidebarWrapper>
-        <Icon src="./img/ic1.png" alt="icon"/>
-        <Icon src="./img/ic2.png" alt="icon"/>
-        <Icon src="./img/ic3.png" alt="icon"/>
-        <Icon src="./img/ic4.png" alt="icon"/>
-        <Icon src="./img/ic5.png" alt="icon"/>
-        <Icon src="./img/ic6.png" alt="icon"/>
-        <Icon src="./img/ic7.png" alt="icon"/>
-        <Icon src="./img/ic8.png" alt="icon"/>
-        <Icon src="./img/ic9.png" alt="icon"/>
-        <Icon src="./img/ic10.png" alt="icon"/>
-        <Icon src="./img/ic11.png" alt="icon"/>
-        <Icon src="./img/ic12.png" alt="icon"/> 
-        <Icon src="./img/ic13.png" alt="icon"/>
-        <Icon src="./img/ic14.png" alt="icon"/> 
-        <Icon src="./img/ic15.png" alt="icon"/> 
-        <Icon src="./img/ic16.png" alt="icon"/>   
+        <IconWrap>
+            <One/>
+        </IconWrap>
+        <IconWrap>
+            <Two/>
+        </IconWrap>
+        <IconWrap>
+            <Three/>
+        </IconWrap>
+        <IconWrap>
+            <Four/>
+        </IconWrap>
+        <IconWrap>
+            <Five/>
+        </IconWrap>
+        <IconWrap>
+            <Six/>
+        </IconWrap>
+        <IconWrap>
+            <Seven/>
+        </IconWrap>
         </SidebarWrapper>
         </>
     )

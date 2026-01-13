@@ -215,3 +215,10 @@ gap:4;
 padding:10px 0px;
 height:70px;
 `;
+
+export const IconWrap = styled.div`
+height:40px; width:40px;
+display:flex; justify-content:center;
+align-items:center;
+margin:0px 0px 10px;
+`;
