@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import Lnb from "../include/Lnb";
 import Top from "../include/Top";
 import { Wrapper, DflexColumn, DflexColumn2, Content, Ctap } from "../styled/Sales.styles";
-import { Container, Row, Col, Tab, Tabs, Table, Button, Modal, Form } 
+import { Container, Row, Col, Tab, Tabs, Table, Button, Modal, Form, Pagination } 
 from "react-bootstrap";
 import { Group, Left, Right, Text6, Dflex, DflexEnd } from "../styled/Component.styles";
 import { Time, Select, Search } from "../styled/Input.styles";
@@ -33,6 +33,11 @@ type SalesOrderPayload = {
     remark:string;
 }
 
+type PageResponse<T> = {
+content:T[]; totalElements:number; totalPages:number;
+number:number; size:number;
+}
+
 const API_BASE = "http://localhost:9500";
 
 const TABLE_HEADERS = [
@@ -42,6 +47,14 @@ const TABLE_HEADERS = [
 
 
 const SalesManagement = () => {
+//페이징관련 추가
+const[page, setPage] = useState(0);
+const[size, setSize] = useState(10);
+const[totalPages, setTotalPages] = useState(0);
+const[totalElements, setTotalElements] =useState(0);
+//페이징 관련 끝
+
+
  const[showCreate, setShowCreate] = useState(false);
  //add
  const[saving, setSaving] = useState(false);
@@ -69,60 +82,94 @@ const [rows, setRows] =useState<TableRow[]>([]);
     setForm((prev) => ({ ...prev, [name]: value }));
   };
 
-//목록 조회 (서버 -> rows)
-//목록 조회 (서버 -> rows)
-const fetchOrders = async () => {
-  const token = localStorage.getItem("token");
+//목록 조회 (페이징)
+const fetchOrders = async (pageArg = page, sizeArg = size) => {
+  /*
+  async : 서버 통신(fetch)은 시간이 걸리니까 “기다렸다가 결과를 받는 함수”라는 뜻
+  pageArg = page : 함수 호출할 때 pageArg를 안 주면, 현재 state의 page 값을 사용
+  sizeArg = size : 마찬가지로 안 주면 현재 state의 size 사용.
+  fetchOrders() → 현재 페이지/사이즈로 조회
+  fetchOrders(2, 20) → 2페이지를 20개씩 조회
+  */
+const token = localStorage.getItem("token");
+/*
+로그인 후 저장된 JWT 같은 토큰을 꺼내서
+요청 헤더에 Authorization: Bearer 토큰으로 넣어 서버가 “누구인지” 알게 함
+*/
+  const params = new URLSearchParams();
+  //?from=...&to=...&page=...&size=... 이런 쿼리스트링을 안전하게 만들어주는 도구야.
+  if ((form as any).from) params.append("from",(form as any).from);
+  if ((form as any).to) params.append("from",(form as any).to);
+  params.append("page", String(pageArg));
+  params.append("size", String(sizeArg));
+  //from=2026-01-01&to=2026-01-31&page=0&size=10
 
-  console.log("[orders] token exists?", Boolean(token));
-  console.log("[orders] request url:", `${API_BASE}/api/sales/orders`);
-
-  const res = await fetch(`${API_BASE}/api/sales/orders`, {
-    method: "GET",
-    credentials: "include",
-    headers: {
-      "Content-Type": "application/json",
-      ...(token ? { Authorization: `Bearer ${token}` } : {}),
+  //실제 서버 호출
+  const res = await fetch(`${API_BASE}/api/sales/orders?${params.toString()}`,{
+    method:"GET", credentials:"include", headers:{
+      "Content-Type":"application/json",
+      ...(token ? {Authorization: `Bearer ${token}`}:{}),
     },
-  });
+    /*
+  params.toString() 앞에 주소가 쿼리스트링으로 변환되어 붙음
+  await fetch() 서버응답이 올때 까지 기다림
+  credentials:"include"  
+  쿠키 기반 로그인도 같이 쓰는 경우, 쿠키를 요청에 포함시키는 옵션
+(토큰 방식만 쓴다면 꼭 필요하진 않은데, 있어도 큰 문제는 없음)
+"Content-Type": "application/json" : 
+(GET이라 몸통이 없어서 사실상 크게 의미는 없지만 관례로 넣기도 함)
+...(token ? { Authorization: Bearer ${token} } : {})
+토큰이 있으면 Authorization 헤더 추가
+토큰이 없으면 아무것도 추가 안 함
+조건부로 헤더를 붙인다는 문법
+*/
 
-  // ✅ body는 딱 1번만 읽기
+  });
   const raw = await res.text();
-  console.log("[orders] status:", res.status);
-  console.log("[orders] body:", raw);
+  //why json res.json()은 한 번만 읽을 수 있는데,에러가 났을 때도 내용을 보고 싶을 수 있음
+  //text로 읽고 → 성공이면 JSON.parse 하는 방식
+  if (!res.ok) throw new Error(raw || `목록조회 실패 ((HTTP) ${res.status})`);//에러면 예외 던지기
+  //성공이면 JSON으로 변환해 PageResponse로 만들기
+  const data: PageResponse<any> = raw ? JSON.parse(raw) : {content:[], totalElements:0, totalPages:0, number:pageArg, size:sizeArg}
+/*
+raw가 있으면 JSON.parse(raw)로 객체로 변환
+raw가 비어있으면(서버가 빈 응답을 준 경우) 안전하게 기본값을 넣음
+PageResponse는 보통 이런 구조일 거야:
+content: 실제 데이터 목록
+totalElements: 전체 데이터 개수
+totalPages: 전체 페이지 수
+number: 현재 페이지 번호
+size: 한 페이지 크기
+*/
+const mapped: TableRow[] = data.content.map((o) => {
+  const qty = Number(o.orderQty ?? 0);
+  const price = Number(o.price ?? 0);
+  const amount = Number(o.amount ?? qty * price);
 
-  // ✅ 실패면 raw를 이미 읽었으니 그대로 출력/에러
-  if (!res.ok) {
-    throw new Error(`목록 조회 실패:${res.status}`);
-  }
+  return[
+o.orderDate ?? "",
+o.customerCode ?? "",
+o.customerName ?? "",
+o.itemCode ?? "",
+o.itemName ?? "",
+"-",
+String(qty),
+String(price),
+String(amount),
+o.deliveryDate ?? "-",
+"미납",
+o.remark ?? "-",
+"보기",
+  ];
+});
 
-  // ✅ 성공이면 raw를 JSON으로 파싱
-  const list: any[] = raw ? JSON.parse(raw) : [];
+setRows(mapped);
+setPage(data.number);
+setSize(data.size);
+setTotalPages(data.totalPages);
+setTotalElements(data.totalElements);
+}
 
-  const mapped: TableRow[] = list.map((o) => {
-    const qty = Number(o.orderQty ?? 0);
-    const price = Number(o.price ?? 0);
-    const amount = Number(o.amount ?? qty * price);
-
-    return [
-      o.orderDate ?? "",
-      o.customerCode ?? "",
-      o.customerName ?? "",
-      o.itemCode ?? "",
-      o.itemName ?? "",
-      "-",
-      String(qty),
-      String(price),
-      String(amount),
-      o.deliveryDate ?? "-",
-      "미납",
-      o.remark ?? "-",
-      "보기",
-    ];
-  });
-
-  setRows(mapped);
-};
 
 //최초 로딩시 서버 데이터 불러오기
 useEffect(() => {
@@ -392,6 +439,26 @@ deliveryDate:"",remark:"",spec:"", remainQty:"", deliveryStatus:"미납",
                         </tr>
                       </tfoot>
                     </Table>
+
+
+{totalPages > 1 && (
+  <>
+  <div className="d-flex justify-content-between align-items-center mt-3">
+    <div>
+      총 {totalElements}건 {page + 1} / {totalPages} 페이지
+    </div>
+  </div>
+  <Pagination className="mb-0">
+<Pagination.First disabled={page === 0} onClick={() => fetchOrders(0, size)}/>
+<Pagination.Prev/>
+<Pagination.Item></Pagination.Item>
+<Pagination.Next/>
+<Pagination.Last disabled={page >= totalPages - 1} onClick={() => fetchOrders(totalPages - 1, size)}/>
+  </Pagination>
+  </>
+)}
+
+
                   </Tab>
 
                   <Tab eventKey="delivery" title="납품관리"></Tab>
@@ -536,4 +603,61 @@ const tableData: TableData = {
     ],
   ],
 };
+*/
+
+/*
+//목록 조회 (서버 -> rows)
+const fetchOrders = async () => {
+  const token = localStorage.getItem("token");
+
+  console.log("[orders] token exists?", Boolean(token));
+  console.log("[orders] request url:", `${API_BASE}/api/sales/orders`);
+
+  const res = await fetch(`${API_BASE}/api/sales/orders`, {
+    method: "GET",
+    credentials: "include",
+    headers: {
+      "Content-Type": "application/json",
+      ...(token ? { Authorization: `Bearer ${token}` } : {}),
+    },
+  });
+
+  // ✅ body는 딱 1번만 읽기
+  const raw = await res.text();
+  console.log("[orders] status:", res.status);
+  console.log("[orders] body:", raw);
+
+  // ✅ 실패면 raw를 이미 읽었으니 그대로 출력/에러
+  if (!res.ok) {
+    throw new Error(`목록 조회 실패:${res.status}`);
+  }
+
+  // ✅ 성공이면 raw를 JSON으로 파싱
+  const list: any[] = raw ? JSON.parse(raw) : [];
+
+  const mapped: TableRow[] = list.map((o) => {
+    const qty = Number(o.orderQty ?? 0);
+    const price = Number(o.price ?? 0);
+    const amount = Number(o.amount ?? qty * price);
+
+    return [
+      o.orderDate ?? "",
+      o.customerCode ?? "",
+      o.customerName ?? "",
+      o.itemCode ?? "",
+      o.itemName ?? "",
+      "-",
+      String(qty),
+      String(price),
+      String(amount),
+      o.deliveryDate ?? "-",
+      "미납",
+      o.remark ?? "-",
+      "보기",
+    ];
+  });
+
+  setRows(mapped);
+};
+
 */
