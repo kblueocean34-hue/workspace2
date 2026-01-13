@@ -1,8 +1,8 @@
 package com.samsung.mes.member.controller;
 
 import java.time.LocalDate;
-import java.util.List;
 
+import org.springframework.data.domain.Page;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -37,7 +37,7 @@ public class SalesOrderController {
 	
 	//수주목록조회(기간)
 	@GetMapping
-	public List<SalesOrderResponse> list(
+	public Page<SalesOrderResponse> list(
 @RequestParam(name = "from", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate from,
 @RequestParam(name = "to", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate to,
 //페이징

@@ -26,7 +26,8 @@ public class RequestValidator {
         if (isBlank(req.getItemName()))
             throw new IllegalArgumentException("품목명은 필수입니다");
 
-        if (req.getOrderQty() == null || req.getOrderQty() <= 0)
+        BigDecimal qty = req.getOrderQty();
+        if (qty == null || qty.compareTo(BigDecimal.ZERO) <= 0)
             throw new IllegalArgumentException("수주수량은 1 이상이어야 합니다");
 
         BigDecimal price = req.getPrice();
