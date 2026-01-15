@@ -11456,3 +11456,291 @@ Created Time: 2026-01-15 15:02:39.874
 
 !ENTRY org.eclipse.lsp4e 4 0 2026-01-15 17:21:09.774
 !MESSAGE 17:21:09.760 [pool-5-thread-100] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Finished parsing CU for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/controller/CalendarEventController.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-15 17:22:02.491
+!MESSAGE 17:21:52.420 [pool-13-thread-1] INFO  o.s.i.v.c.l.u.ParentProcessWatcher - The tasklist command: 'cmd /c "tasklist /FI "PID eq 8228" | findstr 8228"' returns 255
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-15 17:22:22.676
+!MESSAGE 17:22:22.675 [pool-13-thread-1] INFO  o.s.i.v.c.l.u.ParentProcessWatcher - The tasklist command: 'cmd /c "tasklist /FI "PID eq 8228" | findstr 8228"' returns 255
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-15 17:22:42.875
+!MESSAGE 17:22:42.874 [pool-13-thread-1] INFO  o.s.i.v.c.l.u.ParentProcessWatcher - The tasklist command: 'cmd /c "tasklist /FI "PID eq 8228" | findstr 8228"' returns 255
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-15 17:23:13.224
+!MESSAGE 17:23:13.223 [pool-13-thread-1] INFO  o.s.i.v.c.l.u.ParentProcessWatcher - The tasklist command: 'cmd /c "tasklist /FI "PID eq 8228" | findstr 8228"' returns 255
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-15 17:24:23.851
+!MESSAGE 17:23:43.506 [pool-13-thread-1] INFO  o.s.i.v.c.l.u.ParentProcessWatcher - The tasklist command: 'cmd /c "tasklist /FI "PID eq 8228" | findstr 8228"' returns 255
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-15 17:24:54.111
+!MESSAGE 17:24:44.000 [pool-13-thread-1] INFO  o.s.i.v.c.l.u.ParentProcessWatcher - The tasklist command: 'cmd /c "tasklist /FI "PID eq 8228" | findstr 8228"' returns 255
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-15 17:26:45.023
+!MESSAGE 17:26:24.875 [pool-13-thread-1] INFO  o.s.i.v.c.l.u.ParentProcessWatcher - The tasklist command: 'cmd /c "tasklist /FI "PID eq 8228" | findstr 8228"' returns 255
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-15 17:27:45.483
+!MESSAGE 17:27:45.482 [pool-13-thread-1] INFO  o.s.i.v.c.l.u.ParentProcessWatcher - The tasklist command: 'cmd /c "tasklist /FI "PID eq 8228" | findstr 8228"' returns 255
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-15 17:28:15.720
+!MESSAGE 17:28:05.630 [pool-13-thread-1] INFO  o.s.i.v.c.l.u.ParentProcessWatcher - The tasklist command: 'cmd /c "tasklist /FI "PID eq 8228" | findstr 8228"' returns 255
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-15 17:28:45.936
+!MESSAGE 17:28:45.935 [pool-13-thread-1] INFO  o.s.i.v.c.l.u.ParentProcessWatcher - The tasklist command: 'cmd /c "tasklist /FI "PID eq 8228" | findstr 8228"' returns 255
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-15 17:29:16.236
+!MESSAGE 17:29:06.117 [pool-13-thread-1] INFO  o.s.i.v.c.l.u.ParentProcessWatcher - The tasklist command: 'cmd /c "tasklist /FI "PID eq 8228" | findstr 8228"' returns 255
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-15 17:29:43.677
+!MESSAGE 17:29:43.676 [pool-3-thread-182] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: work item submitted for doc file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/controller/CalendarEventController.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-15 17:29:43.855
+!MESSAGE 17:29:43.850 [pool-5-thread-101] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Finished parsing CU for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/controller/CalendarEventController.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-15 17:30:16.520
+!MESSAGE 17:30:16.520 [pool-13-thread-1] INFO  o.s.i.v.c.l.u.ParentProcessWatcher - The tasklist command: 'cmd /c "tasklist /FI "PID eq 8228" | findstr 8228"' returns 255
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-15 17:31:37.150
+!MESSAGE 17:31:27.042 [pool-13-thread-1] INFO  o.s.i.v.c.l.u.ParentProcessWatcher - The tasklist command: 'cmd /c "tasklist /FI "PID eq 8228" | findstr 8228"' returns 255
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-15 17:32:57.555
+!MESSAGE 17:32:07.372 [pool-13-thread-1] INFO  o.s.i.v.c.l.u.ParentProcessWatcher - The tasklist command: 'cmd /c "tasklist /FI "PID eq 8228" | findstr 8228"' returns 255
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-15 17:32:57.555
+!MESSAGE 17:32:47.477 [pool-13-thread-1] INFO  o.s.i.v.c.l.u.ParentProcessWatcher - The tasklist command: 'cmd /c "tasklist /FI "PID eq 8228" | findstr 8228"' returns 255
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-15 17:33:47.912
+!MESSAGE 17:33:37.840 [pool-13-thread-1] INFO  o.s.i.v.c.l.u.ParentProcessWatcher - The tasklist command: 'cmd /c "tasklist /FI "PID eq 8228" | findstr 8228"' returns 255
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-15 17:34:18.165
+!MESSAGE 17:34:18.164 [pool-13-thread-1] INFO  o.s.i.v.c.l.u.ParentProcessWatcher - The tasklist command: 'cmd /c "tasklist /FI "PID eq 8228" | findstr 8228"' returns 255
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-15 17:35:59.034
+!MESSAGE 17:35:58.951 [pool-3-thread-185] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: work item submitted for doc file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/controller/CalendarEventController.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-15 17:36:41.481
+!MESSAGE 17:36:39.045 [pool-13-thread-1] INFO  o.s.i.v.c.l.u.ParentProcessWatcher - The tasklist command: 'cmd /c "tasklist /FI "PID eq 8228" | findstr 8228"' returns 255
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-15 17:36:44.580
+!MESSAGE 17:36:44.580 [pool-3-thread-185] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: work item submitted for doc file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/controller/CalendarEventController.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-15 17:36:47.730
+!MESSAGE 17:36:47.729 [pool-3-thread-185] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: end work on AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/controller/CalendarEventController.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-15 17:36:47.730
+!MESSAGE 17:36:47.729 [pool-3-thread-185] INFO  o.s.i.v.c.l.u.SimpleTextDocumentService - hover computation done in 2ms
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-15 17:37:07.924
+!MESSAGE 17:37:07.924 [pool-5-thread-104] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Started parsing CU for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/controller/CalendarEventController.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-15 17:37:07.973
+!MESSAGE 17:37:07.971 [pool-5-thread-104] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Finished parsing CU for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/controller/CalendarEventController.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-15 17:37:09.120
+!MESSAGE 17:37:09.120 [pool-3-thread-185] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: start work on AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/controller/CalendarEventController.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-15 17:37:09.167
+!MESSAGE 17:37:09.166 [pool-3-thread-186] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: start work on AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/controller/CalendarEventController.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-15 17:37:49.157
+!MESSAGE 17:37:49.156 [pool-13-thread-1] INFO  o.s.i.v.c.l.u.ParentProcessWatcher - The tasklist command: 'cmd /c "tasklist /FI "PID eq 8228" | findstr 8228"' returns 255
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-15 17:37:59.656
+!MESSAGE 17:37:59.655 [pool-3-thread-185] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: work item submitted for doc file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/service/CalendarEventService.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-15 17:38:03.949
+!MESSAGE 17:37:59.692 [pool-14-thread-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Invalidate AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/controller/CalendarEventController.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-15 17:38:03.950
+!MESSAGE 17:38:02.687 [pool-14-thread-1] INFO  o.s.i.v.c.l.u.SimpleTextDocumentService - Closed: file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/service/CalendarEventService.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-15 17:38:03.950
+!MESSAGE 17:38:03.948 [pool-5-thread-104] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Parsed successfully CU for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/repository/CalendarEventRepository.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-15 17:38:04.734
+!MESSAGE 17:38:04.733 [pool-14-thread-1] INFO  o.s.i.v.c.l.u.SimpleTextDocumentService - Closed: file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/repository/CalendarEventRepository.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-15 17:38:49.381
+!MESSAGE 17:38:49.381 [pool-13-thread-1] INFO  o.s.i.v.c.l.u.ParentProcessWatcher - The tasklist command: 'cmd /c "tasklist /FI "PID eq 8228" | findstr 8228"' returns 255
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-15 17:39:25.404
+!MESSAGE 17:39:19.594 [pool-13-thread-1] INFO  o.s.i.v.c.l.u.ParentProcessWatcher - The tasklist command: 'cmd /c "tasklist /FI "PID eq 8228" | findstr 8228"' returns 255
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-15 17:39:25.524
+!MESSAGE 17:39:25.404 [pool-3-thread-190] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: work item submitted for doc file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/controller/CalendarEventController.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-15 17:39:25.632
+!MESSAGE 17:39:25.526 [pool-3-thread-190] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: end work on AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/controller/CalendarEventController.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-15 17:39:25.632
+!MESSAGE 17:39:25.632 [pool-3-thread-187] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: start work on AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/controller/CalendarEventController.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-15 17:39:25.911
+!MESSAGE 17:39:25.911 [Reconciler-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: work item submitted for doc file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/controller/CalendarEventController.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-15 17:39:47.121
+!MESSAGE 17:39:25.916 [Reconciler-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: end work on AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/controller/CalendarEventController.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-15 17:40:08.724
+!MESSAGE 17:39:47.201 [pool-3-thread-189] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: start work on AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/controller/CalendarEventController.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-15 17:40:08.734
+!MESSAGE 17:40:08.732 [pool-3-thread-188] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: work item submitted for doc file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/repository/CalendarEventRepository.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-15 17:40:08.851
+!MESSAGE 17:40:08.751 [pool-5-thread-105] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Finished parsing CU for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/repository/CalendarEventRepository.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-15 17:40:08.852
+!MESSAGE 17:40:08.752 [pool-3-thread-187] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: start work on AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/repository/CalendarEventRepository.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-15 17:40:08.852
+!MESSAGE 17:40:08.851 [pool-3-thread-189] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: start work on AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/repository/CalendarEventRepository.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-15 17:40:09.240
+!MESSAGE 17:40:09.240 [Reconciler-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: work item submitted for doc file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/repository/CalendarEventRepository.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-15 17:40:09.241
+!MESSAGE 17:40:09.240 [Reconciler-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: start work on AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/repository/CalendarEventRepository.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-15 17:41:09.768
+!MESSAGE 17:40:09.251 [Reconciler-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: end work on AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/repository/CalendarEventRepository.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-15 17:41:29.741
+!MESSAGE 17:41:29.741 [pool-3-thread-189] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: work item submitted for doc file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/repository/CalendarEventRepository.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-15 17:41:29.742
+!MESSAGE 17:41:29.741 [pool-3-thread-190] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: work item submitted for doc file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/repository/CalendarEventRepository.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-15 17:41:29.800
+!MESSAGE 17:41:29.791 [pool-5-thread-106] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Finished parsing CU for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/repository/CalendarEventRepository.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-15 17:41:29.800
+!MESSAGE 17:41:29.800 [pool-14-thread-1] INFO  o.s.i.v.c.l.u.SimpleTextDocumentService - change arrived: 3
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-15 17:41:30.245
+!MESSAGE 17:41:30.244 [pool-5-thread-106] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Started parsing CU for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/repository/CalendarEventRepository.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-15 17:41:30.256
+!MESSAGE 17:41:30.255 [pool-5-thread-106] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Finished parsing CU for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/repository/CalendarEventRepository.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-15 17:41:30.314
+!MESSAGE 17:41:30.313 [Reconciler-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: work item submitted for doc file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/repository/CalendarEventRepository.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-15 17:41:30.315
+!MESSAGE 17:41:30.313 [Reconciler-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: start work on AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/repository/CalendarEventRepository.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-15 17:41:31.897
+!MESSAGE 17:41:30.325 [Reconciler-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: end work on AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/repository/CalendarEventRepository.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-15 17:41:32.153
+!MESSAGE 17:41:32.152 [pool-6-thread-1] INFO  o.s.i.v.b.j.utils.SpringIndexerJava - Start scanning affected files for types [port.sm.erp.repository.CalendarEventRepository]
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-15 17:41:42.232
+!MESSAGE 17:41:32.644 [pool-5-thread-106] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Started parsing CU for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/repository/CalendarEventRepository.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-15 17:41:42.232
+!MESSAGE 17:41:42.231 [pool-3-thread-189] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: work item submitted for doc file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/repository/CalendarEventRepository.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-15 17:41:42.233
+!MESSAGE 17:41:42.231 [pool-3-thread-190] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: work item submitted for doc file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/repository/CalendarEventRepository.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-15 17:41:42.233
+!MESSAGE 17:41:42.231 [pool-3-thread-190] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: start work on AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/repository/CalendarEventRepository.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-15 17:41:43.092
+!MESSAGE 17:41:43.092 [pool-14-thread-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Invalidate AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/repository/CalendarEventRepository.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-15 17:41:43.219
+!MESSAGE 17:41:43.207 [pool-3-thread-189] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: work item submitted for doc file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/repository/CalendarEventRepository.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-15 17:41:43.784
+!MESSAGE 17:41:43.619 [Reconciler-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: end work on AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/repository/CalendarEventRepository.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-15 17:41:43.785
+!MESSAGE 17:41:43.779 [pool-5-thread-106] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Finished parsing CU for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/repository/CalendarEventRepository.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-15 17:41:44.733
+!MESSAGE 17:41:44.132 [Reconciler-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: end work on AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/repository/CalendarEventRepository.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-15 17:41:45.041
+!MESSAGE 17:41:45.015 [Simple-Language-Server main thread] INFO  o.s.i.v.c.l.u.SimpleWorkspaceService - file changed event: [file:///D:/dev_hwang/workspace/boot/erp/bin/main/port/sm/erp/repository/CalendarEventRepository.class, file:///D:/dev_hwang/workspace/boot/erp/bin/main/port/sm/erp/service/CalendarEventService.class]
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-15 17:41:45.858
+!MESSAGE 17:41:45.059 [pool-6-thread-1] INFO  o.s.i.v.b.j.utils.SpringIndexerJava - Finished scanning affected files [D:\dev_hwang\workspace\boot\erp\src\main\java\port\sm\erp\repository\CalendarEventRepository.java]
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-15 17:41:45.860
+!MESSAGE 17:41:45.857 [pool-14-thread-1] INFO  o.s.i.v.c.l.u.SimpleTextDocumentService - change arrived: 6
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-15 17:41:45.861
+!MESSAGE 17:41:45.860 [pool-14-thread-1] INFO  o.s.i.v.c.l.u.SimpleTextDocumentService - change arrived: 8
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-15 17:41:47.502
+!MESSAGE 17:41:46.513 [Reconciler-1] INFO  o.s.i.v.b.j.r.JdtReconciler - reconciling (JDT): file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/repository/CalendarEventRepository.java done in 140ms
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-15 17:41:47.804
+!MESSAGE 17:41:47.708 [pool-6-thread-1] INFO  o.s.i.v.b.j.utils.SpringIndexerJava - Finished scanning affected files [D:\dev_hwang\workspace\boot\erp\src\main\java\port\sm\erp\repository\CalendarEventRepository.java]
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-15 17:41:48.343
+!MESSAGE 17:41:48.342 [pool-5-thread-106] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Creating name env for project 'erp'
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-15 17:41:48.393
+!MESSAGE 17:41:48.388 [pool-5-thread-106] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Finished parsing CU for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/repository/CalendarEventRepository.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-15 17:41:59.067
+!MESSAGE 17:41:59.065 [pool-5-thread-106] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Finished parsing CU for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/controller/CalendarEventController.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-15 17:42:22.670
+!MESSAGE 17:42:22.669 [pool-14-thread-1] INFO  o.s.i.v.c.l.u.SimpleTextDocumentService - change arrived: 1
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-15 17:42:22.789
+!MESSAGE 17:42:22.678 [pool-3-thread-192] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: work item submitted for doc file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/repository/MemberRepository.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-15 17:42:22.790
+!MESSAGE 17:42:22.789 [pool-3-thread-190] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: start work on AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/repository/MemberRepository.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-15 17:42:23.750
+!MESSAGE 17:42:23.181 [Reconciler-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: work item submitted for doc file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/repository/MemberRepository.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-15 17:42:23.761
+!MESSAGE 17:42:23.758 [pool-5-thread-106] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Finished parsing CU for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/repository/CalendarEventRepository.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-15 17:42:23.761
+!MESSAGE 17:42:23.760 [pool-3-thread-192] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: end work on AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/repository/CalendarEventRepository.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-15 17:42:23.857
+!MESSAGE 17:42:23.857 [pool-3-thread-191] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: work item submitted for doc file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/repository/CalendarEventRepository.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-15 17:42:33.102
+!MESSAGE 17:42:23.867 [pool-3-thread-191] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: end work on AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/repository/CalendarEventRepository.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-15 17:42:33.261
+!MESSAGE 17:42:33.145 [pool-5-thread-106] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Finished parsing CU for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/service/CalendarEventService.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-15 17:42:33.262
+!MESSAGE 17:42:33.259 [pool-3-thread-191] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: work item submitted for doc file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/service/CalendarEventService.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-15 17:42:44.875
+!MESSAGE 17:42:33.613 [Reconciler-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: work item submitted for doc file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/service/CalendarEventService.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-15 17:44:00.318
+!MESSAGE 17:42:44.881 [pool-3-thread-191] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: start work on AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/service/CalendarEventService.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-15 17:44:00.318
+!MESSAGE 17:42:44.900 [pool-3-thread-191] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: end work on AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/service/CalendarEventService.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-15 17:44:16.833
+!MESSAGE 17:44:16.221 [pool-5-thread-107] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Finished parsing CU for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/service/CalendarEventService.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-15 17:44:20.411
+!MESSAGE 17:44:16.839 [Simple-Language-Server main thread] INFO  o.s.i.v.boot.app.SpringSymbolIndex - Update document [file changed]: file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/service/CalendarEventService.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-15 17:44:20.412
+!MESSAGE 17:44:17.830 [pool-5-thread-107] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Finished parsing CU for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/service/CalendarEventService.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-15 17:44:21.346
+!MESSAGE 17:44:20.422 [pool-3-thread-193] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: end work on AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/repository/CalendarEventRepository.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-15 17:45:00.509
+!MESSAGE 17:44:22.586 [pool-14-thread-1] INFO  o.s.i.v.b.j.u.CompilationUnitCache - Invalidate AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/repository/MemberRepository.java
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-15 17:45:00.510
+!MESSAGE 17:44:22.667 [pool-3-thread-193] INFO  o.s.i.v.b.j.u.CompilationUnitCache - CU Cache: start work on AST for file:///D:/dev_hwang/workspace/boot/erp/src/main/java/port/sm/erp/controller/CalendarEventController.java

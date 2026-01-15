@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import port.sm.erp.entity.CalendarEvent;
 
@@ -17,7 +19,20 @@ Optional<CalendarEvent> findByIdAndUserId(Long id, Long userId);
 
 List<CalendarEvent> findByUserIdAndDateBetweenOrderByDateAsc(Long userId, LocalDate from, LocalDate to);
 
-List<CalendarEvent> findSharedWithUser(Long userId, LocalDate from, LocalDate to);
+//List<CalendarEvent> findSharedWithUser(Long userId, LocalDate from, LocalDate to);
+@Query("""
+		  select distinct e
+		  from CalendarEvent e
+		  join e.sharers s
+		  where s = :userIdStr
+		    and e.date between :from and :to
+		  order by e.date asc
+		""")
+		List<CalendarEvent> findSharedWithUser(
+		        @Param("userIdStr") String userIdStr,
+		        @Param("from") LocalDate from,
+		        @Param("to") LocalDate to
+		);
 
 
 	
