@@ -1,13 +1,11 @@
 package port.sm.erp.controller;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -16,6 +14,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -23,8 +22,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
 import port.sm.erp.entity.CalendarEvent;
-import port.sm.erp.repository.CalendarEventRepository;
 import port.sm.erp.repository.MemberRepository;
+import port.sm.erp.service.CalendarEventService;
 
 @RestController
 @RequestMapping("/api/events")
@@ -34,11 +33,12 @@ public class CalendarEventController {
 	private static final Logger log = LoggerFactory.getLogger(CalendarEventController.class);
 
 	
-    private final CalendarEventRepository repo;
+    //private final CalendarEventRepository repo;
+	private final CalendarEventService eventService;
     private final MemberRepository memberRepo;
 
-    public CalendarEventController(CalendarEventRepository repo, MemberRepository memberRepo) {
-        this.repo = repo;
+    public CalendarEventController(CalendarEventService eventService, MemberRepository memberRepo) {
+        this.eventService =  eventService;
         this.memberRepo = memberRepo;
     }
 
@@ -59,9 +59,16 @@ public class CalendarEventController {
             to = today; // 오늘까지
         }
 
-        return repo.findByUserIdAndDateBetween(currentUserId(), from, to);
+        return eventService.list(currentUserId(), from, to);
+    }
+    
+ // ✅ 일정 상세 조회 (id)
+    @GetMapping("/{id}")
+    public CalendarEvent get(@PathVariable Long id) {
+        return eventService.get(currentUserId(), id);
     }
 
+    
     // ========================
     // 일정 추가
     // ========================
@@ -69,22 +76,23 @@ public class CalendarEventController {
     public CalendarEvent create(@RequestBody CalendarEvent body) {
         body.setId(null); // 프론트에서 보내는 ID 무시
         body.setUserId(currentUserId()); // 서버에서 로그인 유저 강제 세팅
-        return repo.save(body);
+        return eventService.create(currentUserId(),body);
     }
 
+    // ========================
+    // ✅ 일정 수정
+    // ========================
+    @PutMapping("/{id}")
+    public CalendarEvent update(@PathVariable Long id, @RequestBody CalendarEvent body) {
+        return eventService.update(currentUserId(), id, body);
+    }
+    
     // ========================
     // 일정 삭제
     // ========================
     @DeleteMapping("/{id}")
     public void delete(@PathVariable Long id) {
-        CalendarEvent ev = repo.findById(id)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
-
-        if (!ev.getUserId().equals(currentUserId())) {
-            throw new ResponseStatusException(HttpStatus.FORBIDDEN);
-        }
-
-        repo.delete(ev);
+        eventService.delete(currentUserId(), id);
     }
 
     // ========================
