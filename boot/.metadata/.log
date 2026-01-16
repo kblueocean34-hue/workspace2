@@ -12017,3 +12017,6 @@ This warning can be switched off on the Team > Git > Confirmations and Warnings 
 
 !ENTRY org.eclipse.lsp4e 4 0 2026-01-16 10:05:51.971
 !MESSAGE 10:05:41.898 [pool-13-thread-1] INFO  o.s.i.v.c.l.u.ParentProcessWatcher - The tasklist command: 'cmd /c "tasklist /FI "PID eq 12884" | findstr 12884"' returns 255
+
+!ENTRY org.eclipse.lsp4e 4 0 2026-01-16 10:06:22.168
+!MESSAGE 10:06:12.105 [pool-13-thread-1] INFO  o.s.i.v.c.l.u.ParentProcessWatcher - The tasklist command: 'cmd /c "tasklist /FI "PID eq 12884" | findstr 12884"' returns 255
