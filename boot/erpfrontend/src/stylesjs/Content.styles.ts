@@ -231,3 +231,8 @@ display:flex; align-items:center;
 justify-content:center;
 padding:20px 0px;
 `;
+
+export const TopWrap = styled.div`
+width:100%;
+height:120px;
+`;

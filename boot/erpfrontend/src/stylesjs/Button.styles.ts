@@ -48,3 +48,22 @@ transition:all 1s;
     opacity:1;
     }
 `;
+
+export const WhiteBtn = styled.button`
+background-color:white;
+color:#999;
+width:100px;
+max-width:100%;
+display:flex;
+justify-content:center;
+align-items:center;
+font-size:14px;
+letter-spacing:-2%;
+border:none;
+border-radius:3px;
+opacity:.8;
+transition:all 1s;
+    &hover{
+    opacity:1;
+    }
+`;
