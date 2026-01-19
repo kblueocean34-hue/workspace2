@@ -71,7 +71,7 @@ public class Item {
 	
 	@Column(name="IN_VAT_INCLUDED_YN", nullable=false, length=1)
 	@Builder.Default
-	private String outVatIncludedYn = "N";
+	private String inVatIncludedYn = "N";
 	
 	@Column(name="IMAGE_URL", length=500)
 	private String imageUrl;
@@ -81,7 +81,13 @@ public class Item {
 	@Builder.Default
 	private String useYn = "Y";
 	
-	
+	@Column(name="OUT_PRICE", precision=18, scale=2)
+	private BigDecimal outPrice;
+
+	@Column(name="OUT_VAT_INCLUDED_YN", nullable=false, length=1)
+	@Builder.Default
+	private String outVatIncludedYn = "N";
+
 	
 
 }

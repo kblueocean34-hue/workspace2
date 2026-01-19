@@ -31,6 +31,10 @@ public class ItemFieldDefinition {
 	@Column(name="FIELD_KEY", nullable=false, length=80)
 	private String fieldKey;
 	
+	//add
+	@Column(name = "LABEL", length = 100)
+	private String label;
+	
     // TEXT / NUMBER / DATE 등
     @Column(name="FIELD_TYPE", nullable=false, length=20)
     @Builder.Default
