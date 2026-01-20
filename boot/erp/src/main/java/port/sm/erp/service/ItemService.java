@@ -251,7 +251,6 @@ public class ItemService {
     private Sort buildSort(String sortKey, String dir) {
         Sort.Direction direction = "desc".equalsIgnoreCase(dir) ? Sort.Direction.DESC : Sort.Direction.ASC;
 
-        // ✅ 프론트 key → 엔티티 필드명 매핑 (안전)
         Map<String, String> map = new HashMap<>();
         map.put("itemCode", "itemCode");
         map.put("itemName", "itemName");
@@ -267,13 +266,13 @@ public class ItemService {
 
         String mapped = (sortKey == null) ? null : map.get(sortKey);
 
-        // sortKey가 없거나 매핑이 없으면 최신순(id desc)
         if (mapped == null || mapped.isBlank()) {
-            return Sort.by(Sort.Direction.DESC, "id");
+            return Sort.by(Sort.Direction.DESC, "id"); // ✅ 기본 최신순
         }
 
         return Sort.by(direction, mapped).and(Sort.by(Sort.Direction.DESC, "id"));
     }
+
 
     private String safeKey(String s) {
         if (s == null) return "";

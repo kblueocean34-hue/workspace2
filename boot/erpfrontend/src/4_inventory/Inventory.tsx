@@ -4,7 +4,7 @@ import Top from "../include/Top";
 import Header from "../include/Header";
 import SideBar from "../include/SideBar";
 import {Left, Right, Flex, TopWrap, RoundRect} from "../stylesjs/Content.styles";
-import {useState} from "react";
+import {useState, useEffect} from "react";
 import { JustifyContent, W70, W30,} from "../stylesjs/Util.styles";
 import { TableTitle, TabTitle } from "../stylesjs/Text.styles";
 import { InputGroup, Search, Select, Radio, Label, MidLabel, CheckGroup, Check } from "../stylesjs/Input.styles";
@@ -14,7 +14,12 @@ type SortDirection = "asc" | "desc";
 type SortState = {key: string | null; direction:SortDirection;}
 type ColumnDef = { key:string; label:string; }
 
-const initialColumns : ColumnDef[] = [
+
+
+const Inventory = () => {
+  const [show, setShow] = useState(false);
+
+  const columns: ColumnDef[] = [
   { key: "itemCode", label: "품목코드" },
   { key: "itemName", label: "품목명" },
   { key: "itemGroup", label: "품목그룹" },
@@ -23,18 +28,15 @@ const initialColumns : ColumnDef[] = [
   { key: "inPrice", label: "입고단가" },
   { key: "outPrice", label: "출고단가" },
   { key: "itemType", label: "품목구분" },
-  { key: "image", label: "이미지" },
+  { key: "imageUrl", label: "이미지" }, // ✅
 ];
-
-const Inventory = () => {
-  const [show, setShow] = useState(false);
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
 
   const [item, setItem] = useState({
     itemCode:"",
     itemName:"",
+    itemGroup:"",//
     spec:"",
+    barcode:"",//
     specMode:"NAME",
     unit:"",
     process:"",
@@ -44,12 +46,82 @@ const Inventory = () => {
     inVatIncludedYn : "N",
     outPrice:0,
     outVatIncludedYn: "N",
+    image:"",//
   });
 
-  const [columns, setColumns] = useState<ColumnDef[]>(initialColumns);
   const [sort, setSort] = useState<SortState>({ key: null, direction:"asc", });
-  const [newColLabel, setNewColLabel] = useState("");
-  const [newColkey, setNewColKey] = useState("");
+
+   //추가:리스트 상태
+  const[itemList, setItemList] = useState<any[]>([]); //테이블에 표시할 푸목 리스트
+
+  //목록 조회 함수 추가
+// fetchItems 임시 수정
+const fetchItems = async () => {
+  try {
+const res = await axios.get("http://localhost:8888/api/inv/items", {
+  params: { page: 0, size: 20, includeStopped: true },
+});
+    console.log("목록 응답", res.data);
+    setItemList(res.data.content.length > 0 ? res.data.content : [ /* 더미 데이터 */ ]);
+  } catch (err) {
+    console.error("목록 조회 실패", err);
+  }
+};
+
+// ✅ 컴포넌트 마운트 시 실행
+useEffect(() => {
+  fetchItems();
+}, []);
+
+
+  const saveItem = async () => {
+    try{
+      await axios.post(
+        "http://localhost:8888/api/inv/items", item
+      );
+fetchItems();
+setShow(false);
+      //추가 로컬리스트에도 저장
+//setItemList(prev => [...prev, item]);
+//추가 : 입력폼 초기화
+setItem({
+  itemCode:"",
+  itemName:"",
+  itemGroup:"",//
+  spec:"",
+  barcode:"",//
+  specMode:"NAME",
+  unit:"",
+  process:"",
+  itemType:"RAW_MATERIAL",
+  isSetYn:"N",
+  inPrice:0,
+  inVatIncludedYn:"N",
+  outPrice:0,
+  outVatIncludedYn:"N",
+  image:"",//
+});
+}catch(err){
+console.error("저장 실패", err)
+}
+};
+
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
+
+
+
+
+
+
+  //const [columns] = useState<ColumnDef[]>([...initialColumns]);
+ 
+  
+
+
+ 
 
   const toggleSort = (key: string) => {
     setSort((prev:any) => {
@@ -60,17 +132,9 @@ const Inventory = () => {
     })
   }
 
-  const saveItem = async () => {
-    try{
-      const res = await axios.post(
-        "http://localhost:8888/api/inv/items", item
-      );
-      console.log("저장성공", res.data);
-      handleClose();
-    }catch(err){
-      console.error("저장 실패", err)
-    }
-  }
+
+
+
 
   return(
   <>
@@ -125,10 +189,46 @@ const Inventory = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  <tr><td></td></tr>
+{itemList.length === 0 && (
+<tr>
+<td colSpan={columns.length} className="text-center">
+등록된 품목이 없습니다    
+</td>
+</tr>
+)}
+{itemList.map((it, idx) => {
+  console.log("row", it);
+
+  return (
+    <tr key={idx}>
+      {columns.map(c => (
+        <td key={c.key}>
+          {it[c.key] ?? "-"}
+        </td>
+      ))}
+    </tr>
+  );
+})}
                 </tbody>
                 <tfoot>
-                  <tr><th></th></tr>
+                  <tr>
+                    {columns.map((c) => {
+                      const isActive = sort.key === c.key;
+                      const dir = sort.direction;
+                      return(
+                        <th key={c.key}>
+                          <div>
+                            <span>{c.label}</span>
+                            <Button size="sm" variant="light" onClick={()=> toggleSort(c.key)} className="mx-2">
+                              {!isActive && "정렬"}
+                              {isActive && dir === "asc" && "▲"}
+                              {isActive && dir === "desc" && "▼"}
+                            </Button>
+                          </div>
+                        </th>
+                      );
+                    })}
+                  </tr>
                 </tfoot>
               </Table> 
               <BtnGroup>
