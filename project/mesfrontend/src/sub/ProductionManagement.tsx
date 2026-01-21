@@ -32,7 +32,7 @@ const ProductionManagement = () => {
     const [showCreate, setShowCreate] = useState(false);
 //등록 화면(모달/폼)을 보여줄지 말지
     const [form, setForm] = useState({
-orderDate:"", itemCode:"", itemName:"", planQty:"", startDate:"", endDate:"",        
+orderDate:"", itemCode:"", itemName:"", planQty:"", startDate:"", endDate:"", workOrderNo:""       
     })
 //사용자가 입력 중인 생산지시 데이터 입력값을 저장,입력 중에도 값 유지, 저장 버튼 클릭 시 서버로 전송 
 
@@ -101,11 +101,18 @@ dependency배열	실행 시점
 생산지시 등록
 */
 const handleSave = async () => {//저장 버튼 클릭 시 실행되는 함수
+
+    // 1️⃣ workOrderNo 생성
+  const newWorkOrderNo = `WO-${Date.now()}`; // 예: WO-1674156100000
+
 await fetch(`${API_BASE}/api/production/orders`,{
 //👉 서버에 생산지시 저장 요청 보내기
 method:"POST", //👉 새 데이터 등록이라는 뜻
 headers:{"Content-Type":"application/json"},//👉 “JSON 형식으로 데이터 보낼게요”라고 서버에 알려줌
-body:JSON.stringify({...form,planQty:Number(form.planQty),}),    
+body:JSON.stringify({
+    ...form,
+    workOrderNo: newWorkOrderNo,
+    planQty:Number(form.planQty),}),    
 //👉 입력한 form 데이터를 서버로 전송 ...form → 입력한 값 전부  planQty: Number(form.planQty) 👉 숫자로 변환
 });
 setShowCreate(false);
@@ -195,6 +202,12 @@ const TABLE_HEADERS = [
             <Form.Control className="mb-2" type="number" name="planQty" placeholder="계획수량" onChange={handleChange} />
             <Form.Control className="mb-2" type="date" name="startDate" onChange={handleChange} />
             <Form.Control className="mb-2" type="date" name="endDate" onChange={handleChange} />
+            <Form.Control
+  className="mb-2"
+  name="workOrderNo"
+  placeholder="지시번호 (자동 생성 또는 입력)"
+  onChange={handleChange}
+/>
           </Form>
         </Modal.Body>
         <Modal.Footer>

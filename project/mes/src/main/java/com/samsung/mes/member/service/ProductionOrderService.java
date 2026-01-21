@@ -39,6 +39,7 @@ public ProductionOrderDTO createOrder(ProductionOrderDTO dto) {
 			.workOrderNo(dto.getWorkOrderNo())
 			.orderDate(dto.getOrderDate())
 			.itemCode(dto.getItemCode())
+			.itemName(dto.getItemName())
 			.planQty(dto.getPlanQty())
 			.startDate(dto.getStartDate())
 			.endDate(dto.getEndDate())

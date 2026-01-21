@@ -2,7 +2,7 @@ package com.samsung.mes.member.service;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.List;
+import java.time.format.DateTimeFormatter;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -14,7 +14,9 @@ import org.springframework.web.server.ResponseStatusException;
 
 import com.samsung.mes.member.dto.SalesOrderRequest;
 import com.samsung.mes.member.dto.SalesOrderResponse;
+import com.samsung.mes.member.entity.ProductionOrder;
 import com.samsung.mes.member.entity.SalesOrder;
+import com.samsung.mes.member.repository.ProductionOrderRepository;
 import com.samsung.mes.member.repository.SalesOrderRepository;
 import com.samsung.mes.security.RequestValidator;
 
@@ -27,6 +29,8 @@ import lombok.RequiredArgsConstructor;
 public class SalesOrderService {//수주등록/조회/삭제 같은 비즈니스 로직을 모아둔 서비스
 	
 	private final SalesOrderRepository repo;
+	//add
+	private final ProductionOrderRepository productionOrderRepository;
 
 	//SalesOrderRequest req 프론트에서 보낸 
 	//“수주 등록 정보” (orderDate, customerCode, itemCode, qty, price …)
@@ -53,6 +57,25 @@ SalesOrder saved = repo.save(//DB저장
 		.remark(req.getRemark())
 		.build()
 	);
+//4️⃣ 생산지시 생성 🔹 바뀐 부분
+String workOrderNo = "WO-" + LocalDate.now().format(DateTimeFormatter.BASIC_ISO_DATE)
+ + "-" + System.currentTimeMillis(); // 🔹 workOrderNo 포맷 수정 (날짜 -> 20260121 형식)
+
+System.out.println("생성된 workOrderNo: " + workOrderNo); // 🔹 확인용
+
+//ProductionOrder 생성 🔹 바뀐 부분
+ProductionOrder po = ProductionOrder.builder()
+ .workOrderNo(workOrderNo)                // 🔹 필수 not-null 값 세팅
+ .orderDate(LocalDate.now())              // 🔹 현재 날짜
+ .itemCode(saved.getItemCode())           // 🔹 SalesOrder에서 가져오기
+ .itemName(saved.getItemName())           // 🔹 SalesOrder에서 가져오기
+ .planQty(saved.getOrderQty() != null ? saved.getOrderQty().intValue() : 0) // 🔹 안전 변환
+ .status("대기")                           // 🔹 초기 상태 지정
+ .build();
+
+//ProductionOrder 저장 🔹 바뀐 부분
+productionOrderRepository.save(po);          // 🔹 repo 주입 필요
+
 	return toResponse(saved);//응답 객체 생성
 }
     
