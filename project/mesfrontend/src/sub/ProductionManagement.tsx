@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import Lnb from "../include/Lnb";
 import Top from "../include/Top";
-import { Wrapper, DflexColumn, DflexColumn2, Content, Ctap } from "../styled/Sales.styles";
+import { Wrapper, DflexColumn, DflexColumn2, Content, Ctap, } from "../styled/Sales.styles";
+import {SpaceBetween, Center} from "../styled/Component.styles"
 import { Container, Row, Col, Tab, Tabs, Table, Button, Modal, Form, Pagination } 
 from "react-bootstrap";
 
@@ -135,13 +136,15 @@ const TABLE_HEADERS = [
           <Row>
             <Col>
               <Ctap>
+            <SpaceBetween>
             <h4>생산관리</h4>
             <Button className="mb-3" onClick={() => setShowCreate(true)}>
               생산지시 등록  
             </Button>
+            </SpaceBetween>
 <Table bordered hover>
 <thead>
-<tr>
+<tr className="text-center">
 <th>#</th>
 {TABLE_HEADERS.map((h) => (
     <th key={h.key}>
@@ -152,7 +155,7 @@ const TABLE_HEADERS = [
 </thead>
 <tbody>
 {rows.map((r, i) => (
-<tr key={i}>
+<tr key={i} className="text-center">
 <td>{i + 1 + page * size}</td>    
 <td>{r.orderDate}</td>
 <td>{r.workOrderNo}</td>
@@ -167,6 +170,7 @@ const TABLE_HEADERS = [
 </tbody>
 </Table>              
 
+<Center>
       <Pagination>
         <Pagination.Prev
           disabled={page === 0}
@@ -177,7 +181,7 @@ const TABLE_HEADERS = [
           onClick={() => fetchOrders(page + 1)}
         />
       </Pagination>             
-
+</Center>
 {/* 생산지시 등록 모달 */}
       <Modal show={showCreate} onHide={() => setShowCreate(false)} centered>
         <Modal.Header closeButton>

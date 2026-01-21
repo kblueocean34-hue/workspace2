@@ -42,3 +42,8 @@ flex-direction:column;
 export const PageTotal = styled.div`
 font-size:12px; font-weight:400; color:gray;
 `;
+
+export const SpaceBetween = styled.div`
+display:flex; justify-content:space-between;
+align-items:center;
+`;
