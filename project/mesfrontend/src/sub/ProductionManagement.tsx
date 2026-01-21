@@ -2,9 +2,12 @@ import { useEffect, useState } from "react";
 import Lnb from "../include/Lnb";
 import Top from "../include/Top";
 import { Wrapper, DflexColumn, DflexColumn2, Content, Ctap, } from "../styled/Sales.styles";
-import {SpaceBetween, Center} from "../styled/Component.styles"
-import { Container, Row, Col, Tab, Tabs, Table, Button, Modal, Form, Pagination } 
+import {SpaceBetween, Center, Dflex, PageTotal} from "../styled/Component.styles"
+import { Container, Row, Col, Tab, Tabs, Table, Button, Modal, Form, Pagination,  } 
 from "react-bootstrap";
+
+import * as XLSX from "xlsx";
+import {saveAs} from "file-saver";
 
 const API_BASE = "http://localhost:9500"; //기본url을 변경이나 간략히 사용하기 위해서
 
@@ -70,19 +73,26 @@ size : 한 페이지에 몇 개 가져올지
 👉 서버 응답(JSON)을 자바스크립트 객체로 변환
 👉 형태는 PageResponse + ProductionOrder
 */
-/*const fetchOrders = async (p = page) => {
-    const res = await fetch(
-        `${API_BASE}/api/production/orders?page=${p}&size=${size}`
-    );
-    const data: PageResponse<ProductionOrder> = await res.json();
-    setRows(data.content);
-    setPage(data.number);
-    setTotalPages(data.totalPages);
-}
+const fetchOrders = async (p = page) => {
+  try {
+    const res = await fetch(`${API_BASE}/api/production/orders?page=${p}&size=${size}`);
+    if (!res.ok) throw new Error("서버 오류");
+
+    const data:PageResponse<ProductionOrder> = await res.json();
+    setRows(data.content || data); 
+    setPage(data.number || 0);
+    setTotalPages(data.totalPages || 1);
+  } catch (err) {
+    console.error("생산지시 목록 조회 실패", err);
+  }
+};
 
 useEffect(() => {
     fetchOrders();
-}, []);*/
+}, []);
+
+
+
 /*
 useEffect를 쓰면?
 - 화면 열자마자
@@ -96,10 +106,38 @@ dependency배열	실행 시점
 [page]	       page가 바뀔 때마다
 []	           처음 딱 한 번
 */
+//엑셀 다운로드
+const handleExcelDownload = () => {
+    const excelData: (string | number) [][] = [
+        ["#", ...TABLE_HEADERS], ...rows.map((row, idx) => [
+idx+1, row.orderDate, row.workOrderNo, row.itemCode, row.itemName, row.planQty,
+row.startDate, row.endDate, row.status,
+ ]),
+];
+const worksheet = XLSX.utils.aoa_to_sheet(excelData);
+    const workbook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(workbook, worksheet, "생산관리");
+
+    const excelFile = XLSX.write(workbook, { bookType: "xlsx", type: "array" });
+    const blob = new Blob([excelFile], { type: "application/octet-stream" });
+    saveAs(blob, "생산관리_리스트.xlsx");
+};
+
+//페이징 이동함수 추가
+const goPage = (p:number) => {
+    const next = Math.max(0, Math.min(p, totalPages - 1));
+    fetchOrders(next);
+};
+
+
 
 /*
 생산지시 등록
 */
+
+
+
+
 const handleSave = async () => {//저장 버튼 클릭 시 실행되는 함수
 
     // 1️⃣ workOrderNo 생성
@@ -145,9 +183,15 @@ const TABLE_HEADERS = [
               <Ctap>
             <SpaceBetween>
             <h4>생산관리</h4>
-            <Button className="mb-3" onClick={() => setShowCreate(true)}>
+            <Dflex>
+            <Button className="mx-2 my-3"  onClick={handleExcelDownload} variant="success">
+            엑셀다운로드
+            </Button>  
+            <Button className="my-3" onClick={() => setShowCreate(true)}>
               생산지시 등록  
             </Button>
+            </Dflex>
+
             </SpaceBetween>
 <Table bordered hover>
 <thead>
@@ -161,7 +205,7 @@ const TABLE_HEADERS = [
 </tr>
 </thead>
 <tbody>
-{rows.map((r, i) => (
+{(rows || []).map((r, i) => (
 <tr key={i} className="text-center">
 <td>{i + 1 + page * size}</td>    
 <td>{r.orderDate}</td>
@@ -178,16 +222,30 @@ const TABLE_HEADERS = [
 </Table>              
 
 <Center>
+    {totalPages > 0 && (
       <Pagination>
-        <Pagination.Prev
-          disabled={page === 0}
-          onClick={() => fetchOrders(page - 1)}
-        />
-        <Pagination.Next
-          disabled={page >= totalPages - 1}
-          onClick={() => fetchOrders(page + 1)}
-        />
-      </Pagination>             
+        <Pagination.First disabled={page === 0} onClick={() => goPage(0)}/>
+        <Pagination.Prev disabled={page === 0} onClick={() => goPage(page - 1)}/>
+
+{Array.from({length:totalPages}).map((_, i) => i).filter((i) => i >= page - 2 && i <= page + 2)
+.map((i) => (
+<Pagination.Item key={i} active={i === page} onClick={() => goPage(i)}>
+{i + 1}
+</Pagination.Item>
+))}
+<Pagination.Next
+disabled={page >= totalPages - 1}
+onClick={() => fetchOrders(page + 1)}
+/>
+<Pagination.Last
+disabled={page >=  totalPages - 1} onClick={() => goPage(totalPages - 1)}
+/>
+</Pagination> 
+)}
+<PageTotal>
+총 {rows.length}건 {page + 1} / {totalPages} 페이지
+</PageTotal>
+
 </Center>
 {/* 생산지시 등록 모달 */}
       <Modal show={showCreate} onHide={() => setShowCreate(false)} centered>
