@@ -8,6 +8,7 @@ import ProtectedRoute from './routes/ProtectedRoute';
 import SalesManagement from './sub/SalesManagement';
 import ProductionManagement from './sub/ProductionManagement';
 import PurchaseMaterial from './sub/PurchaseMaterial';
+import KpiManagement from './sub/KpiManagement';
 
 const App = () => {
 return (
@@ -21,10 +22,12 @@ return (
 <Route path="/sales" element={<ProtectedRoute><SalesManagement/></ProtectedRoute>}/>
 <Route path="/pmanagement" element={<ProtectedRoute><ProductionManagement/></ProtectedRoute>}/>
 <Route path="/pm" element={<PurchaseMaterial/>}/>
+<Route path="/kpi" element={<KpiManagement/>}/>
 <Route path="/member" element={<Member/>}/>
 <Route path="/" element={<Navigate to="/login" replace/>}/>
 <Route path="/forgot" element={<Forgot/>}/>
 <Route path="/reset" element={<Reset/>}/>
+
 </Routes>
 </BrowserRouter>
 </>

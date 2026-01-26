@@ -98,7 +98,7 @@ const Lnb = () => {
 
             {/*  Nav Item - Charts */}
             <li className="nav-item">
-                <a className="nav-link" href="charts.html">
+                <a className="nav-link" href="/kpi">
                     <i className="fas fa-fw fa-chart-area"></i>
                     <span>재고관리</span></a>
             </li>
