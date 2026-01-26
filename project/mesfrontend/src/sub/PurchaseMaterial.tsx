@@ -71,14 +71,14 @@ prev → 기존에 있던 입력값들
 
 const onEditChange = (e:React.ChangeEvent<any>) => {
     const {name, value} = e.target;
-    setCreateForm((prev) => ({...prev,[name]:value}));
+    setEditForm((prev) => ({...prev,[name]:value}));
 }
 
 //목록조회 (페이징)
 const fetchList = async (p:number) => {
 //p → 몇 페이지를 가져올지 async → 서버랑 통신하니까 기다렸다가 결과를 받겠다는 뜻
     try{
-const res = await fetch(`${API_BASE}/api/pruchase/materials?page=${p}&size=${size}`);
+const res = await fetch(`${API_BASE}/api/purchase/materials?page=${p}&size=${size}`); //오타수정
 //page=${p} → 몇 번째 페이지 size=${size} → 한 페이지에 몇 개
 if(!res.ok) throw new Error("서버오류")//서버 응답이 정상인지 확인
 const data: PageResponse<PurchaseMaterial> = await res.json();
@@ -148,7 +148,8 @@ createForm.qty || 0 qty가 비어있으면("", null, undefined) → 0으로 처�
 const unitPrice: number = Number(createForm.unitPrice) || 0;
 const amount = qty * unitPrice;
 
-await fetch(`${API_BASE}/api/purchase/materials`, {
+//
+const res = await fetch(`${API_BASE}/api/purchase/materials`, {
   method: "POST",
   headers: { "Content-Type": "application/json" },
   body: JSON.stringify({ 
@@ -166,6 +167,14 @@ status:createForm.status || "대기",
 remark:createForm.remark || "",
   }),
 });
+
+//add
+if(!res.ok){
+const raw = await res.text().catch(() => "");
+alert(raw || "등록실패");
+return
+}
+
 setShowCreate(false);
 //현재 페이지 재조회
 fetchList(page);
@@ -341,89 +350,89 @@ onClick={() => openDetail(r.id)}
 </Wrapper>
 
 {/* ✅ 등록 모달 */}
-                  <Modal show={showCreate} onHide={() => setShowCreate(false)} centered>
-                    <Modal.Header closeButton>
-                      <Modal.Title>구매 등록</Modal.Title>
-                    </Modal.Header>
+<Modal show={showCreate} onHide={() => setShowCreate(false)} centered>
+<Modal.Header closeButton>
+<Modal.Title>구매 등록</Modal.Title>
+</Modal.Header>
 
-                    <Modal.Body>
-                      <Form>
-                        <Form.Control className="mb-2" type="date" name="purchaseDate" value={createForm.purchaseDate} onChange={onCreateChange} />
+<Modal.Body>
+<Form>
+  <Form.Control className="mb-2" type="date" name="purchaseDate" value={createForm.purchaseDate} onChange={onCreateChange} />
 
-                        <Form.Control className="mb-2" name="purchaseNo" placeholder="구매번호(비우면 자동생성)" value={createForm.purchaseNo} onChange={onCreateChange} />
+  <Form.Control className="mb-2" name="purchaseNo" placeholder="구매번호(비우면 자동생성)" value={createForm.purchaseNo} onChange={onCreateChange} />
 
-                        <Form.Control className="mb-2" name="supplierCode" placeholder="공급처코드" value={createForm.supplierCode} onChange={onCreateChange} />
-                        <Form.Control className="mb-2" name="supplierName" placeholder="공급처명" value={createForm.supplierName} onChange={onCreateChange} />
+  <Form.Control className="mb-2" name="supplierCode" placeholder="공급처코드" value={createForm.supplierCode} onChange={onCreateChange} />
+  <Form.Control className="mb-2" name="supplierName" placeholder="공급처명" value={createForm.supplierName} onChange={onCreateChange} />
 
-                        <Form.Control className="mb-2" name="itemCode" placeholder="품목코드" value={createForm.itemCode} onChange={onCreateChange} />
-                        <Form.Control className="mb-2" name="itemName" placeholder="품목명" value={createForm.itemName} onChange={onCreateChange} />
+  <Form.Control className="mb-2" name="itemCode" placeholder="품목코드" value={createForm.itemCode} onChange={onCreateChange} />
+  <Form.Control className="mb-2" name="itemName" placeholder="품목명" value={createForm.itemName} onChange={onCreateChange} />
 
-                        <Form.Control className="mb-2" type="number" name="qty" placeholder="수량" value={createForm.qty} onChange={onCreateChange} />
-                        <Form.Control className="mb-2" type="number" name="unitPrice" placeholder="단가" value={createForm.unitPrice} onChange={onCreateChange} />
+  <Form.Control className="mb-2" type="number" name="qty" placeholder="수량" value={createForm.qty} onChange={onCreateChange} />
+  <Form.Control className="mb-2" type="number" name="unitPrice" placeholder="단가" value={createForm.unitPrice} onChange={onCreateChange} />
 
-                        <Form.Control className="mb-2" type="date" name="expectedDate" value={createForm.expectedDate} onChange={onCreateChange} />
+  <Form.Control className="mb-2" type="date" name="expectedDate" value={createForm.expectedDate} onChange={onCreateChange} />
 
-                        <Form.Select className="mb-2" name="status" value={createForm.status} onChange={onCreateChange}>
-                          <option value="대기">대기</option>
-                          <option value="진행">진행</option>
-                          <option value="완료">완료</option>
-                        </Form.Select>
+  <Form.Select className="mb-2" name="status" value={createForm.status} onChange={onCreateChange}>
+    <option value="대기">대기</option>
+    <option value="진행">진행</option>
+    <option value="완료">완료</option>
+  </Form.Select>
 
-                        <Form.Control className="mb-2" name="remark" placeholder="비고" value={createForm.remark} onChange={onCreateChange} />
-                      </Form>
-                    </Modal.Body>
+  <Form.Control className="mb-2" name="remark" placeholder="비고" value={createForm.remark} onChange={onCreateChange} />
+</Form>
+</Modal.Body>
 
-                    <Modal.Footer>
-                      <Button variant="secondary" onClick={() => setShowCreate(false)}>
-                        닫기
-                      </Button>
-                      <Button onClick={handleSave}>저장</Button>
-                    </Modal.Footer>
-                  </Modal>
+<Modal.Footer>
+<Button variant="secondary" onClick={() => setShowCreate(false)}>
+  닫기
+</Button>
+<Button onClick={handleSave}>저장</Button>
+</Modal.Footer>
+</Modal>
 
-                  {/* ✅ 상세(수정/삭제) 모달 */}
-      <Modal show={showDetail} onHide={() => setShowDetail(false)} centered>
-        <Modal.Header closeButton>
-          <Modal.Title>구매 상세</Modal.Title>
-        </Modal.Header>
+{/* ✅ 상세(수정/삭제) 모달 */}
+<Modal show={showDetail} onHide={() => setShowDetail(false)} centered>
+<Modal.Header closeButton>
+<Modal.Title>구매 상세</Modal.Title>
+</Modal.Header>
 
-        <Modal.Body>
-          <Form>
-            <Form.Control className="mb-2" type="date" name="purchaseDate" value={editForm.purchaseDate} onChange={onEditChange} />
+<Modal.Body>
+<Form>
+<Form.Control className="mb-2" type="date" name="purchaseDate" value={editForm.purchaseDate} onChange={onEditChange} />
 
-            {/* 구매번호는 보통 수정 막음 */}
-            <Form.Control className="mb-2" name="purchaseNo" value={editForm.purchaseNo} disabled />
+{/* 구매번호는 보통 수정 막음 */}
+<Form.Control className="mb-2" name="purchaseNo" value={editForm.purchaseNo} disabled />
 
-            <Form.Control className="mb-2" name="supplierCode" placeholder="공급처코드" value={editForm.supplierCode} onChange={onEditChange} />
-            <Form.Control className="mb-2" name="supplierName" placeholder="공급처명" value={editForm.supplierName} onChange={onEditChange} />
+<Form.Control className="mb-2" name="supplierCode" placeholder="공급처코드" value={editForm.supplierCode} onChange={onEditChange} />
+<Form.Control className="mb-2" name="supplierName" placeholder="공급처명" value={editForm.supplierName} onChange={onEditChange} />
 
-            <Form.Control className="mb-2" name="itemCode" placeholder="품목코드" value={editForm.itemCode} onChange={onEditChange} />
-            <Form.Control className="mb-2" name="itemName" placeholder="품목명" value={editForm.itemName} onChange={onEditChange} />
+<Form.Control className="mb-2" name="itemCode" placeholder="품목코드" value={editForm.itemCode} onChange={onEditChange} />
+<Form.Control className="mb-2" name="itemName" placeholder="품목명" value={editForm.itemName} onChange={onEditChange} />
 
-            <Form.Control className="mb-2" type="number" name="qty" placeholder="수량" value={editForm.qty} onChange={onEditChange} />
-            <Form.Control className="mb-2" type="number" name="unitPrice" placeholder="단가" value={editForm.unitPrice} onChange={onEditChange} />
+<Form.Control className="mb-2" type="number" name="qty" placeholder="수량" value={editForm.qty} onChange={onEditChange} />
+<Form.Control className="mb-2" type="number" name="unitPrice" placeholder="단가" value={editForm.unitPrice} onChange={onEditChange} />
 
-            <Form.Control className="mb-2" type="date" name="expectedDate" value={editForm.expectedDate} onChange={onEditChange} />
+<Form.Control className="mb-2" type="date" name="expectedDate" value={editForm.expectedDate} onChange={onEditChange} />
 
-            <Form.Select className="mb-2" name="status" value={editForm.status} onChange={onEditChange}>
-              <option value="대기">대기</option>
-              <option value="진행">진행</option>
-              <option value="완료">완료</option>
-            </Form.Select>
+<Form.Select className="mb-2" name="status" value={editForm.status} onChange={onEditChange}>
+<option value="대기">대기</option>
+<option value="진행">진행</option>
+<option value="완료">완료</option>
+</Form.Select>
 
-            <Form.Control className="mb-2" name="remark" placeholder="비고" value={editForm.remark} onChange={onEditChange} />
-          </Form>
-        </Modal.Body>
+<Form.Control className="mb-2" name="remark" placeholder="비고" value={editForm.remark} onChange={onEditChange} />
+</Form>
+</Modal.Body>
 
-        <Modal.Footer>
-          <Button variant="danger" onClick={handleDelete}>
-            삭제
-          </Button>
-          <Button variant="success" onClick={handleUpdate}>
-            수정 저장
-          </Button>
-        </Modal.Footer>
-      </Modal>
+<Modal.Footer>
+<Button variant="danger" onClick={handleDelete}>
+삭제
+</Button>
+<Button variant="success" onClick={handleUpdate}>
+수정 저장
+</Button>
+</Modal.Footer>
+</Modal>
         </>
     )
 }
