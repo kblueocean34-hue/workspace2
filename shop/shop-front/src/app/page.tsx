@@ -34,7 +34,7 @@ if(!menuRes.ok) throw new Error("상품메뉴 로딩 실패");
 const menuData:ProductMenu[] = await menuRes.json();
 
 //이미지 json 읽기 //👉 Spring API 실제 이미지 URL 관리
-const imgRes = await fetch("/api/product-images",{cache:"no-store"});
+const imgRes = await fetch("http://localhost:9999/api/product-images",{cache:"no-store"});
 if(!imgRes.ok) throw new Error("이미지 API로딩 실패")
 const imgData : ImageItem[] = await imgRes.json(); 
 
