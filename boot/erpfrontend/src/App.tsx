@@ -25,6 +25,8 @@ import Forgot from './1_member/Forgot';
 import InstagramRedirect from './1_member/InstargramRedirect';
 import KakaoRedirect from './1_member/KakaoRedirect';
 import Inventory from './4_inventory/Inventory';
+import MyPage from './2_mypage/MyPage';
+import Customer from './5_customer/Costomer';
 //react나 vue에서 링크연결을 라우팅이라 합니다 npm install react-router-dom
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
@@ -33,7 +35,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 //sass  연결
 import './assets/scss/style.scss';//리액트 에서는 sass컴파일 없이 사용
-import MyPage from './2_mypage/MyPage';
+
 
 
 //백앤드에서 받아올 데이터 타입정의
@@ -85,6 +87,7 @@ if  배열에 값이 있다면 그 값이 바뀔때 마다 실행된다
     <Route path="/admin" element={<ProtectedRoute><Admin/></ProtectedRoute>}/>
     <Route path="/mypage" element={<ProtectedRoute><MyPage/></ProtectedRoute>}/>
     <Route path="/inventory" element={<Inventory/>}/>
+    <Route path="/custom" element={<Customer/>}/>
     <Route path="/about" element={<About/>}/>
     <Route path="/contact" element={<Contact/>}/>
     <Route path="/member" element={<Member/>}/>
