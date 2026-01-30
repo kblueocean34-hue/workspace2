@@ -1,6 +1,6 @@
 package com.hbk.service;
 
-import com.hbk.dto.ProductImageDto;
+import com.hbk.dto.ProductResponse;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -14,8 +14,8 @@ public class ProductImageService {
     private static final List<String> IMAGE_KEYS =
             List.of("p1", "p2","p3", "p4");
 
-    public List<ProductImageDto> getRandomWebImages(){
-        List<ProductImageDto> result = new ArrayList<>();
+    public List<ProductResponse> getRandomWebImages(){
+        List<ProductResponse> result = new ArrayList<>();
 
         for (String key: IMAGE_KEYS){
             // seed를 key + 랜덤값으로 줘서 매번 다른 이미지
@@ -24,7 +24,7 @@ public class ProductImageService {
             String url = String.format(
              "https://picsum.photos/seed/%s-%d/400/300", key, seed
             );
-            result.add(new ProductImageDto(key, url));
+            result.add(new ProductResponse(key, url));
             //DTO로 묶어서 리스트에 추가
         }
         return result;

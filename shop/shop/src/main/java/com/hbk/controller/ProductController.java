@@ -1,6 +1,6 @@
 package com.hbk.controller;
 
-import com.hbk.dto.ProductImageDto;
+import com.hbk.dto.ProductResponse;
 import com.hbk.service.ProductImageService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -18,7 +18,7 @@ public class ProductImageController {
 
 
     @GetMapping("/api/product-images")
-    public List<ProductImageDto> getProductImages(){
+    public List<ProductResponse> getProductImages(){
         return productImageService.getRandomWebImages();
     }
 
