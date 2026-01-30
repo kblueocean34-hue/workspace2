@@ -30,54 +30,75 @@ import {
 } from "../stylesjs/Input.styles";
 import { WhiteBtn, MainSubmitBtn, BtnRight } from "../stylesjs/Button.styles";
 
-type ColumnDef = {
-    key: string; label:string;
+type ColumnDef = {key: string; label:string;}
+
+const API_BASE = "http://localhost:8888/api/acc/journals";
+
+//일반전표타입 예시
+type JournalStatus = "DRAFT" | "POSTED";
+
+type JournalLine = {
+id?:number; accountCode:string; accountName?:string;
+dcType:"DEBIT"|"CREDIT";
+amount:number; lineRemark?:string;
 }
 
-const Customer = () => {
+type Journal = {
+   id?: number;
+  journalNo: string;       // 전표번호
+  journalDate: string;     // YYYY-MM-DD
+  customerId?: number | null;
+  customerName?: string;   // 표시용
+  remark?: string;         // 전표 적요
+  status: JournalStatus;
+  lines: JournalLine[];   
+}
 
-    const [show, setShow] = useState(false);
+//👉 새 전표를 만들 때 사용할 “빈 전표 기본값 생성기”
+const emptyJournal = () : Journal => ({
+  journalNo: "",
+  journalDate: new Date().toISOString().slice(0, 10),
+  customerId: null,
+  customerName: "",
+  remark: "",
+  status: "DRAFT",
+  lines: [
+    { accountCode: "", dcType: "DEBIT", amount: 0, lineRemark: "" },
+    { accountCode: "", dcType: "CREDIT", amount: 0, lineRemark: "" },
+  ],
+});
 
+const GeneralJournal = () => {
+
+const [show, setShow] = useState(false);
 //선택된 거래처 iD
 const [selectedId, setSelectedId] = useState<number | null>(null);
 
-    //테이블 컬럼
-    const columns: ColumnDef[] = [
-    { key: "customerCode", label: "거래처코드" },
-    { key: "customerName", label: "거래처명" },
-    { key: "ceoName", label: "대표자명" },
-    { key: "phone", label: "전화번호" },
-    { key: "email", label: "이메일" },
-    { key: "address", label: "주소" },
-    { key: "customerType", label: "상/구분" },
+//검색(간단)
+const [keyword, setKeyword] = useState("");
+
+//목록
+const [journalList, setJournalList] = useState<any[]>([]);
+
+//편집대상 (전표)
+const [journal, setJournal] = useState<Journal>(emptyJournal());
+
+//테이블 컬럼
+const columns: ColumnDef[] = [
+    { key: "journalNo", label: "전표번호" },
+    { key: "journalDate", label: "전표일자" },
+    { key: "customerName", label: "거래처" },
     { key: "remark", label: "적요" },
-    ];
+    { key: "debitTotal", label: "차변합" },
+    { key: "creditTotal", label: "대변합" },
+    { key: "status", label: "상태" },
+];
 
-    //거래처 상태
-const[customer, setCustomer] = useState({
-customerCode:"",
-customerName:"",
-ceoName:"",
-phone:"",
-email:"",
-address:"",
-customerType:"SALES",
-remark:"",
-});
-
-//거래처 리스트
-//useState는 React Hook으로,👉 컴포넌트 안에서 상태값을 만들고 관리할 수 있게 해줘요.
-const [customerList, setCustomerList] = useState<any[]>([]);
-//배열에 디스트럭처링 
-//customerList 👉 현재 상태 값 setCustomerList 👉 상태를 변경하는 함수
-//<any[] 👉 타입이 정해지지 않은 배열 배열 안에 어떤 타입의 값이 와도 허용됨>
-//useState<any[]>([]) 초기 상태는 빈 배열 처음 렌더링 시 고객 목록이 없다는 뜻
-
-//비동기란? 기다리는 동안 멈추지 않는 것”
-//라면 끓이기 시작 그동안 핸드폰 보기 라면 다 되면 먹기
-
-//동기 (Sync) 라면 끓이기 다 될 때까지 가만히 서 있음 먹기 앞에 거 끝나야 다음 가능
-//기다리는 동안 아무것도 못 함
+//합계 계산(모달/목록 표시용)
+const totals = useMemo(() => {
+    const debitTotal = (journal.lines || [])
+    .filter((1))
+})
 
 const fetchCustomers = async () => {//async () =>
  try {//에러처리용 구조

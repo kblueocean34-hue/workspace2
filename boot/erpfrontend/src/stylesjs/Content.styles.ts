@@ -22,6 +22,11 @@ export const Right = styled.div`
 width:80%;
 height:100vh;
 background-color:#fff;
+padding:20px 80px 0px 0px;
+`;
+
+export const TableWrap = styled.div`
+padding:30px 0px;
 `;
 
 //캘린더

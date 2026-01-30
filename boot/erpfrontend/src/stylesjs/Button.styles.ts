@@ -1,11 +1,11 @@
 import styled from "styled-components";
 
-export const BtnGroup = styled.button`
+export const BtnGroup = styled.div`
 padding:10px 20px;
 border:none !important;
 color:none !important;
 display:flex;
-justfify-content:space-between;
+justfify-content:flex-end;
 background:none !important;
 `;
 export const MainBtn = styled.button`
@@ -57,13 +57,14 @@ align-items:center;
 font-size:14px;
 letter-spacing:-2%;
 border:none;
-border-radius:3px;
+border-radius:8px;
+padding:12px 24px;;
 `;
 
 export const WhiteBtn = styled.button`
 background-color:white;
 color:#999;
-width:100px;
+width:200px;
 max-width:100%;
 display:flex;
 justify-content:center;
@@ -88,4 +89,12 @@ font-size:12px;
 color:white;
 padding:5px 10px;
 border-radius:16px;
+`;
+
+export const BtnRight = styled.div`
+width:100%;
+display:flex;
+justify-content:flex-end;
+align-items:center;
+padding:20px 0px;
 `;

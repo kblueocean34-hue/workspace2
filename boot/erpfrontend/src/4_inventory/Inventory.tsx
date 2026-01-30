@@ -3,12 +3,12 @@ import {Container, Row, Col, Table, Button, Modal, Tab, Tabs, Form,} from "react
 import Top from "../include/Top";
 import Header from "../include/Header";
 import SideBar from "../include/SideBar";
-import {Left, Right, Flex, TopWrap, RoundRect} from "../stylesjs/Content.styles";
+import {Left, Right, Flex, TopWrap, RoundRect, TableWrap} from "../stylesjs/Content.styles";
 import {useState, useEffect} from "react";
 import { JustifyContent, W70, W30,} from "../stylesjs/Util.styles";
 import { TableTitle, TabTitle } from "../stylesjs/Text.styles";
 import { InputGroup, Search, Select, Radio, Label, MidLabel, CheckGroup, Check } from "../stylesjs/Input.styles";
-import { WhiteBtn, MainSubmitBtn, BtnGroup, SmallBadge } from "../stylesjs/Button.styles";
+import { WhiteBtn, MainSubmitBtn, BtnRight, SmallBadge } from "../stylesjs/Button.styles";
 
 type SortDirection = "asc" | "desc";
 type SortState = {key: string | null; direction:SortDirection;}
@@ -154,8 +154,10 @@ console.error("저장 실패", err)
                 <TableTitle>품목등록리스트</TableTitle> 
                 <InputGroup>
                   <WhiteBtn className="mx-2">사용중단포함</WhiteBtn>
+                  <Flex>
                   <Search type="search" placeholder="검색"/>
                   <MainSubmitBtn className="mx-2">Search(F3)</MainSubmitBtn>
+                  </Flex>
                   <Select className="mx-2">
                     <option>품목계정추가</option>
                     <option>다공정품목설정</option>
@@ -167,6 +169,7 @@ console.error("저장 실패", err)
                   </Select>
                 </InputGroup>
               </JustifyContent>
+              <TableWrap>
               <Table responsive>
                 <thead>
                   <tr>
@@ -231,9 +234,10 @@ console.error("저장 실패", err)
                   </tr>
                 </tfoot>
               </Table> 
-              <BtnGroup>
+              <BtnRight>
                 <MainSubmitBtn onClick={handleShow}>신규(F2)</MainSubmitBtn>
-              </BtnGroup>          
+              </BtnRight> 
+              </TableWrap>         
             </Right>
           </Flex>
         </Col>
