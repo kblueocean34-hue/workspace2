@@ -21,6 +21,7 @@ public class SecurityConfig {
 
                         // (개발 중엔 아래도 같이 열어두면 편함)
                         .requestMatchers("/", "/error").permitAll()
+                        .requestMatchers("/api/**", "/uploads/**").permitAll() // ⭐ 중요
 
                         // 나머지는 일단 막아도 되고, 개발 중이면 permitAll로 풀어도 됨
                         .anyRequest().authenticated()
