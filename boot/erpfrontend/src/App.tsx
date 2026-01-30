@@ -27,6 +27,8 @@ import KakaoRedirect from './1_member/KakaoRedirect';
 import Inventory from './4_inventory/Inventory';
 import MyPage from './2_mypage/MyPage';
 import Customer from './5_customer/Costomer';
+import GeneralJournal from './5_customer/Generaljounrnal';
+import SalesPurchaseTrade from './5_customer/SalesPurchaseTrade';
 //react나 vue에서 링크연결을 라우팅이라 합니다 npm install react-router-dom
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
@@ -88,6 +90,8 @@ if  배열에 값이 있다면 그 값이 바뀔때 마다 실행된다
     <Route path="/mypage" element={<ProtectedRoute><MyPage/></ProtectedRoute>}/>
     <Route path="/inventory" element={<Inventory/>}/>
     <Route path="/custom" element={<Customer/>}/>
+    <Route path="/general" element={<GeneralJournal/>}/>
+    <Route path="/trade" element={<SalesPurchaseTrade/>}/>
     <Route path="/about" element={<About/>}/>
     <Route path="/contact" element={<Contact/>}/>
     <Route path="/member" element={<Member/>}/>
