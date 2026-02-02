@@ -37,6 +37,9 @@ public class JournalLine {
     //금액 전표라인의 금액 정수기반(원단위) 소수점 오류 방지
     private Long amount;
 
+    /**적요*/
+    private String lineRemark;
+
     //전표와의 관계 (핵심)
     @ManyToOne(fetch = FetchType.LAZY)
     //@ManyToOne 여러 개의 JournalLine 하나의 Journal ✔ 전표 : 라인 = 1 : N
