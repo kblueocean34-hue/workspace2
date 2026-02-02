@@ -12,8 +12,8 @@ import java.util.List;
 public class EstimateLineRequest {
 
 
-    private LocalDate estimateDate;
-    private String customerName,remark, itemName;
+    //private LocalDate estimateDate;
+    private String itemName; //customerName,remark,
     private Integer qty;
     private BigDecimal price;
 

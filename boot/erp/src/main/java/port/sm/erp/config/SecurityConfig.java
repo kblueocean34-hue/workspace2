@@ -27,6 +27,11 @@ public class SecurityConfig {
             .authorizeRequests()
             .antMatchers(HttpMethod.POST, "/members").permitAll()
             .antMatchers("/members/login", "/members/register", "/api/events/**", "/api/inv/items").permitAll() // <-- 여기 수정
+            // ✅ 추가: 견적서 POST/PUT/DELETE 허용
+            .antMatchers(HttpMethod.GET, "/api/sales/estimates/**").permitAll() // << 여기 추가
+            .antMatchers(HttpMethod.POST, "/api/sales/estimates").permitAll()
+            .antMatchers(HttpMethod.PUT, "/api/sales/estimates/**").permitAll()
+            .antMatchers(HttpMethod.DELETE, "/api/sales/estimates/**").permitAll()
             .anyRequest().authenticated()
             .and()
             .httpBasic().disable();

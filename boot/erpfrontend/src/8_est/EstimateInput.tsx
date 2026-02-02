@@ -78,7 +78,7 @@ const EstimateInput = () => {
     [estimate.lines]
   );
 
-  /* ===== 목록 조회 ===== */
+  /* ===== 목록 조회 ===== 
   const fetchEstimates = async () => {
     try {
       const res = await axios.get(API_BASE);
@@ -86,7 +86,24 @@ const EstimateInput = () => {
     } catch (e) {
       console.error("견적서 조회 실패", e);
     }
-  };
+  };*/
+const fetchEstimates = async () => {
+  try {
+    const res = await axios.get<Estimate[]>(API_BASE); // ✅ 타입 명시
+    const data = res.data.map(e => ({
+      ...e,
+      estimateDate: e.estimateDate.slice(0, 10), // LocalDate -> yyyy-MM-dd 문자열
+      lines: e.lines.map(l => ({
+        ...l,
+        amount: Number(l.amount) // BigDecimal → number
+      }))
+    }));
+    setEstimateList(data);
+  } catch (e) {
+    console.error("견적서 조회 실패", e);
+  }
+};
+
 
   useEffect(() => {
     fetchEstimates();

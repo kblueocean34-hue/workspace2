@@ -65,14 +65,38 @@ return new EstimateResponse(//👉 견적서 정보 + 라인 리스트 전달
         return toResponse(e);
     }
 
-    //등록
+    /*등록
+    @Transactional
     public void create(EstimateRequest req){
         Estimate e = new Estimate(); //👉 빈 견적서 객체 생성
         apply(e, req); //👉 화면에서 온 데이터 채우기
         estimateRepository.save(e);//👉 DB 저장 (라인도 같이 저장됨)
+    }*/
+    @Transactional
+    public void create(EstimateRequest req){
+        Estimate e = new Estimate(); // 빈 견적서 객체 생성
+        e.setEstimateNo(req.getEstimateNo());
+        e.setEstimateDate(req.getEstimateDate());
+        e.setCustomerName(req.getCustomerName());
+        e.setRemark(req.getRemark());
+
+        for (EstimateLineRequest l : req.getLines()) {
+            EstimateLine line = new EstimateLine();
+            line.setItemName(l.getItemName());
+            line.setQty(l.getQty());
+            line.setPrice(l.getPrice());
+            line.setAmount(l.getPrice().multiply(BigDecimal.valueOf(l.getQty())));
+
+            line.setEstimate(e); // 견적서와 연결
+            e.getLines().add(line);
+        }
+
+        estimateRepository.save(e); // DB 저장
     }
 
+
     //수정
+    @Transactional
     public void update(Long id, EstimateRequest req) { //👉 기존 견적서 수정
         Estimate e = estimateRepository.findById(id) //👉 수정할 견적서 조회
                 .orElseThrow(() -> new RuntimeException("견적서 없음"));
@@ -81,6 +105,7 @@ return new EstimateResponse(//👉 견적서 정보 + 라인 리스트 전달
     }
 
     //삭제
+    @Transactional
     public void delete(Long id) {
         estimateRepository.deleteById(id);
     }
