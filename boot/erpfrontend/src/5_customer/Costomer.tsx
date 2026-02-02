@@ -29,6 +29,7 @@ import {
   MidLabel,
 } from "../stylesjs/Input.styles";
 import { WhiteBtn, MainSubmitBtn, BtnRight } from "../stylesjs/Button.styles";
+import Lnb from "../include/Lnb";
 
 type ColumnDef = {
     key: string; label:string;
@@ -143,6 +144,9 @@ await axios.delete(`http://localhost:8888/api/acc/customers/${selectedId}`);
 fetchCustomers(); handleClose();
 }catch (e) {console.error("거래처 저장 실패", e);}}
 
+const stockMenu = [
+  { key: "status", label: "거래처리스트", path: "/custom" },
+];
     return(
         <>
         <div className="fixed-top">
@@ -154,7 +158,9 @@ fetchCustomers(); handleClose();
             <Row>
                 <Col>
                 <Flex>
-                    <Left/>
+                    <Left>
+ <Lnb menuList={stockMenu} title="거래처리스트"/>                          
+                    </Left>
                     <Right>
                         <TopWrap/>
                         <JustifyContent>

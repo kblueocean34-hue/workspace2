@@ -9,6 +9,7 @@ import { JustifyContent, W70, W30 } from "../stylesjs/Util.styles";
 import { TableTitle } from "../stylesjs/Text.styles";
 import { InputGroup, Search, Radio, Label, MidLabel } from "../stylesjs/Input.styles";
 import { WhiteBtn, MainSubmitBtn, BtnRight } from "../stylesjs/Button.styles";
+import Lnb from "../include/Lnb";
 
 type ColumnDef = { key: string; label: string };
 
@@ -361,6 +362,10 @@ export default function SalesPurchaseTrade() {
     }
   };
 
+const stockMenu = [
+  { key: "status", label: "판매조회", path: "/trade" },
+];
+
   return (
     <>
       <div className="fixed-top">
@@ -373,7 +378,9 @@ export default function SalesPurchaseTrade() {
         <Row>
           <Col>
             <Flex>
-              <Left />
+              <Left>
+<Lnb menuList={stockMenu} title="판매조회"/>                
+              </Left>
               <Right>
                 <TopWrap />
                 <JustifyContent>

@@ -29,6 +29,7 @@ import {
   MidLabel,
 } from "../stylesjs/Input.styles";
 import { WhiteBtn, MainSubmitBtn, BtnRight } from "../stylesjs/Button.styles";
+import Lnb from "../include/Lnb";
 
 type ColumnDef = {key: string; label:string;}
 
@@ -269,6 +270,10 @@ const openNew = () => {
  setSelectedId(null); setJournal(emptyJournal()); setShow(true);
 }
 
+ const stockMenu = [
+  { key: "status", label: "일반전표", path: "/general" },
+];
+
     return(
         <>
         <div className="fixed-top">
@@ -281,7 +286,9 @@ const openNew = () => {
         <Row>
           <Col>
             <Flex>
-              <Left />
+              <Left>
+<Lnb menuList={stockMenu} title="일반전표"/>                  
+              </Left>
               <Right>
                 <TopWrap />
                 <JustifyContent>

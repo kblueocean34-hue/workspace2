@@ -9,6 +9,7 @@ import { JustifyContent, W70, W30,} from "../stylesjs/Util.styles";
 import { TableTitle, TabTitle } from "../stylesjs/Text.styles";
 import { InputGroup, Search, Select, Radio, Label, MidLabel, CheckGroup, Check } from "../stylesjs/Input.styles";
 import { WhiteBtn, MainSubmitBtn, BtnRight, SmallBadge } from "../stylesjs/Button.styles";
+import Lnb from "../include/Lnb";
 
 type SortDirection = "asc" | "desc";
 type SortState = {key: string | null; direction:SortDirection;}
@@ -134,7 +135,9 @@ console.error("저장 실패", err)
 
 
 
-
+  const stockMenu = [
+  { key: "status", label: "구매조회", path: "/inventory" },
+];
 
   return(
   <>
@@ -147,7 +150,9 @@ console.error("저장 실패", err)
       <Row>
         <Col>
           <Flex>
-            <Left></Left>
+            <Left>
+              <Lnb menuList={stockMenu} title="구매조회"/>
+            </Left>
             <Right>
               <TopWrap/>
               <JustifyContent>

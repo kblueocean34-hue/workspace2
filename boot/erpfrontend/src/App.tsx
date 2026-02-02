@@ -27,8 +27,16 @@ import KakaoRedirect from './1_member/KakaoRedirect';
 import Inventory from './4_inventory/Inventory';
 import MyPage from './2_mypage/MyPage';
 import Customer from './5_customer/Costomer';
-import GeneralJournal from './5_customer/Generaljounrnal';
-import SalesPurchaseTrade from './5_customer/SalesPurchaseTrade';
+import GeneralJournal from './14_gene/GeneralJounrnal';
+import SalesPurchaseTrade from './15_sales/SalesPurchaseTrade';
+import FundStatus from './6_fund/FundStatus';
+import PayableNoteStatus from './7_pay/PayableNoteStatus';
+import EstimateInput from "./8_est/EstimateInput"
+import ProfitLoss from './9_profit/ProfitLoss';
+import SalesInput from './10_sale/SalesInput';
+import SalesInput2 from './11_sale2/SalesInput2';
+import StockStatus from './12_stock/StockStatus';
+import StockMovement from './13_stockmove/StockMovement';
 //react나 vue에서 링크연결을 라우팅이라 합니다 npm install react-router-dom
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
@@ -88,7 +96,15 @@ if  배열에 값이 있다면 그 값이 바뀔때 마다 실행된다
     <Route path="/" element={<Login/>}/>
     <Route path="/admin" element={<ProtectedRoute><Admin/></ProtectedRoute>}/>
     <Route path="/mypage" element={<ProtectedRoute><MyPage/></ProtectedRoute>}/>
+    <Route path="/fund" element={<FundStatus/>}/>
+    <Route path="/pay" element={<PayableNoteStatus/>}/>
+    <Route path="/est" element={<EstimateInput/>}/>
+    <Route path="/profit" element={<ProfitLoss/>}/>
     <Route path="/inventory" element={<Inventory/>}/>
+    <Route path="/sale" element={<SalesInput/>}/>
+    <Route path="/sale2" element={<SalesInput2/>}/>
+    <Route path="/stock" element={<StockStatus/>}/>
+    <Route path="/stockmove" element={<StockMovement/>}/>
     <Route path="/custom" element={<Customer/>}/>
     <Route path="/general" element={<GeneralJournal/>}/>
     <Route path="/trade" element={<SalesPurchaseTrade/>}/>
