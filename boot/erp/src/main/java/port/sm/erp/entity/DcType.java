@@ -1,4 +1,6 @@
 package port.sm.erp.entity;
 
-public class DcType {
+public enum DcType {
+    DEBIT, //차변
+    CREDIT //대변
 }

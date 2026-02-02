@@ -1,4 +1,7 @@
 package port.sm.erp.repository;
 
-public interface JournalRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+import port.sm.erp.entity.Journal;
+
+public interface JournalRepository extends JpaRepository<Journal, Long> {
 }
