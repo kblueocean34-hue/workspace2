@@ -2,6 +2,7 @@
 //👉 Next.js에서 “이 파일은 브라우저에서 실행되는 컴포넌트다” 라고 알려주는 선언
 import {Navbar,Nav,Container, Button,} from "react-bootstrap";
 
+
 type Props = {
 onOpenModal: () => void;
 };
@@ -25,7 +26,8 @@ return(
           >
             상품 등록
           </Button>
-          <Button variant="outline-light">로그인</Button>
+          <a href="/member" className="btn btn-outline-light mx-2">회윈가입</a>
+          <a href="/login" className="btn btn-outline-light">로그인</a>
         </Container>
       </Navbar>
 
