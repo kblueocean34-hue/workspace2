@@ -28,4 +28,12 @@ public class ProductEntity {
     // 실제 저장된 파일명(삭제할 때 필요)
     @Column(nullable=false, length = 300)
     private String imagePath;
+
+    // 1차 카테고리 ID (null 허용)
+    @Column(name = "primary_category")
+    private Integer primaryCategory;
+
+    // 2차 카테고리 ID (null 허용)
+    @Column(name = "secondary_category")
+    private Integer secondaryCategory;
 }

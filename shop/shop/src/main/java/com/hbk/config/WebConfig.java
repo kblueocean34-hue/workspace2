@@ -21,15 +21,16 @@ public class WebConfig implements WebMvcConfigurer {
                 .toString();
 
         registry.addResourceHandler("/uploads/**")
-                .addResourceLocations(location);
+                .addResourceLocations("file:uploads/");
     }
 
-    // (선택) 프론트가 3000에서 돌 때 CORS 필요하면 아래도 추가
+    // 🌍 CORS 설정 (프론트 3000)
     @Override
     public void addCorsMappings(CorsRegistry registry) {
-        registry.addMapping("/api/**")
+        registry.addMapping("/**")
                 .allowedOrigins("http://localhost:3000")
-                .allowedMethods("GET","POST","PUT","DELETE","OPTIONS")
-                .allowedHeaders("*");
+                .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
+                .allowedHeaders("*")
+                .allowCredentials(true);
     }
 }

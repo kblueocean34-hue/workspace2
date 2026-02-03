@@ -17,6 +17,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/products")
 @RequiredArgsConstructor
+@CrossOrigin(origins = "http://localhost:3000", allowCredentials = "true")
 public class ProductController {
 
     private final ProductRepository repo;
@@ -26,6 +27,13 @@ public class ProductController {
     @GetMapping
     public List<ProductResponse> list() {
         return repo.findAll().stream().map(ProductResponse::from).toList();
+    }
+
+    // ✅ 상세조회 (추가)
+    @GetMapping("/{id}")
+    public ProductResponse detail(@PathVariable Long id) {
+        ProductEntity e = repo.findById(id).orElseThrow(() -> new IllegalArgumentException("상품 없음"));
+        return ProductResponse.from(e);
     }
 
     // ✅ 등록 (multipart/form-data)
@@ -49,6 +57,46 @@ public class ProductController {
 
         return ProductResponse.from(saved);
     }
+
+    // ✅ 수정 (추가)
+    @PutMapping(value = "/{id}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public ProductResponse update(
+            @PathVariable Long id,
+            @RequestParam @NotBlank String title,
+            @RequestParam(required = false) String desc,
+            @RequestParam @NotNull Integer price,
+            @RequestParam(required = false) Integer primaryCategory,    // 추가한 카테고리 필드
+            @RequestParam(required = false) Integer secondaryCategory,  // 추가한 카테고리 필드
+            @RequestPart(value = "image", required = false) MultipartFile image
+    ) throws Exception {
+
+        ProductEntity e = repo.findById(id).orElseThrow(() -> new IllegalArgumentException("상품 없음"));
+
+        // 이미지가 새로 들어오면 기존 파일 삭제 후 저장
+        if (image != null && !image.isEmpty()) {
+            fileStorage.deleteByPath(e.getImagePath());
+            var stored = fileStorage.save(image);
+            e.setImageUrl(stored.url());
+            e.setImagePath(stored.filePath());
+        }
+
+        e.setTitle(title);
+        e.setDesc(desc);
+        e.setPrice(price);
+
+        // 카테고리 필드 설정 (엔티티에 추가 필요)
+        if (primaryCategory != null) {
+            e.setPrimaryCategory(primaryCategory);
+        }
+        if (secondaryCategory != null) {
+            e.setSecondaryCategory(secondaryCategory);
+        }
+
+        ProductEntity saved = repo.save(e);
+
+        return ProductResponse.from(saved);
+    }
+
 
     // ✅ 삭제 (DB 삭제 + 파일 삭제)
     @DeleteMapping("/{id}")

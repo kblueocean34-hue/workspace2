@@ -1,16 +1,12 @@
 "use client";
 
 import { useState } from "react";
-import axios from "axios";
-import { useRouter } from "next/navigation";
 import * as S from "@/styled/Login.styles";
-//import "@fortawesome/fontawesome-free/css/all.min.css";
+import api from "@/lib/axios"; // 공통 axios
 
 export default function Login() {
-  const [email, setEmail] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
-
-  const router = useRouter();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -21,30 +17,22 @@ export default function Login() {
     }
 
     try {
-      const res = await axios.post("http://localhost:9500/members/login", {
-        email,
-        password,
-      });
+      // ✅ 세션 로그인 (🔥 이 옵션이 핵심)
+      await api.post(
+        "/api/auth/login",
+        {
+          email,
+          password,
+        },
+        {
+          withCredentials: true, // ✅ 추가
+        }
+      );
 
-      const token = res.data?.token;
+      alert("로그인 성공 🎉");
 
-      if (!token) {
-        alert("로그인 응답에 token이 없습니다. 백엔드 응답을 확인하세요!");
-        console.log("login response:", res.data);
-        return;
-      }
-
-      // 토큰 저장
-      localStorage.setItem("token", token);
-      localStorage.setItem("lastName", res.data.lastName);
-      localStorage.setItem("firstName", res.data.firstName);
-
-      window.dispatchEvent(new Event("storage"));
-
-      alert("로그인 성공");
-
-      // SPA 방식 페이지 이동
-      router.push("/admin");
+      // ✅ Header 다시 마운트
+      window.location.href = "/";
     } catch (err) {
       console.error(err);
       alert("로그인 실패! 이메일 또는 비밀번호를 확인해 주세요");
@@ -79,23 +67,6 @@ export default function Login() {
             </S.CheckboxWrapper>
 
             <S.Button type="submit">Login</S.Button>
-
-            <S.Divider />
-
-            <S.SocialButton variant="google">
-              <i className="fab fa-google" />
-              Login with Google
-            </S.SocialButton>
-
-            <S.SocialButton variant="facebook">
-              <i className="fab fa-facebook-f" />
-              Login with Facebook
-            </S.SocialButton>
-
-            <S.SocialButton variant="instagram">
-              <i className="fab fa-instagram" />
-              Login with Instagram
-            </S.SocialButton>
           </S.Form>
 
           <S.Divider />
