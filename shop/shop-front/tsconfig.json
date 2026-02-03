@@ -13,14 +13,20 @@
     "isolatedModules": true,
     "jsx": "react-jsx",
     "incremental": true,
+
+    "baseUrl": ".",                 // ✅ 이 줄만 추가
+    "paths": {
+      "@/*": ["./src/*"]
+    },
+
+
+
     "plugins": [
       {
         "name": "next"
       }
     ],
-    "paths": {
-      "@/*": ["./src/*"]
-    }
+
   },
   "include": [
     "next-env.d.ts",
