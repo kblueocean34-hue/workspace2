@@ -6,13 +6,12 @@ import com.hbk.repository.ProductRepository;
 import com.hbk.storage.FileStorage;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-import lombok.*;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
-
 
 @RestController
 @RequestMapping("/api/products")
@@ -42,17 +41,30 @@ public class ProductController {
             @RequestParam @NotBlank String title,
             @RequestParam(required = false) String desc,
             @RequestParam @NotNull Integer price,
+            @RequestParam(required = false) Integer primaryCategory,    // 카테고리 추가
+            @RequestParam(required = false) Integer secondaryCategory,  // 카테고리 추가
             @RequestPart("image") MultipartFile image
     ) throws Exception {
+        // 카테고리 검증
+        if (primaryCategory == null || secondaryCategory == null) {
+            throw new IllegalArgumentException("카테고리를 선택하세요.");
+        }
 
+        // 파일 저장 처리
+        if (image == null || image.isEmpty()) {
+            throw new IllegalArgumentException("이미지를 선택하세요.");
+        }
         var stored = fileStorage.save(image);
 
+        // 상품 저장
         ProductEntity saved = repo.save(ProductEntity.builder()
                 .title(title)
                 .desc(desc)
                 .price(price)
                 .imageUrl(stored.url())
                 .imagePath(stored.filePath())
+                .primaryCategory(primaryCategory)
+                .secondaryCategory(secondaryCategory)
                 .build());
 
         return ProductResponse.from(saved);
@@ -65,8 +77,8 @@ public class ProductController {
             @RequestParam @NotBlank String title,
             @RequestParam(required = false) String desc,
             @RequestParam @NotNull Integer price,
-            @RequestParam(required = false) Integer primaryCategory,    // 추가한 카테고리 필드
-            @RequestParam(required = false) Integer secondaryCategory,  // 추가한 카테고리 필드
+            @RequestParam(required = false) Integer primaryCategory,    // 카테고리 필드
+            @RequestParam(required = false) Integer secondaryCategory,  // 카테고리 필드
             @RequestPart(value = "image", required = false) MultipartFile image
     ) throws Exception {
 
@@ -74,6 +86,7 @@ public class ProductController {
 
         // 이미지가 새로 들어오면 기존 파일 삭제 후 저장
         if (image != null && !image.isEmpty()) {
+            // 기존 이미지 파일이 존재하는 경우 삭제
             fileStorage.deleteByPath(e.getImagePath());
             var stored = fileStorage.save(image);
             e.setImageUrl(stored.url());
@@ -84,7 +97,7 @@ public class ProductController {
         e.setDesc(desc);
         e.setPrice(price);
 
-        // 카테고리 필드 설정 (엔티티에 추가 필요)
+        // 카테고리 필드 설정
         if (primaryCategory != null) {
             e.setPrimaryCategory(primaryCategory);
         }
@@ -96,7 +109,6 @@ public class ProductController {
 
         return ProductResponse.from(saved);
     }
-
 
     // ✅ 삭제 (DB 삭제 + 파일 삭제)
     @DeleteMapping("/{id}")

@@ -36,6 +36,7 @@ export default function Home() {
       const res = await fetch(`${API_BASE}/products`, { cache: "no-store" });
       if (!res.ok) throw new Error("상품 리스트 불러오기 실패");
       const data = await res.json();
+      console.log(data); // 상품 데이터 로깅
       setProducts(data);
     } catch (err) {
       console.error("상품 로딩 실패", err);
@@ -66,9 +67,15 @@ export default function Home() {
 
   // 카테고리 이름 표시
   const getCategoryName = (primaryId?: number, secondaryId?: number) => {
+    console.log("primaryId:", primaryId, "secondaryId:", secondaryId); // 디버깅용
+
     const primary = categories.find(c => c.id === primaryId);
     const secondary = primary?.children?.find(c => c.id === secondaryId);
-    if (!primary || !secondary) return "-";
+
+    console.log("Primary:", primary, "Secondary:", secondary); // 디버깅용
+
+    // primary 또는 secondary가 없으면 "카테고리 없음" 출력
+    if (!primary || !secondary) return "카테고리 없음";
     return `${primary.name} / ${secondary.name}`;
   };
 

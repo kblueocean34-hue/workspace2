@@ -28,7 +28,7 @@ export default function Header({ onOpenModal, isLogin, setIsLogin }: Props) {
         <Navbar.Brand href="/">My shop</Navbar.Brand>
 
         <Nav className="me-auto">
-          <Nav.Link href="/products">상품</Nav.Link>
+          <Nav.Link href="/consumer">상품</Nav.Link>
           <Nav.Link href="/cart">장바구니</Nav.Link>
           <Nav.Link href="/orders">주문</Nav.Link>
         </Nav>

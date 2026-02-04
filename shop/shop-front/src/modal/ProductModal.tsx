@@ -45,8 +45,8 @@ export default function ProductModal({
             desc: data.desc || "",
             price: data.price?.toString() || "",
           });
-          setCategory1(data.primaryCategory || "");
-          setCategory2(data.secondaryCategory || "");
+          setCategory1(data.primaryCategory || ""); // 기본값 설정
+          setCategory2(data.secondaryCategory || ""); // 기본값 설정
           setImageUrl(data.imageUrl ? `http://localhost:9999${data.imageUrl}` : null);
           setImageFile(null);
         } catch {
@@ -56,14 +56,13 @@ export default function ProductModal({
       })();
     } else if (mode === "create") {
       setForm({ title: "", desc: "", price: "" });
-      setCategory1("");
-      setCategory2("");
+      setCategory1(""); // 초기값 설정
+      setCategory2(""); // 초기값 설정
       setImageFile(null);
       setImageUrl(null);
     }
   }, [show, mode, productId, onClose]);
 
-  // 폼 입력 비활성화 처리
   const onChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     if (isViewMode) return;
     const { name, value } = e.target;
@@ -78,7 +77,7 @@ export default function ProductModal({
   };
 
   const handleSave = async () => {
-    if (isViewMode) return; // ✅ view 모드에서는 저장 안 함
+    if (isViewMode) return;
     if (!form.title.trim()) return alert("상품명 입력");
     if (!form.price.trim()) return alert("가격 입력");
     if (!category1 || !category2) return alert("카테고리를 선택해 주세요");
@@ -102,8 +101,8 @@ export default function ProductModal({
       if (!res.ok) throw new Error(mode === "create" ? "상품 등록 실패" : "상품 수정 실패");
 
       alert(mode === "create" ? "등록 완료!" : "수정 완료!");
-      onSaved();
-      onClose();
+      onSaved();  // 상품 목록 갱신
+      onClose();  // 모달 닫기
     } catch (e: any) {
       alert(e?.message || "저장 중 오류");
     } finally {
@@ -117,7 +116,7 @@ export default function ProductModal({
         <Modal.Title>
           {mode === "create" && "상품 등록"}
           {mode === "edit" && "상품 수정"}
-          {mode === "view" && "상품 상세"} {/* ✅ view 제목 */}
+          {mode === "view" && "상품 상세"}
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
