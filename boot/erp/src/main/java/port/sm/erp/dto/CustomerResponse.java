@@ -3,20 +3,12 @@ package port.sm.erp.dto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import port.sm.erp.entity.Customer;
-import port.sm.erp.entity.CustomerType;
 
 @Getter
 @AllArgsConstructor
 public class CustomerResponse {
     private Long id;
-    private String customerCode;
-    private String customerName;
-    private String ceoName;
-    private String phone;
-    private String email;
-    private String address;
-    private CustomerType customerType;
-    private String remark;
+    private String customerCode, customerName, ceoName, phone, email, address, remark, detailAddress;
 
     public static CustomerResponse from(Customer customer) {
         return new CustomerResponse(
@@ -27,8 +19,8 @@ public class CustomerResponse {
                 customer.getPhone(),
                 customer.getEmail(),
                 customer.getAddress(),
-                customer.getCustomerType(),
-                customer.getRemark()
+                customer.getRemark(),
+                customer.getDetailAddress()  // 마지막에 detailAddress
         );
     }
 }
