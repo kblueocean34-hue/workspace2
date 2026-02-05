@@ -35,4 +35,28 @@ Journal은 전표 헤더(머리)
 JournalLine은 전표 상세(몸통)
 * */    
     private List<JournalLine> lines = new ArrayList<>();
+
+    @Column(name = "TRADE_NO", nullable = false)
+    private String tradeNo;
+
+    @Column(name = "TRADE_DATE", nullable = false)
+    private String tradeDate;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "CUSTOMER_ID", nullable = false)
+    private Customer customer;
+
+    @Column(name = "TOTAL_AMOUNT")
+    private Long totalAmount;
+
+    /*@OneToMany(mappedBy = "journal", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<JournalLine> lines;*/
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "STATUS")
+    private JournalStatus status;
+
+
+
+
 }

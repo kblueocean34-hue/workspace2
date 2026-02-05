@@ -24,6 +24,7 @@ public class Customer {
     @Column(length = 200, nullable = false)
     private String customerCode, customerName, ceoName, phone, email, address, remark, detailAddress;
 
+
     @Enumerated(EnumType.STRING)
     private CustomerType customerType;
 }

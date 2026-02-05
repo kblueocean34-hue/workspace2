@@ -200,6 +200,10 @@ function buildLines(t: Trade): JournalLine[] {
 }
 
 export default function SalesPurchaseTrade() {
+
+ //여기 추가
+  const [customerList, setCustomerList] = useState<Customer[]>([]);
+
   const [show, setShow] = useState(false);
   const [selectedId, setSelectedId] = useState<number | null>(null);
 
@@ -208,6 +212,19 @@ export default function SalesPurchaseTrade() {
 
   const [list, setList] = useState<any[]>([]);
   const [trade, setTrade] = useState<Trade>(emptyTrade("SALES"));
+
+  //새로운 useEffect
+  useEffect(() => {
+    const fetchCustomers = async () => {
+      try {
+        const res = await axios.get("http://localhost:8888/api/acc/customers");
+        setCustomerList(res.data);
+      } catch (e) {
+        console.error("Failed to fetch customer list", e)
+      }
+    };
+    fetchCustomers();
+  },[]);
 
   const columns: ColumnDef[] = [
     { key: "tradeNo", label: "전표번호" },
@@ -361,6 +378,12 @@ export default function SalesPurchaseTrade() {
       alert("삭제 실패(콘솔 확인)");
     }
   };
+type Customer = {
+  id: number;
+  customerName: string;
+};
+
+
 
 const stockMenu = [
   { key: "status", label: "판매조회", path: "/trade" },
@@ -558,11 +581,17 @@ const stockMenu = [
             <InputGroup className="my-3">
               <W30><MidLabel>거래처</MidLabel></W30>
               <W70>
-                <Form.Control
+                <Form.Select
                   value={trade.customerName || ""}
                   onChange={(e) => patchTrade({ customerName: e.target.value })}
-                  placeholder="거래처명(검색/선택 컴포넌트로 교체 가능)"
-                />
+                >
+                  <option value="">-- 선택 --</option>
+                  {customerList.map((customer) =>(
+                    <option key={customer.id} value={customer.customerName ?? ""}>
+                      {customer.customerName}
+                    </option>
+                  ))}
+                </Form.Select>
               </W70>
             </InputGroup>
 
