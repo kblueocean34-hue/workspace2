@@ -41,6 +41,13 @@ export const Content = styled.div`
   margin: 0 auto;
 `;
 
+export const ContentInner = styled.div`
+display:flex;
+flex-wrap:wrap;
+gap:48px;
+margin-top:48px;
+`;
+
 export const ProductCard = styled.div`
   width: 200px;
   height: 320px;
@@ -88,4 +95,53 @@ export const Button = styled.button`
     background-color: #dc3545;
     color: white;
   }
+`;
+
+export const H1 = styled.h1`
+font-size:24px;
+font-weight:800;
+letter-spacing:-3%;
+margin:10px 0px;
+`;
+export const H2 = styled.h2`
+font-size:22px;
+font-weight:800;
+letter-spacing:-3%;
+margin:10px 0px;
+`;
+export const H3 = styled.h3`
+font-size:20px;
+font-weight:700;
+letter-spacing:-3%;
+margin:10px 0px;
+`;
+export const H4 = styled.h4`
+font-size:18px;
+font-weight:700;
+letter-spacing:-3%;
+margin:10px 0px;
+`;
+export const H5 = styled.h5`
+font-size:16px;
+font-weight:600;
+letter-spacing:-3%;
+margin:10px 0px;
+`;
+export const H6 = styled.h6`
+font-size:14px;
+font-weight:500;
+letter-spacing:-3%;
+margin:10px 0px;
+`;
+
+export const P = styled.p`
+font-size:12px;
+font-weight:400;
+letter-spacing:-3%;
+`;
+
+export const Pprice = styled.p`
+font-size:12px;
+font-weight:600;
+letter-spacing:-3%;
 `;

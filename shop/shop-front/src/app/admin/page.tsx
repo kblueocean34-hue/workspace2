@@ -1,14 +1,17 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Container, Button } from "react-bootstrap";
+import { Container, Button, NavItem } from "react-bootstrap";
 import { useRouter } from "next/navigation";
 import Header from "@/include/Header";
 import ProductModal from "@/modal/ProductModal";
 import { categories } from "@/lib/Category";
 import { PageWrapper, Sidebar, SidebarBrand, SidebarNav, MainContentWrapper, Content,
-ProductCard, ProductDetails, ButtonGroup,    
+ProductCard, ProductDetails, ButtonGroup, H1,H2, H3, H4, H5, H6, ProductImage,
+ContentInner,P,Pprice,
+ 
 } from "@/styled/Admin.styles";
+import Link from "next/link";
 
 
 const API_ROOT = "http://localhost:9999";
@@ -96,7 +99,66 @@ export default function Admin() {
 
   return (
     <>
-    
+<PageWrapper>
+
+    <Sidebar>
+        <SidebarBrand href="/">Shop Admin <sup>2</sup></SidebarBrand>
+        <SidebarNav>
+            <NavItem>
+                <Link  href="/admin">Dashboard</Link>
+            </NavItem>
+            <NavItem>
+                <Link  href="/admin">Products</Link>
+            </NavItem>
+        </SidebarNav>
+    </Sidebar>
+
+    <MainContentWrapper>
+        
+        <Header 
+        onOpenModal={() => openModal("create")}
+        isLogin={isLogin}
+        setIsLogin={setIsLogin}/>
+
+        <Content>
+            <H1>쇼핑몰 관리</H1>
+            <ContentInner>
+{products.map((p) =>(
+  <ProductCard key={p.id} onClick={() => openModal("view", p.id)}>
+    {p.imageUrl && <ProductImage src={`${API_ROOT}${p.imageUrl}`} alt={p.title}/>}
+    <ProductDetails>
+      <H5>{p.title}</H5>
+      <P>{getCategoryName(p.primaryCategory, p.secondaryCategory)}</P>
+      <Pprice>{p.price.toLocaleString()}원</Pprice>
+    </ProductDetails>
+    <ButtonGroup>
+<Button
+variant="primary"
+size="sm"
+onClick={(e) =>
+{e.stopPropagation(); openModal("edit", p.id);}}
+>수정</Button>  
+<Button
+variant="danger"
+size="sm"
+onClick={(e) =>
+{e.stopPropagation(); handleDelete(p.id);}}
+>삭제</Button>     
+    </ButtonGroup>
+  </ProductCard>
+))}
+            </ContentInner>
+        </Content>
+
+<ProductModal
+show={showModal}
+onClose={() => setShowModal(false)}
+onSaved={() => {setShowModal(false); fetchProducts();}}
+productId={currentProductId}
+mode={modalMode}
+/>
+    </MainContentWrapper>
+</PageWrapper>    
     </>
   );
 }
