@@ -40,7 +40,7 @@ public class Member {
     private String tel;
 
     @Column(name = "GENDER", nullable = false)
-    private String gender; //€
+    private String gender;
 
     @Column(name = "ADDRESS")
     private String address;
