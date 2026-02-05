@@ -36,6 +36,11 @@ export default function Header({ onOpenModal, isLogin, setIsLogin }: Props) {
         <div className="ms-auto d-flex align-items-center">
           {isLogin ? (
             <>
+<Button className="me-2" 
+variant="outline-light" 
+onClick={() => window.location.href="/admin"}>
+  관리자
+</Button>
               <Button className="me-2" variant="outline-light" onClick={onOpenModal}>
                 상품 등록
               </Button>
