@@ -16,9 +16,51 @@ import GeneralJournalModal, {
   JournalLine,
 } from "../component/journal/GeneralJournalModal"; // ✅ 경로 맞추기
 
+//axios인스턴스
+const api = axios.create({
+  baseURL:"http://localhost:8888",
+  timeout:10000, //안에 응답이 없으면 자동으로 실패 처리(타임아웃 에러).
+})
+
+api.interceptors.request.use((config) => {
+  //요청 보내기 직전에 가로채서(config를) 수정할 수 있는 “요청 인터셉터”.
+  //로컬스토리지에서 토큰을 찾는다.
+  const token =
+  localStorage.getItem("token") || localStorage.getItem("accessToken") || localStorage.getItem("jwt");
+
+  if(token) {//토큰이 존재할 때만 헤더를 붙인다(로그인 안 한 상태면 안 붙임).
+    config.headers = config.headers ?? {}; //?? 는 “null 또는 undefined 일 때만” 오른쪽 값을 사용.
+    config.headers.Authorization = `Bearer ${token}`;
+  }
+  return config;
+})
+
+api.interceptors.response.use(//이번엔 응답을 받은 직후를 가로채는 “응답 인터셉터”.
+  (res) => res, (err) => {
+    console.log("❌ API ERROR", err?.response?.status, err?.response?.data);
+    //디버깅용 로그.
+    return Promise.reject(err);//에러를 다시 던져서(reject) 호출한 쪽에서 catch로 처리하게 만든다.
+  }
+)
+
+const API_BASE = "/api/acc/Journals";
+
 type ColumnDef = { key: string; label: string };
 
-const API_BASE = "http://localhost:8888/api/acc/journals";
+type Customer = {
+  id: number;
+  customerName: string;
+  customerCode?: string;
+  ceoName?: string;
+  phone?: string;
+  email?: string;
+  address?: string;
+  remark?: string;
+  detailAddress?: string;
+  customerType?: string;
+};
+
+
 
 //👉 새 전표를 만들 때 사용할 “빈 전표 기본값 생성기”
 const emptyJournal = (): Journal => ({
@@ -35,6 +77,10 @@ const emptyJournal = (): Journal => ({
 });
 
 const GeneralJournal = () => {
+
+//거래처 때문에 추가 도리꺼임
+const [customerList, setCustomerList] = useState<Customer[]>([]);
+
   const [show, setShow] = useState(false);
   const [selectedId, setSelectedId] = useState<number | null>(null);
 
@@ -51,6 +97,20 @@ const GeneralJournal = () => {
     { key: "creditTotal", label: "대변합" },
     { key: "status", label: "상태" },
   ];
+
+  //거래처 목록 추가 
+  useEffect(() => {
+    const fetchCustomers = async () => {
+      try{
+        const res = await api.get("/api/acc/customers");
+        const rows = Array.isArray(res.data) ? res.data : res.data?.content ?? [];
+        setCustomerList(rows);
+      } catch (e) {
+        console.error("거래처 목록 조회 실패", e);
+      }
+    };
+    fetchCustomers();
+  },[]);
 
   const totals = useMemo(() => {
     const debitTotal = (journal.lines || [])
@@ -140,30 +200,33 @@ const GeneralJournal = () => {
 
   const saveJournal = async () => {
     try {
-      if (!journal.journalDate) {
-        alert("전표일자를 입력하세요");
-        return;
-      }
-      if (!journal.lines || journal.lines.length === 0) {
-        alert("전표 라인을 1개 이상 입력하세요");
-        return;
-      }
+if (!journal.journalDate) return alert("전표일자를 입력하세요");
+if (!journal.lines || journal.lines.length === 0)  return alert("전표 라인을 1개 이상 입력하세요");
+//거래처 선택
+if (!journal.customerName?.trim()) return alert("거래처 선택하세요");
+//거래처 리스트에서 커스터머id 보정
+const matched : any =
+(customerList as any[]).find((c) => c.customerName === journal.customerName) ??
+(customerList as any[]).find((c) => c.name === journal.customerName)
 
-      for (const [i, l] of journal.lines.entries()) {
-        if (!l.accountCode?.trim()) {
-          alert(`라인 ${i + 1}: 계정코드를 입력하세요`);
-          return;
-        }
-        if (!(Number(l.amount) > 0)) {
-          alert(`라인 ${i + 1}: 금액은 0보다 커야 합니다.`);
-          return;
-        }
-      }
+const customerId = matched?.id ?? matched?.customerId ?? null;
+if (!customerId) return alert("거래처를 목록에서 선택해 주세요(customerId 필요)");
 
-      if (totals.debitTotal !== totals.creditTotal) {
-        alert(`차변합(${totals.debitTotal})과 대변합(${totals.creditTotal})이 일치해야 저장됩니다.`);
-        return;
-      }
+//라인 검증
+for (const [i, l] of journal.lines.entries()) {
+if (!l.accountCode?.trim()) return  alert(`라인 ${i + 1}: 계정코드를 입력하세요`);
+if (!(Number(l.amount) > 0)) return alert(`라인 ${i + 1}: 금액은 0보다 커야 합니다.`);
+}
+//차대합 검증
+if (totals.debitTotal !== totals.creditTotal) {
+return  alert(`차변합(${totals.debitTotal})과 대변합(${totals.creditTotal})이 일치해야 저장됩니다.`);
+}
+
+//payload customid 강제 세팅
+const payload: any = {
+  ...journal, customerId,
+  journalNo: journal.journalNo?.trim() ? journal.journalNo : undefined,
+}
 
       if (selectedId) await axios.put(`${API_BASE}/${selectedId}`, journal);
       else await axios.post(API_BASE, journal);
@@ -172,6 +235,7 @@ const GeneralJournal = () => {
       handleClose();
     } catch (e) {
       console.error("저장 실패", e);
+      alert("저장실패 콘솔 확인")
     }
   };
 
@@ -185,6 +249,7 @@ const GeneralJournal = () => {
       handleClose();
     } catch (e) {
       console.error("전표 삭제 실패", e);
+      alert("삭제실패 (콘솔 확인)")
     }
   };
 
@@ -291,6 +356,7 @@ const GeneralJournal = () => {
         updateLine={updateLine}
         onSave={saveJournal}
         onDelete={deleteJournal}
+        customerList={customerList}
       />
     </>
   );

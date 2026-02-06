@@ -3,6 +3,10 @@ import { Flex, RoundRect } from "../../stylesjs/Content.styles";
 import { JustifyContent, W70, W30 } from "../../stylesjs/Util.styles";
 import { InputGroup, Radio, Label, MidLabel } from "../../stylesjs/Input.styles";
 
+/* =========================
+   타입들
+========================= */
+
 export type JournalStatus = "DRAFT" | "POSTED";
 
 export type JournalLine = {
@@ -25,6 +29,20 @@ export type Journal = {
   lines: JournalLine[];
 };
 
+/** ✅ 거래처 타입 (부모에서도 동일 타입 쓰면 가장 좋음) */
+export type Customer = {
+  id: number;
+  customerName: string;
+  customerCode?: string;
+  ceoName?: string;
+  phone?: string;
+  email?: string;
+  address?: string;
+  remark?: string;
+  detailAddress?: string;
+  customerType?: string;
+};
+
 type Totals = { debitTotal: number; creditTotal: number };
 
 type Props = {
@@ -32,6 +50,9 @@ type Props = {
   selectedId: number | null;
   journal: Journal;
   totals: Totals;
+
+  /** ✅ 거래처 목록 (배열!) */
+  customerList: Customer[];
 
   onClose: () => void;
   onSetJournal: React.Dispatch<React.SetStateAction<Journal>>;
@@ -49,6 +70,7 @@ export default function GeneralJournalModal({
   selectedId,
   journal,
   totals,
+  customerList,
   onClose,
   onSetJournal,
   addLine,
@@ -57,6 +79,15 @@ export default function GeneralJournalModal({
   onSave,
   onDelete,
 }: Props) {
+  /** 현재 선택된 거래처 id (string) 계산 */
+  const selectedCustomerId = (() => {
+    if (journal.customerId != null) return String(journal.customerId);
+    const matched = customerList.find(
+      (c) => c.customerName === (journal.customerName || "")
+    );
+    return matched ? String(matched.id) : "";
+  })();
+
   return (
     <Modal show={show} onHide={onClose} size="xl" centered>
       <Modal.Header closeButton>
@@ -65,7 +96,7 @@ export default function GeneralJournalModal({
 
       <Modal.Body>
         <RoundRect>
-          {/* 헤더 영역 */}
+          {/* 전표번호 */}
           <InputGroup>
             <W30>
               <MidLabel>전표번호</MidLabel>
@@ -73,12 +104,15 @@ export default function GeneralJournalModal({
             <W70>
               <Form.Control
                 value={journal.journalNo}
-                onChange={(e) => onSetJournal((p) => ({ ...p, journalNo: e.target.value }))}
+                onChange={(e) =>
+                  onSetJournal((p) => ({ ...p, journalNo: e.target.value }))
+                }
                 placeholder="(자동채번이면 비워도 됨)"
               />
             </W70>
           </InputGroup>
 
+          {/* 전표일자 */}
           <InputGroup className="my-3">
             <W30>
               <MidLabel>전표일자</MidLabel>
@@ -87,24 +121,42 @@ export default function GeneralJournalModal({
               <Form.Control
                 type="date"
                 value={journal.journalDate}
-                onChange={(e) => onSetJournal((p) => ({ ...p, journalDate: e.target.value }))}
+                onChange={(e) =>
+                  onSetJournal((p) => ({ ...p, journalDate: e.target.value }))
+                }
               />
             </W70>
           </InputGroup>
 
+          {/* 거래처 - select */}
           <InputGroup className="my-3">
             <W30>
               <MidLabel>거래처</MidLabel>
             </W30>
             <W70>
-              <Form.Control
-                value={journal.customerName || ""}
-                onChange={(e) => onSetJournal((p) => ({ ...p, customerName: e.target.value }))}
-                placeholder="거래처명(선택/검색 컴포넌트로 교체 가능)"
-              />
+              <Form.Select
+                value={selectedCustomerId}
+                onChange={(e) => {
+                  const id = e.target.value ? Number(e.target.value) : null;
+                  const c = customerList.find((x) => x.id === id);
+                  onSetJournal((p) => ({
+                    ...p,
+                    customerId: id,
+                    customerName: c?.customerName || "",
+                  }));
+                }}
+              >
+                <option value="">거래처 선택</option>
+                {customerList.map((c) => (
+                  <option key={c.id} value={c.id}>
+                    {c.customerName}
+                  </option>
+                ))}
+              </Form.Select>
             </W70>
           </InputGroup>
 
+          {/* 적요 */}
           <InputGroup className="my-3">
             <W30>
               <MidLabel>전표 적요</MidLabel>
@@ -114,11 +166,14 @@ export default function GeneralJournalModal({
                 as="textarea"
                 rows={2}
                 value={journal.remark || ""}
-                onChange={(e) => onSetJournal((p) => ({ ...p, remark: e.target.value }))}
+                onChange={(e) =>
+                  onSetJournal((p) => ({ ...p, remark: e.target.value }))
+                }
               />
             </W70>
           </InputGroup>
 
+          {/* 상태 */}
           <Flex className="my-3">
             <W30>
               <MidLabel>상태</MidLabel>
@@ -131,7 +186,12 @@ export default function GeneralJournalModal({
                 <span key={v}>
                   <Radio
                     checked={journal.status === (v as JournalStatus)}
-                    onChange={() => onSetJournal((p) => ({ ...p, status: v as JournalStatus }))}
+                    onChange={() =>
+                      onSetJournal((p) => ({
+                        ...p,
+                        status: v as JournalStatus,
+                      }))
+                    }
                   />
                   <Label className="mx-2">{l}</Label>
                 </span>
@@ -141,7 +201,7 @@ export default function GeneralJournalModal({
 
           <hr />
 
-          {/* 라인 영역 */}
+          {/* 라인 헤더 */}
           <JustifyContent>
             <div style={{ fontWeight: 700 }}>전표 라인</div>
             <div style={{ display: "flex", gap: 12, alignItems: "center" }}>
@@ -153,6 +213,7 @@ export default function GeneralJournalModal({
             </div>
           </JustifyContent>
 
+          {/* 라인 테이블 */}
           <Table responsive className="mt-2">
             <thead>
               <tr>
@@ -171,7 +232,9 @@ export default function GeneralJournalModal({
                     <Form.Select
                       value={l.dcType}
                       onChange={(e) =>
-                        updateLine(idx, { dcType: e.target.value as "DEBIT" | "CREDIT" })
+                        updateLine(idx, {
+                          dcType: e.target.value as "DEBIT" | "CREDIT",
+                        })
                       }
                     >
                       <option value="DEBIT">차변</option>
@@ -182,7 +245,9 @@ export default function GeneralJournalModal({
                   <td>
                     <Form.Control
                       value={l.accountCode}
-                      onChange={(e) => updateLine(idx, { accountCode: e.target.value })}
+                      onChange={(e) =>
+                        updateLine(idx, { accountCode: e.target.value })
+                      }
                       placeholder="예: 1110"
                     />
                   </td>
@@ -190,8 +255,6 @@ export default function GeneralJournalModal({
                   <td>
                     <Form.Control
                       value={l.accountName || ""}
-                      onChange={(e) => updateLine(idx, { accountName: e.target.value })}
-                      placeholder="(선택) 계정명"
                       disabled
                     />
                   </td>
@@ -200,7 +263,11 @@ export default function GeneralJournalModal({
                     <Form.Control
                       type="number"
                       value={l.amount}
-                      onChange={(e) => updateLine(idx, { amount: Number(e.target.value) || 0 })}
+                      onChange={(e) =>
+                        updateLine(idx, {
+                          amount: Number(e.target.value) || 0,
+                        })
+                      }
                       min={0}
                     />
                   </td>
@@ -208,8 +275,9 @@ export default function GeneralJournalModal({
                   <td>
                     <Form.Control
                       value={l.lineRemark || ""}
-                      onChange={(e) => updateLine(idx, { lineRemark: e.target.value })}
-                      placeholder="라인 적요"
+                      onChange={(e) =>
+                        updateLine(idx, { lineRemark: e.target.value })
+                      }
                     />
                   </td>
 
@@ -219,7 +287,6 @@ export default function GeneralJournalModal({
                       variant="outline-danger"
                       onClick={() => removeLine(idx)}
                       disabled={journal.lines.length <= 2}
-                      title="최소 2라인(차/대) 유지"
                     >
                       삭제
                     </Button>
@@ -231,7 +298,7 @@ export default function GeneralJournalModal({
 
           {totals.debitTotal !== totals.creditTotal && (
             <div style={{ color: "crimson", fontWeight: 700 }}>
-              ⚠ 차변합과 대변합이 일치하지 않습니다. (저장 불가)
+              ⚠ 차변합과 대변합이 일치하지 않습니다.
             </div>
           )}
         </RoundRect>
@@ -241,13 +308,11 @@ export default function GeneralJournalModal({
         <Button variant="secondary" onClick={onClose}>
           close
         </Button>
-
         {selectedId && (
           <Button variant="danger" onClick={onDelete}>
             Delete
           </Button>
         )}
-
         <Button variant="primary" onClick={onSave}>
           {selectedId ? "Update" : "Save"}
         </Button>
