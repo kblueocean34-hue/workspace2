@@ -1,6 +1,5 @@
 package port.sm.erp.dto;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 
 @Getter
@@ -8,12 +7,10 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@JsonIgnoreProperties(ignoreUnknown = true)
 public class JournalLineRequestDTO {
-    private Long id;
     private String accountCode;
     private String accountName;
-    private String dcType;   // ✅ "DEBIT" / "CREDIT"
+    private String dcType;
     private Long amount;
     private String lineRemark;
 }

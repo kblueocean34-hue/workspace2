@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Getter
 @Setter
@@ -42,9 +43,11 @@ public class JournalLine {
     private Journal journal;
 
     /** 거래 */
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "TRADE_ID")
+    @JoinColumn(name = "TRADE_ID", insertable = false, updatable = false)
     private Trade trade;
+
 
     public JournalLine() {}
 }
