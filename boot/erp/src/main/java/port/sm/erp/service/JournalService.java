@@ -1,52 +1,109 @@
 package port.sm.erp.service;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
+import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import port.sm.erp.dto.JournalLineResponse;
-import port.sm.erp.dto.JournalResponse;
-import port.sm.erp.dto.JournalSearchRequest;
-import port.sm.erp.entity.Journal;
+import port.sm.erp.dto.JournalLineResponseDTO;
+import port.sm.erp.dto.JournalResponseDTO;
+import port.sm.erp.entity.*;
 import port.sm.erp.repository.JournalRepository;
-import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 
-//“전표를 조회해서 화면에 내려주는 서비스(Service)” 단계
-@Service /*
-비즈니스 로직 담당 클래스
-Controller: 요청 받기
-Repository: DB 접근
-Service: 중간에서 실제 처리
-전표 목록 주세요” → 여기서 처리
-*/
+@Service
 @RequiredArgsConstructor
-//👉 final 필드만 생성자로 자동 주입
-@Transactional(readOnly = true)
-//👉 이 서비스는 조회 전용 DB 수정 ❌ 성능 ⬆ 실수로 save/delete 막아줌
+@Transactional
 public class JournalService {
 
     private final JournalRepository journalRepository;
 
-    public Page<JournalResponse> list(
-            JournalSearchRequest req,
-            Pageable pageable
-    ) {
-        Page<Journal> page = journalRepository.findAll(pageable);
-        return page.map(this::toResponse);
+    /** 목록 */
+    @Transactional(readOnly = true)
+    public Page<JournalResponseDTO> list(int page, int size, String q) {
+        Pageable pageable = PageRequest.of(page, size, Sort.by("id").descending());
+        return journalRepository.findAll(pageable).map(this::toDto);
     }
 
-    private JournalResponse toResponse(Journal j) {
-        List<JournalLineResponse> lines = j.getLines().stream()
-                .map(l -> new JournalLineResponse(
-                        l.getAccountCode(),
-                        l.getAccountName(),
-                        l.getDcType(),
-                        l.getAmount().longValue()
-                )).toList();
-        return new JournalResponse(
-                j.getId(), j.getJournalDate(), lines
-        );
+    /** 단건 */
+    @Transactional(readOnly = true)
+    public JournalResponseDTO get(Long id) {
+        Journal j = journalRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("전표 없음"));
+        return toDto(j);
+    }
+
+    /** 등록 */
+    public JournalResponseDTO create(Journal journal) {
+
+        if (journal.getLines() != null) {
+            for (JournalLine line : journal.getLines()) {
+                line.setId(null);
+                line.setJournal(journal);
+            }
+        }
+
+        Journal saved = journalRepository.save(journal);
+        return toDto(saved);
+    }
+
+    /** 수정 */
+    public JournalResponseDTO update(Long id, Journal req) {
+
+        Journal j = journalRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("전표 없음"));
+
+        j.setJournalNo(req.getJournalNo());
+        j.setJournalDate(req.getJournalDate());
+        j.setCustomer(req.getCustomer());
+        j.setRemark(req.getRemark());
+        j.setStatus(req.getStatus());
+
+        j.getLines().clear();
+        if (req.getLines() != null) {
+            for (JournalLine line : req.getLines()) {
+                line.setId(null);
+                line.setJournal(j);
+                j.getLines().add(line);
+            }
+        }
+
+        return toDto(j);
+    }
+
+    /** 삭제 */
+    public void delete(Long id) {
+        journalRepository.deleteById(id);
+    }
+
+    // ===============================
+    // Entity -> DTO 변환
+    // ===============================
+    private JournalResponseDTO toDto(Journal j) {
+
+        List<JournalLineResponseDTO> lines = j.getLines().stream()
+                .map(l -> JournalLineResponseDTO.builder()
+                        .id(l.getId())
+                        .accountCode(l.getAccountCode())
+                        .dcType(l.getDcType() == null ? null : l.getDcType().name())
+                        .amount(l.getAmount())
+                        .lineRemark(l.getLineRemark())
+                        .build())
+                .toList();
+
+        return JournalResponseDTO.builder()
+                .id(j.getId())
+                .journalNo(j.getJournalNo())
+                .journalDate(j.getJournalDate())
+                .customerId(
+                        j.getCustomer() == null ? null : j.getCustomer().getId()
+                )
+                .customerName(
+                        j.getCustomer() == null ? null : j.getCustomer().getCustomerName()
+                )
+                .remark(j.getRemark())
+                .status(j.getStatus() == null ? null : j.getStatus().name())
+                .lines(lines)
+                .build();
     }
 }

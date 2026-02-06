@@ -1,15 +1,17 @@
 package port.sm.erp.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import port.sm.erp.entity.DcType;
+import lombok.*;
 
 @Getter
+@Setter
+@NoArgsConstructor
 @AllArgsConstructor
-public class JournalLineResponse {
+@Builder
+public class JournalLineResponseDTO {
 
+    private Long id;
     private String accountCode;
-    private String accountName;
-    private DcType dcType;
+    private String dcType;
     private Long amount;
+    private String lineRemark;
 }

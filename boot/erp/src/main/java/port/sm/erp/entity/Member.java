@@ -1,7 +1,9 @@
 package port.sm.erp.entity;
 
-import javax.persistence.*;
+
 import lombok.*;
+
+import javax.persistence.*;
 
 @Entity
 @Table(name = "MEMBERS") // Oracle에서는 MEMBER보다는 복수형 권장
@@ -53,20 +55,20 @@ public class Member {
 
     @Column(name = "UPDATED_AT", insertable = false, updatable = false)
     private java.sql.Date updatedAt;
-    
+
     //추가
     @Column(name = "PROVIDER")
     private String provider;
-    
+
     @Column(name = "PROVIDER_ID")
     private String providerId;
-    
+
     @Column(name = "USERNAME")
     private String username;
-    
-    
-    
-    
+
+
+
+
 
 
 }

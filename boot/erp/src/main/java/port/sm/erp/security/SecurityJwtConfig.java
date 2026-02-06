@@ -1,10 +1,12 @@
 package port.sm.erp.security;
 
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.Collections;
 import java.util.Date;
 import java.util.Map;
 
+import javax.crypto.SecretKey;
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -29,8 +31,9 @@ import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.OncePerRequestFilter;
 
+import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.security.Keys;
 
 @Configuration
 public class SecurityJwtConfig {
@@ -56,18 +59,16 @@ public class SecurityJwtConfig {
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration config = new CorsConfiguration();
 
-        // ✅ 프론트 주소 명시 (Vite/Next 둘 다)
         config.setAllowedOrigins(java.util.List.of(
                 "http://localhost:5173",
                 "http://localhost:3000"
         ));
 
-        // ✅ JWT Authorization 헤더 허용
         config.setAllowedMethods(java.util.List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         config.setAllowedHeaders(java.util.List.of("Authorization", "Content-Type"));
         config.setExposedHeaders(java.util.List.of("Authorization"));
 
-        // ✅ Bearer 방식이면 보통 false가 맞음 (true면 Origin 제한 더 빡세짐)
+        // Bearer JWT면 보통 false
         config.setAllowCredentials(false);
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
@@ -76,37 +77,45 @@ public class SecurityJwtConfig {
     }
 
     // =======================
-    // Security Filter Chain
+    // ✅ JWT SecretKey
+    // =======================
+    private SecretKey signingKey() {
+        return Keys.hmacShaKeyFor(jwtSecret.getBytes(StandardCharsets.UTF_8));
+    }
+
+    // =======================
+    // Security Filter Chain (Boot 2.7 / Security 5)
     // =======================
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-                .csrf(csrf -> csrf.disable())
-                .cors(cors -> cors.configurationSource(corsConfigurationSource()))
-                .sessionManagement(sm -> sm.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .authorizeHttpRequests(auth -> auth
-                        // ✅ 프리플라이트(OPTIONS) 전부 허용
-                        .antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
+                .csrf().disable()
+                .cors().configurationSource(corsConfigurationSource()).and()
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
+                .authorizeRequests()
+                // ✅ 프리플라이트 허용
+                .antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
 
-                        // ✅ 인증 없이 허용할 엔드포인트들
-                        .antMatchers(HttpMethod.POST, "/members", "/members/login", "/members/register").permitAll()
-                        .antMatchers("/api/events/**", "/api/inv/items").permitAll()
-                        .antMatchers(HttpMethod.GET, "/api/sales/estimates/**").permitAll()
-                        .antMatchers(HttpMethod.POST, "/api/sales/estimates").permitAll()
-                        .antMatchers(HttpMethod.PUT, "/api/sales/estimates/**").permitAll()
-                        .antMatchers(HttpMethod.DELETE, "/api/sales/estimates/**").permitAll()
+                // ✅ 인증 없이 허용할 엔드포인트들
+                .antMatchers(HttpMethod.POST, "/members", "/members/login", "/members/register").permitAll()
+                .antMatchers("/api/events/**", "/api/inv/items").permitAll()
 
-                        // 🔽 거래처 API 인증 없이 허용
-                        .antMatchers("/api/acc/customers/**").permitAll()
-                        .antMatchers("/api/acc/trades/**").permitAll()
+                .antMatchers(HttpMethod.GET, "/api/sales/estimates/**").permitAll()
+                .antMatchers(HttpMethod.POST, "/api/sales/estimates").permitAll()
+                .antMatchers(HttpMethod.PUT, "/api/sales/estimates/**").permitAll()
+                .antMatchers(HttpMethod.DELETE, "/api/sales/estimates/**").permitAll()
 
-                        // ✅ (추가) 너 지금 막히는 거래 API도 일단 허용하려면 주석 해제
-                        // .antMatchers("/api/acc/trades/**").permitAll()
+                // 거래처/거래 API
+                .antMatchers("/api/acc/customers/**").permitAll()
+                .antMatchers("/api/acc/trades/**").permitAll()
 
-                        .anyRequest().authenticated()
-                )
+                // 일반전표 API (원하면 막아도 됨)
+                .antMatchers("/api/acc/journals/**").permitAll()
+
+                .anyRequest().authenticated()
+                .and()
                 .addFilterBefore(new JwtAuthFilter(), UsernamePasswordAuthenticationFilter.class)
-                .httpBasic(h -> h.disable());
+                .httpBasic().disable();
 
         return http.build();
     }
@@ -128,12 +137,16 @@ public class SecurityJwtConfig {
                 String token = authHeader.substring(7);
 
                 if (validateToken(token)) {
-                    Map<String, Object> claims = getClaims(token);
-                    Long uid = ((Number) claims.get("uid")).longValue();
+                    Claims claims = getClaims(token);
+
+                    Object uidObj = claims.get("uid");
+                    Long uid = (uidObj instanceof Number) ? ((Number) uidObj).longValue() : null;
+
                     Map<String, Object> principal = Map.of("uid", uid);
 
                     UsernamePasswordAuthenticationToken authentication =
                             new UsernamePasswordAuthenticationToken(principal, null, Collections.emptyList());
+
                     authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
                     org.springframework.security.core.context.SecurityContextHolder.getContext()
                             .setAuthentication(authentication);
@@ -153,20 +166,24 @@ public class SecurityJwtConfig {
                 .claim("uid", userId)
                 .setIssuedAt(new Date())
                 .setExpiration(new Date(System.currentTimeMillis() + jwtExpiration))
-                .signWith(SignatureAlgorithm.HS256, jwtSecret)
+                .signWith(signingKey())
                 .compact();
     }
 
-    public Map<String, Object> getClaims(String token) {
-        return Jwts.parser()
-                .setSigningKey(jwtSecret)
+    public Claims getClaims(String token) {
+        return Jwts.parserBuilder()
+                .setSigningKey(signingKey())
+                .build()
                 .parseClaimsJws(token)
                 .getBody();
     }
 
     public boolean validateToken(String token) {
         try {
-            Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(token);
+            Jwts.parserBuilder()
+                    .setSigningKey(signingKey())
+                    .build()
+                    .parseClaimsJws(token);
             return true;
         } catch (Exception e) {
             return false;

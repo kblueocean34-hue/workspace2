@@ -6,11 +6,8 @@ plugins {
 
 group = 'port.sm'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '21' // Set Java 21 compatibility
 
-java {
-    sourceCompatibility = JavaVersion.VERSION_21 // Set Java 21 version
-}
+sourceCompatibility = '17'
 
 repositories {
     mavenCentral()
@@ -28,9 +25,8 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-validation'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-    implementation 'org.modelmapper:modelmapper:2.4.4' // ModelMapper dependency
+    implementation 'org.modelmapper:modelmapper:2.4.4'
 
-    // MapStruct dependency
     implementation 'org.mapstruct:mapstruct:1.5.2.Final'
     annotationProcessor 'org.mapstruct:mapstruct-processor:1.5.2.Final'
 
@@ -38,8 +34,11 @@ dependencies {
     runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.11.5'
     runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.11.5'
 
-    runtimeOnly 'com.oracle.database.jdbc:ojdbc8:21.11.0.0' // Oracle JDBC driver
+    runtimeOnly 'com.oracle.database.jdbc:ojdbc8:21.11.0.0'
+
+    // ✅ Boot 2.7에서 javax 사용시 필요할 수 있음
     compileOnly 'javax.servlet:javax.servlet-api:4.0.1'
+
     compileOnly 'org.projectlombok:lombok:1.18.30'
     annotationProcessor 'org.projectlombok:lombok:1.18.30'
 

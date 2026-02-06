@@ -1,62 +1,47 @@
 package port.sm.erp.entity;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity //이 클래스는 DB 테이블과 연결되는 객체다
-@Table(name = "journals")//👉 이 엔티티가 어떤 테이블을 쓰는지 지정
-@Getter @Setter //하지만 Lombok 덕분에 자동으로 만들어줌 롬복을 사용하지 않으면 따로 설정
+@Entity
+@Table(name = "JOURNAL")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Journal {
 
-    @Id //기본키(PK) 설정
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "journal_seq")
-    //👉 ID를 자동으로 만들어 주세요 주로 Oracle, PostgreSQL에서 많이 씀
-    @SequenceGenerator(
-name = "journal_seq", sequenceName = "SEQ_JOURNAL",  allocationSize = 1
-    )
-    /*
- name : jpa내부에서 부르는 이름
- sequenceName : DB에 실제 존재하는 시퀀스 이름
- allocationSize : 몇개씩 미리 가져올지 (1이면 하나씩)
-    * */
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(length = 50)
+    private String journalNo;
+
     private LocalDate journalDate;
-/*전표날짜 */
-    @OneToMany(mappedBy = "journal", cascade = CascadeType.ALL)
-/*@OneToMany 1대 다관계 journal 1개 JournalLine 여러개
-cascade = CascadeType.ALL 부모가 바뀌면 자식도 같이 처리
-Journal은 전표 헤더(머리)
-JournalLine은 전표 상세(몸통)
-* */    
-    private List<JournalLine> lines = new ArrayList<>();
-
-    @Column(name = "TRADE_NO", nullable = false)
-    private String tradeNo;
-
-    @Column(name = "TRADE_DATE", nullable = false)
-    private String tradeDate;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "CUSTOMER_ID", nullable = false)
+    @JoinColumn(name = "CUSTOMER_ID")
     private Customer customer;
 
-    @Column(name = "TOTAL_AMOUNT")
-    private Long totalAmount;
-
-    /*@OneToMany(mappedBy = "journal", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<JournalLine> lines;*/
+    @Column(length = 500)
+    private String remark;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "STATUS")
+    @Column(length = 20)
     private JournalStatus status;
 
+    @OneToMany(mappedBy = "journal", cascade = CascadeType.ALL, orphanRemoval = true)
+    @Builder.Default
+    private List<JournalLine> lines = new ArrayList<>();
 
-
-
+    public void addLine(JournalLine line) {
+        lines.add(line);
+        line.setJournal(this);
+    }
 }
