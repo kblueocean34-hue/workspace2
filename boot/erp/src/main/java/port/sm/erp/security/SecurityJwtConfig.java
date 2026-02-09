@@ -112,6 +112,9 @@ public class SecurityJwtConfig {
                 // 일반전표 API (원하면 막아도 됨)
                 .antMatchers("/api/acc/journals/**").permitAll()
                 .antMatchers("/api/sales/sales/**").permitAll()
+                .antMatchers("/api/acc/trades/**").permitAll()
+                .antMatchers("/api/sales/**").permitAll()
+
 
 
                 .anyRequest().authenticated()

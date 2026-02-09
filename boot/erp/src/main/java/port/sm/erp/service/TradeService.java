@@ -5,9 +5,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import port.sm.erp.dto.TradeRequestDTO;
 import port.sm.erp.dto.TradeResponseDTO;
+import port.sm.erp.entity.Customer;
 import port.sm.erp.entity.Trade;
 import port.sm.erp.entity.TradeStatus;
 import port.sm.erp.entity.TradeType;
+import port.sm.erp.repository.CustomerRepository;
 import port.sm.erp.repository.TradeRepository;
 
 import java.util.List;
@@ -18,7 +20,8 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class TradeService {
 
-    private final TradeRepository tradeRepository;
+    private final TradeRepository tradeRepository;//add
+    private final CustomerRepository customerRepository;
 
     /** ✅ 생성 */
     public TradeResponseDTO createTrade(TradeRequestDTO dto) {
@@ -49,7 +52,17 @@ public class TradeService {
         // ===== 비고 =====
         trade.setRemark(nullIfBlank(dto.getRemark()));
 
-        // ===== 상태 (DB NOT NULL 방어) =====
+        //add
+        // 🔽 여기 추가
+        if (dto.getCustomerId() != null) {
+            Customer c = customerRepository.findById(dto.getCustomerId())
+                    .orElseThrow(() -> new IllegalArgumentException("거래처 없음: " + dto.getCustomerId()));
+            trade.setCustomer(c);
+        } else {
+            trade.setCustomer(null);
+        }
+
+// ===== 상태 =====
         trade.setStatus(parseStatusOrDefault(dto.getStatus(), TradeStatus.DRAFT));
 
         Trade saved = tradeRepository.save(trade);
@@ -98,6 +111,20 @@ public class TradeService {
         trade.setProjectName(nullIfBlank(dto.getProjectName()));
 
         trade.setRemark(nullIfBlank(dto.getRemark()));
+
+        // 🔽 여기 추가
+        if (dto.getCustomerId() != null) {
+            Customer c = customerRepository.findById(dto.getCustomerId())
+                    .orElseThrow(() -> new IllegalArgumentException("거래처 없음: " + dto.getCustomerId()));
+            trade.setCustomer(c);
+        } else {
+            trade.setCustomer(null);
+        }
+
+// status 처리
+        if (dto.getStatus() != null && !dto.getStatus().isBlank()) {
+            trade.setStatus(parseStatusOrDefault(dto.getStatus(), TradeStatus.DRAFT));
+        }
 
         // status가 들어오면 반영, 안 들어오면 기존 유지 (단, null이면 DRAFT 보정)
         if (dto.getStatus() != null && !dto.getStatus().isBlank()) {

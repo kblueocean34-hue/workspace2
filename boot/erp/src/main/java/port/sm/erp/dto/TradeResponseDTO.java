@@ -5,6 +5,7 @@ import port.sm.erp.entity.Trade;
 
 //추가
 import java.util.List;
+import java.util.stream.Collectors; // ★추가
 
 @Data
 public class TradeResponseDTO {
@@ -30,6 +31,12 @@ public class TradeResponseDTO {
 
     private String remark;
     private String status;
+
+    //필드추가
+    private Long customerId;
+    private String customerName;
+
+    private Long userId; // (선택)
 
     public TradeResponseDTO(Trade trade) {
         this.id = trade.getId();
@@ -61,13 +68,43 @@ public class TradeResponseDTO {
         this.status = trade.getStatus() != null
                 ? trade.getStatus().name()
                 : null;
+
+        // =========================
+        // ★추가 : 거래처 매핑
+        // =========================
+        if (trade.getCustomer() != null) {
+            this.customerId = trade.getCustomer().getId();
+            this.customerName = trade.getCustomer().getCustomerName();
+        }
+
+        // =========================
+        // ★추가 : 사용자 매핑 (있을 때만)
+        // =========================
+        if (trade.getUser() != null) {
+            this.userId = trade.getUser().getId();
+            this.customerName = trade.getCustomer().getCustomerName(); // 엔티티 필드명에 맞춰 수정
+        }
+        // ✅ 추가: 사용자
+        if (trade.getUser() != null) {
+            this.userId = trade.getUser().getId(); // getMemberId() 아니고 보통 getId()
+        }
+
+
+        // =========================
+        // ★추가 : 거래 라인 매핑
+        // =========================
+        if (trade.getTradeLines() != null) {
+            this.tradeLines = trade.getTradeLines()
+                    .stream()
+                    .map(TradeLineResponseDTO::new)
+                    .collect(Collectors.toList());
+        }
+
+
+
     }
 
-    //필드추가
-    private Long customerId;
-    private String customerName;
 
-    private Long userId; // (선택)
 
     private List<TradeLineResponseDTO> tradeLines;
 
