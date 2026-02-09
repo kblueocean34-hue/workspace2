@@ -2,6 +2,9 @@ package port.sm.erp.dto;
 
 import lombok.Data;
 
+//add
+import java.util.List;
+
 @Data
 public class TradeRequestDTO {
     private String tradeNo;
@@ -25,4 +28,10 @@ public class TradeRequestDTO {
     private double totalAmount;
 
     private String status; // optional
+
+    //필드추가
+    private Long customerId;          // Trade.customer 저장용
+    private Long userId;              // (선택) Trade.user 저장용 - 쓰면 추가
+
+    private List<TradeLineRequestDTO> tradeLines;  // 라인들 클래스 새로만듬
 }

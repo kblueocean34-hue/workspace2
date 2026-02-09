@@ -3,6 +3,9 @@ package port.sm.erp.dto;
 import lombok.Data;
 import port.sm.erp.entity.Trade;
 
+//추가
+import java.util.List;
+
 @Data
 public class TradeResponseDTO {
 
@@ -59,4 +62,13 @@ public class TradeResponseDTO {
                 ? trade.getStatus().name()
                 : null;
     }
+
+    //필드추가
+    private Long customerId;
+    private String customerName;
+
+    private Long userId; // (선택)
+
+    private List<TradeLineResponseDTO> tradeLines;
+
 }
