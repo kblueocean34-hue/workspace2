@@ -80,9 +80,29 @@ public class Trade {
     @Column(name = "REMARK", length = 500)
     private String remark;
 
+    //필드 새로추가
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "CUSTOMER_ID")
+    private Customer customer;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "USER_ID", referencedColumnName = "MEMBER_ID")
+    private Member user;
+
     // ✅ 양방향 관계면 직렬화 무한루프 방지 필요
     @JsonManagedReference
     @OneToMany(mappedBy = "trade", cascade = CascadeType.ALL, orphanRemoval = true)
     @Builder.Default
     private List<JournalLine> lines = new ArrayList<>();
+
+    @OneToMany(mappedBy = "trade", cascade = CascadeType.ALL, orphanRemoval = true)
+    @Builder.Default
+    //cascade = CascadeType.ALL “Trade 저장/삭제할 때 TradeLine도 같이 처리해라” 라는 뜻.
+    //orphanRemoval = true 부모(Trade)에서 자식(TradeLine)을 컬렉션에서 빼면, DB에서도 삭제해라”
+    private java.util.List<TradeLine> tradeLines = new java.util.ArrayList<>();
+    //TradeLine을 담는 리스트를 null이 아닌 상태로 항상 초기화해두는 코드.
+    public void addTradeLine(TradeLine line){
+        this.tradeLines.add(line);
+        line.setTrade(this);
+    }
 }
