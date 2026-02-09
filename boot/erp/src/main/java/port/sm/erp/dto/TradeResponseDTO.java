@@ -3,9 +3,8 @@ package port.sm.erp.dto;
 import lombok.Data;
 import port.sm.erp.entity.Trade;
 
-//추가
 import java.util.List;
-import java.util.stream.Collectors; // ★추가
+import java.util.stream.Collectors;
 
 @Data
 public class TradeResponseDTO {
@@ -32,17 +31,17 @@ public class TradeResponseDTO {
     private String remark;
     private String status;
 
-    //필드추가
+    // ✅ 추가 필드
     private Long customerId;
     private String customerName;
 
     private Long userId; // (선택)
 
+    private List<TradeLineResponseDTO> tradeLines;
+
     public TradeResponseDTO(Trade trade) {
         this.id = trade.getId();
         this.tradeNo = trade.getTradeNo();
-
-        // ✅ 엔티티가 String이므로 그대로 대입
         this.tradeDate = trade.getTradeDate();
 
         this.tradeType = trade.getTradeType() != null
@@ -70,7 +69,7 @@ public class TradeResponseDTO {
                 : null;
 
         // =========================
-        // ★추가 : 거래처 매핑
+        // ✅ 거래처 매핑
         // =========================
         if (trade.getCustomer() != null) {
             this.customerId = trade.getCustomer().getId();
@@ -78,20 +77,18 @@ public class TradeResponseDTO {
         }
 
         // =========================
-        // ★추가 : 사용자 매핑 (있을 때만)
+        // ✅ 사용자 매핑 (있을 때만)
         // =========================
         if (trade.getUser() != null) {
+            // Member PK가 id면 이거
             this.userId = trade.getUser().getId();
-            this.customerName = trade.getCustomer().getCustomerName(); // 엔티티 필드명에 맞춰 수정
-        }
-        // ✅ 추가: 사용자
-        if (trade.getUser() != null) {
-            this.userId = trade.getUser().getId(); // getMemberId() 아니고 보통 getId()
-        }
 
+            // Member PK가 memberId면 이걸로 바꿔
+            // this.userId = trade.getUser().getMemberId();
+        }
 
         // =========================
-        // ★추가 : 거래 라인 매핑
+        // ✅ 거래 라인 매핑
         // =========================
         if (trade.getTradeLines() != null) {
             this.tradeLines = trade.getTradeLines()
@@ -99,13 +96,5 @@ public class TradeResponseDTO {
                     .map(TradeLineResponseDTO::new)
                     .collect(Collectors.toList());
         }
-
-
-
     }
-
-
-
-    private List<TradeLineResponseDTO> tradeLines;
-
 }

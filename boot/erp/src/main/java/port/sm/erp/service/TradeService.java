@@ -67,6 +67,8 @@ public class TradeService {
 
         Trade saved = tradeRepository.save(trade);
         return new TradeResponseDTO(saved);
+
+
     }
 
     /** ✅ 단건 조회 */

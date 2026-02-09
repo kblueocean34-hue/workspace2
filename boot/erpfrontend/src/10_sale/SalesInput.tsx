@@ -39,7 +39,10 @@ api.interceptors.response.use(
 );
 
 // ✅ TradeService 쓰는 실제 API
-const API_BASE = "/api/acc/trades";
+//const API_BASE = "/api/acc/trades";
+const API_BASE = "/api/sales/sales";
+
+
 
 const emptySales = (): Sales => ({
   salesNo: "",
