@@ -121,17 +121,42 @@ const closeModal = () => {
 
 //저장 / 수정
 const saveStock = async () => {
-const payload = {//서버로 보낼 데이터(body)를 payload 객체로 만든다.
-itemCode:form.itemCode?.trim(),
-itemName:form.itemName?.trim(),
-      stockQty: Number(form.stockQty ?? 0),
-      unitPrice: Number(form.unitPrice ?? 0),
-}
+  const payload = {//서버로 보낼 데이터(body)를 payload 객체로 만든다.
+  itemCode:form.itemCode?.trim(),
+  itemName:form.itemName?.trim(),
+  stockQty: Number(form.stockQty ?? 0),
+  unitPrice: Number(form.unitPrice ?? 0),
+  };
+  if(!payload.itemCode) return alert("품목코드는 필수 입니다");
+  if(!payload.itemCode) return alert("품목코드는 필수 입니다");
+
+  try{
+    if(mode === "edit" && selectedId) {
+      await axios.put(`${API_ITEM}/${selectedId}`, payload);
+    }else{
+      await axios.post(`${API_BASE}`, payload);
+    }
+    await fetchStock();
+    closeModal();
+  }catch (e) {
+    console.error("재고 저장 실패", e);
+    alert("저장 실패(콘솔확인)");
+  }
 }
 
 //삭제
 const deleteStock = async () => {
+ if(!selectedId) return;
+ if(!window.confirm("정말 삭제 하시겠습니까")) return;
 
+ try{
+  await axios.delete(`${API_ITEM}/${selectedId}`)
+  await fetchStock();
+  closeModal();
+ }catch (e) {
+  console.error("재고 삭제 실패", e);
+  alert("삭제 실패(콘솔 확인)");
+ }
 }
 
   return (
@@ -211,11 +236,22 @@ const deleteStock = async () => {
                     </tfoot>
                   )}
                 </Table>
+
+                <BtnRight>
+                  <MainSubmitBtn onClick={openCreate}>재고등록</MainSubmitBtn>
+                </BtnRight>
               </Right>
             </Flex>
           </Col>
         </Row>
       </Container>
+
+      <StockModal
+      show={show} mode={mode} form={form} onClose={closeModal}
+      onChange={(patch) => setForm((p) => ({...p, ...patch}))}
+      onSave={saveStock}
+      onDelete={mode === "edit" ? deleteStock : undefined}
+      />
     </>
   );
 };
