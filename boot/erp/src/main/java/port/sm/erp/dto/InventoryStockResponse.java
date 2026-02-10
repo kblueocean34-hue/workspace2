@@ -1,20 +1,19 @@
 package port.sm.erp.dto;
 
-import lombok.*;
-import javax.validation.constraints.*;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.Setter;
 
-@Getter @Setter
-public class InventoryStockRequest {
-    @NotNull(message = "품목 ID는 필수 입니다")
-    private Long itemId;
-    
-    @Min(value = 0, message = "보유수량은 0 이상이어야 합니다" )
-    private Long onHandQty;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
-    @Min(value = 0, message = "예약수량은 0 이상이어야 합니다" )
-    private Long reservedQty;
+@Getter @Builder
+public class InventoryStockResponse {
 
-    @Min(value = 0, message = "안전재고는 0 이상이어야 합니다" )
-    private Long safetyQty;
-    
+    private Long id, itemId, onHandQty, reservedQty, availableQty, safetyQty;
+    private String itemCode, itemName;
+    private LocalDate lastMovedAt;
+    private LocalDateTime createdAt, updatedAt;
 }
