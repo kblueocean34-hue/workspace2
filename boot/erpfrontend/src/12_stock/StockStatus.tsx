@@ -1,163 +1,238 @@
+// ✅ StockStatus.tsx (전체 복붙용) — StockModal과 타입/Props 일치 버전
 import axios from "axios";
 import { useEffect, useMemo, useState } from "react";
-import { Container, Row, Col, Table} from "react-bootstrap";
+import { Container, Row, Col, Table } from "react-bootstrap";
 import Top from "../include/Top";
 import Header from "../include/Header";
 import SideBar from "../include/SideBar";
 import { Left, Right, Flex, TopWrap } from "../stylesjs/Content.styles";
-import { JustifyContent, W30, W70 } from "../stylesjs/Util.styles";
+import { JustifyContent } from "../stylesjs/Util.styles";
 import { TableTitle } from "../stylesjs/Text.styles";
-import { InputGroup, Search, MidLabel } from "../stylesjs/Input.styles";
+import { InputGroup, Search } from "../stylesjs/Input.styles";
 import { WhiteBtn, MainSubmitBtn, BtnRight } from "../stylesjs/Button.styles";
 import Lnb from "../include/Lnb";
 
-import StockModal,{StockForm} from "../component/stock/StockModal";
+import StockModal, { StockForm } from "../component/stock/StockModal";
+
 /* =========================
    타입 정의
 ========================= */
 type StockItem = {
   id: number;
+  itemId: number;
   itemCode: string;
   itemName: string;
-  stockQty: number;
-  unitPrice: number;
+  stockQty: number; // 화면 표시용(= onHandQty)
+  unitPrice: number; // 화면 표시용(품목에서 채움)
   totalAmount: number;
+};
+
+type Item = {
+  id: number;
+  itemCode: string;
+  itemName: string;
+  unitPrice?: number;
 };
 
 /* =========================
    API 설정
 ========================= */
-const API_BASE = "http://localhost:8888/api/stock";
-const API_ITEM = "http://localhost:8888/api/stock";
+const API_STOCK = "http://localhost:8888/api/stock"; // 목록/등록/수정/삭제
+const API_ITEM = "http://localhost:8888/api/inv/items"; // 품목목록
 
 /* =========================
    컴포넌트
 ========================= */
 const StockStatus = () => {
-  const [keyword, setKeyword] = useState(""); // 검색
+  const [keyword, setKeyword] = useState("");
   const [stockList, setStockList] = useState<StockItem[]>([]);
+  const [itemList, setItemList] = useState<Item[]>([]);
 
   // ✅ 모달 상태
   const [show, setShow] = useState(false);
-  //show : 모달을 보여줄지 여부를 저장하는 상태값(boolean)
   const [mode, setMode] = useState<"create" | "edit">("create");
-  //현재 화면이 등록(create) 모드인지 / 수정(edit) 모드인지 저장하는 상태값
   const [selectedId, setSelectedId] = useState<number | null>(null);
-  //사용자가 선택한 데이터(예: 재고 항목)의 id(PK) 를 저장 
 
-  const emptyForm = () : StockForm => ({
-    itemCode:"", itemName:"", stockQty:0, unitPrice:0,
-  })
+  const emptyForm = (): StockForm => ({
+    id: undefined,
+    itemId: null,
+    itemCode: "",
+    itemName: "",
+    stockQty: 0,
+    unitPrice: 0,
+  });
 
-  const[form, setForm] = useState<StockForm>(emptyForm());
+  const [form, setForm] = useState<StockForm>(emptyForm());
 
   /* ===== 합계 계산 ===== */
-  const totals = useMemo(() => {//useMemo를 써서 stockList가 바뀔 때만 다시 계산하게 최적화함
-    //(렌더링 될 때마다 매번 계산 안 하게)
+  const totals = useMemo(() => {
     const totalQty = stockList.reduce((s, i) => s + (Number(i.stockQty) || 0), 0);
-    //stockList 배열을 돌면서 재고수량(stockQty) 합계를 구함
-    //(Number(i.stockQty) || 0), 0); stockQty가 문자열이거나 비어있을 수 있으니 숫자로 변환
-    //변환 결과가 NaN/0같이 falsy면 0으로 처리해서 안전하게 더함
-    const totalAmount = stockList.reduce((s, i) => s +(Number(i.totalAmount) || 0), 0);
+    const totalAmount = stockList.reduce((s, i) => s + (Number(i.totalAmount) || 0), 0);
     return { totalQty, totalAmount };
-  }, [stockList]);//stockList가 안 바뀌면 이전 계산값을 그대로 재사용 (성능 최적화)
+  }, [stockList]);
 
-  /* ===== 재고 조회 ===== */
-  const fetchStock = async () => { //비동기 함수 선언.
+  /* =========================
+     품목 조회 (모달 Select용)
+     ========================= */
+  const fetchItems = async () => {
     try {
-      const res = await axios.get(API_BASE, {
-        params: { q: keyword || undefined },
+      const res = await axios.get(API_ITEM, {
+        params: { includeStopped: true, page: 0, size: 2000, sortKey: "id", dir: "desc" },
       });
-      /*
-      axios.get으로 서버에 GET 요청 보냄. await → 서버 응답 올 때까지 기다림. res = 서버 응답 결과(response). 
-      */
-//list 변수 선언. 타입은 StockItem[] → 재고 배열 형태.
-      const list: StockItem[] = res.data?.map((i: any) => ({
-//서버에서 받은 res.data 배열을 map으로 가공. ? 데이터가 없으면 에러 안 나게 보호 i = 서버에서 온 한 줄 데이터.
-        id: i.id,//아이디 복사.
-        itemCode: i.itemCode,//품목 코드 복사.
-        itemName: i.itemName,//품목 이름 복사.
-        stockQty: Number(i.stockQty ?? 0),//재고 수량 숫자로 변환. ?? 0 → 값이 null/undefined면 0 처리.
-        unitPrice: Number(i.unitPrice?? 0),
-        totalAmount: Number(i.stockQty ?? 0) * Number(i.unitPrice ?? 0),//수량 × 단가.
-      })) ?? []; //map 결과가 없으면 빈 배열([]) 반환.
-      setStockList(list);//가공된 배열을 state에 저장.화면이 자동으로 재렌더링됨. 
+
+      const rows = Array.isArray(res.data) ? res.data : (res.data?.content ?? []);
+
+      const normalized: Item[] = rows.map((x: any) => ({
+        id: Number(x.id ?? x.itemId ?? x.item_id),
+        itemCode: String(x.itemCode ?? x.code ?? x.item_code ?? ""),
+        itemName: String(x.itemName ?? x.name ?? x.item_name ?? ""),
+        unitPrice: Number(x.outPrice ?? x.unitPrice ?? 0),
+      }));
+
+      setItemList(normalized);
+    } catch (e) {
+      console.error("품목 목록 조회 실패", e);
+      setItemList([]);
+    }
+  };
+
+  /* =========================
+     재고 조회
+     ========================= */
+  const fetchStock = async () => {
+    try {
+      const res = await axios.get(API_STOCK, {
+        params: { q: keyword || undefined, page: 0, size: 2000, sort: "id,desc" },
+      });
+
+      const rows = Array.isArray(res.data) ? res.data : (res.data?.content ?? []);
+
+      const itemMap = new Map<number, Item>();
+      itemList.forEach((it) => itemMap.set(it.id, it));
+
+      const list: StockItem[] = rows.map((i: any) => {
+        const itemId = Number(i.itemId ?? i.item_id ?? i.item?.id ?? 0);
+        const it = itemMap.get(itemId);
+
+        const stockQty = Number(i.onHandQty ?? i.stockQty ?? 0);
+        const unitPrice = Number(i.unitPrice ?? it?.unitPrice ?? 0);
+
+        return {
+          id: Number(i.id),
+          itemId,
+          itemCode: String(i.itemCode ?? it?.itemCode ?? ""),
+          itemName: String(i.itemName ?? it?.itemName ?? ""),
+          stockQty,
+          unitPrice,
+          totalAmount: stockQty * unitPrice,
+        };
+      });
+
+      setStockList(list);
     } catch (e) {
       console.error("재고조회 실패", e);
     }
   };
 
   useEffect(() => {
-    fetchStock();
+    fetchItems();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const stockMenu = [
-  { key: "status", label: "재고현황", path: "/stock" },
-];
+  // ✅ itemList 로딩된 후 재고 조회 (단가 매칭 위해)
+  useEffect(() => {
+    if (itemList.length > 0) fetchStock();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [itemList.length]);
 
-//재고등록버튼
-const openCreate = () => {
-  setMode("create"); setSelectedId(null); setForm(emptyForm());
-  setShow(true);
-}
+  const stockMenu = [{ key: "status", label: "재고현황", path: "/stock" }];
 
-//수정
-const openEdit = (row: StockItem) => {
-  setMode("edit");
-  setSelectedId(row.id);
-  setForm({
-    id:row.id,
-    itemCode:row.itemCode,
-    itemName:row.itemName,
-    stockQty:row.stockQty,
-    unitPrice:row.unitPrice,
-  });
-  setShow(true);
-}
-
-const closeModal = () => {
-  setShow(false); setSelectedId(null); setMode("create"); setForm(emptyForm());
-}
-
-//저장 / 수정
-const saveStock = async () => {
-  const payload = {//서버로 보낼 데이터(body)를 payload 객체로 만든다.
-  itemCode:form.itemCode?.trim(),
-  itemName:form.itemName?.trim(),
-  stockQty: Number(form.stockQty ?? 0),
-  unitPrice: Number(form.unitPrice ?? 0),
+  /* =========================
+     모달 열기/닫기
+     ========================= */
+  const openCreate = async () => {
+    await fetchItems();
+    setMode("create");
+    setSelectedId(null);
+    setForm(emptyForm());
+    setShow(true);
   };
-  if(!payload.itemCode) return alert("품목코드는 필수 입니다");
-  if(!payload.itemCode) return alert("품목코드는 필수 입니다");
 
-  try{
-    if(mode === "edit" && selectedId) {
-      await axios.put(`${API_ITEM}/${selectedId}`, payload);
-    }else{
-      await axios.post(`${API_BASE}`, payload);
+  const openEdit = async (row: StockItem) => {
+    await fetchItems();
+    setMode("edit");
+    setSelectedId(row.id);
+    setForm({
+      id: row.id,
+      itemId: row.itemId,
+      itemCode: row.itemCode,
+      itemName: row.itemName,
+      stockQty: row.stockQty,
+      unitPrice: row.unitPrice,
+    });
+    setShow(true);
+  };
+
+  const closeModal = () => {
+    setShow(false);
+    setSelectedId(null);
+    setMode("create");
+    setForm(emptyForm());
+  };
+
+  /* =========================
+     저장/수정
+     ========================= */
+  const saveStock = async () => {
+    const payload = {
+      itemId: form.itemId,
+      onHandQty: Number(form.stockQty ?? 0),
+      reservedQty: 0,
+      safetyQty: 0,
+    };
+
+    if (!payload.itemId) return alert("품목을 선택해 주세요 (itemId 필수)");
+
+    if (mode === "create") {
+      const exists = stockList.some((s) => s.itemId === payload.itemId);
+      if (exists) return alert("이미 재고가 등록된 품목입니다. 수정으로 처리하세요.");
     }
-    await fetchStock();
-    closeModal();
-  }catch (e) {
-    console.error("재고 저장 실패", e);
-    alert("저장 실패(콘솔확인)");
-  }
-}
 
-//삭제
-const deleteStock = async () => {
- if(!selectedId) return;
- if(!window.confirm("정말 삭제 하시겠습니까")) return;
+    if (mode === "edit" && !selectedId) {
+      alert("선택된 재고가 없습니다.");
+      return;
+    }
 
- try{
-  await axios.delete(`${API_ITEM}/${selectedId}`)
-  await fetchStock();
-  closeModal();
- }catch (e) {
-  console.error("재고 삭제 실패", e);
-  alert("삭제 실패(콘솔 확인)");
- }
-}
+    try {
+      if (mode === "edit" && selectedId) {
+        await axios.put(`${API_STOCK}/${selectedId}`, payload);
+      } else {
+        await axios.post(API_STOCK, payload);
+      }
+      await fetchStock();
+      closeModal();
+    } catch (e) {
+      console.error("재고 저장 실패", e);
+      alert("저장 실패(콘솔확인)");
+    }
+  };
+
+  /* =========================
+     삭제
+     ========================= */
+  const deleteStock = async () => {
+    if (!selectedId) return;
+    if (!window.confirm("정말 삭제 하시겠습니까")) return;
+
+    try {
+      await axios.delete(`${API_STOCK}/${selectedId}`);
+      await fetchStock();
+      closeModal();
+    } catch (e) {
+      console.error("재고 삭제 실패", e);
+      alert("삭제 실패(콘솔 확인)");
+    }
+  };
 
   return (
     <>
@@ -172,7 +247,7 @@ const deleteStock = async () => {
           <Col>
             <Flex>
               <Left>
-<Lnb menuList={stockMenu} title="재고현황"/>                
+                <Lnb menuList={stockMenu} title="재고현황" />
               </Left>
               <Right>
                 <TopWrap />
@@ -180,15 +255,15 @@ const deleteStock = async () => {
                 <JustifyContent>
                   <TableTitle>재고현황</TableTitle>
                   <InputGroup>
-                        <Search
-                        type="search"
-                        placeholder="품목코드/품목명 검색"
-                        value={keyword}
-                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => setKeyword(e.target.value)}
-                        onKeyDown={(e: React.KeyboardEvent<HTMLInputElement>) => {
-                            if (e.key === "Enter") fetchStock();
-                        }}
-                        />
+                    <Search
+                      type="search"
+                      placeholder="품목코드/품목명 검색"
+                      value={keyword}
+                      onChange={(e: React.ChangeEvent<HTMLInputElement>) => setKeyword(e.target.value)}
+                      onKeyDown={(e: React.KeyboardEvent<HTMLInputElement>) => {
+                        if (e.key === "Enter") fetchStock();
+                      }}
+                    />
                     <WhiteBtn className="mx-2" onClick={fetchStock}>
                       조회
                     </WhiteBtn>
@@ -213,16 +288,18 @@ const deleteStock = async () => {
                         </td>
                       </tr>
                     )}
+
                     {stockList.map((i) => (
-                      <tr key={i.id}>
+                      <tr key={i.id} onClick={() => openEdit(i)} style={{ cursor: "pointer" }}>
                         <td>{i.itemCode}</td>
                         <td>{i.itemName}</td>
                         <td className="text-end">{i.stockQty}</td>
-                        <td className="text-end">{i.unitPrice.toLocaleString()}</td>
-                        <td className="text-end">{i.totalAmount.toLocaleString()}</td>
+                        <td className="text-end">{(i.unitPrice ?? 0).toLocaleString()}</td>
+                        <td className="text-end">{(i.totalAmount ?? 0).toLocaleString()}</td>
                       </tr>
                     ))}
                   </tbody>
+
                   {stockList.length > 0 && (
                     <tfoot>
                       <tr style={{ fontWeight: 700 }}>
@@ -247,10 +324,19 @@ const deleteStock = async () => {
       </Container>
 
       <StockModal
-      show={show} mode={mode} form={form} onClose={closeModal}
-      onChange={(patch) => setForm((p) => ({...p, ...patch}))}
-      onSave={saveStock}
-      onDelete={mode === "edit" ? deleteStock : undefined}
+        show={show}
+        mode={mode}
+        form={form}
+        itemList={itemList.map((x) => ({
+          id: x.id,
+          itemCode: x.itemCode,
+          itemName: x.itemName,
+          unitPrice: x.unitPrice ?? 0,
+        }))}
+        onClose={closeModal}
+        onChange={(patch) => setForm((p) => ({ ...p, ...patch }))}
+        onSave={saveStock}
+        onDelete={mode === "edit" ? deleteStock : undefined}
       />
     </>
   );

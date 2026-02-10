@@ -42,22 +42,35 @@ public class InventoryStockService {
         return toResponse(s); // ✅ 엔티티 -> 응답 DTO로 변환 후 반환
     }
 
-    //등록
-    public InventoryStockResponse create(InventoryStockRequest req) {// ✅ 재고 신규 등록
-        Item item = itemRepository.findById(req.getItemId()).orElseThrow(// ✅ 요청의 itemId로 품목 조회
-                ()-> new IllegalArgumentException("품목 없음 : " + req.getItemId())
-        );
+    //등록 변경
+    public InventoryStockResponse create(InventoryStockRequest req) {
 
-        InventoryStock s = InventoryStock.builder()// ✅ 재고 엔티티 생성(Builder)
+        // ✅ 0) itemId 필수 체크 (프론트에서 안 보내면 여기서 먼저 터뜨리기)
+        if (req.getItemId() == null) {
+            throw new IllegalArgumentException("itemId는 필수입니다.");
+        }
+
+        // ✅ 1) 품목 존재 확인
+        Item item = itemRepository.findById(req.getItemId())
+                .orElseThrow(() -> new IllegalArgumentException("품목 없음: " + req.getItemId()));
+
+        // ✅ 2) itemId는 inv_stock에서 UNIQUE라서 중복 등록 방지
+        if (stockRepository.existsByItem_Id(req.getItemId())) {
+            throw new IllegalStateException("이미 재고가 등록된 품목입니다. itemId=" + req.getItemId());
+        }
+
+        // ✅ 3) 저장
+        InventoryStock s = InventoryStock.builder()
                 .item(item)
                 .onHandQty(nvl(req.getOnHandQty()))
                 .reservedQty(nvl(req.getReservedQty()))
                 .safetyQty(nvl(req.getSafetyQty()))
                 .build();
 
-        InventoryStock saved = stockRepository.save(s);// ✅ DB 저장
-        return toResponse(saved);// ✅ 저장된 엔티티 -> DTO 변환 후 반환
+        InventoryStock saved = stockRepository.save(s);
+        return toResponse(saved);
     }
+
 
     //수정
     public InventoryStockResponse update(Long id, InventoryStockRequest req){// ✅ 재고 수정(부분 업데이트)

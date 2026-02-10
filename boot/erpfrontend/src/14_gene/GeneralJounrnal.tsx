@@ -210,6 +210,23 @@ export default function GeneralJournal() {
       if (!journal.lines || journal.lines.length === 0)
         return alert("전표 라인을 1개 이상 입력하세요");
 
+       // 👇 여기 넣는다
+    const codes = new Map<string, Set<string>>();
+    for (const l of journal.lines) {
+      const code = (l.accountCode ?? "").trim();
+      if (!code) continue;
+      if (!codes.has(code)) codes.set(code, new Set());
+      codes.get(code)!.add(l.dcType);
+    }
+    for (const [code, set] of codes.entries()) {
+      if (set.has("DEBIT") && set.has("CREDIT")) {
+        return alert(
+          `같은 계정코드(${code})가 차변/대변에 동시에 존재합니다. 상대계정을 넣어주세요.`
+        );
+      }
+    }
+    // 👆 여기까지
+
       if (!journal.customerName?.trim())
         return alert("거래처 선택하세요");
 

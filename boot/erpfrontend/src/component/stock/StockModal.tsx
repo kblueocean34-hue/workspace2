@@ -1,106 +1,157 @@
-import {Modal, Button, Form, Row, Col} from "react-bootstrap";
+// ✅ StockModal.tsx (전체 복붙용) — itemId 기반(Select) + 금액 자동계산 + 생성/수정/삭제
+import { useMemo } from "react";
+import { Modal, Button, Form, Row, Col } from "react-bootstrap";
 
-export type StockForm = { //재고 입력 폼의 타입(형식)을 정의 시작.
-id?:number; //id는 숫자 타입, ?는 선택값(없어도 됨) 이라는 의미.
-itemCode:string;//품목 코드 (문자열) 
-itemName:string; 
-stockQty:number;
-unitPrice:number;
-}
-
-type Props = { //모달 컴포넌트가 받을 속성(props) 타입 시작.
-show:boolean; //모달을 보여줄지(true) 숨길지(false)
-mode:"create" | "edit";//"create" → 등록 "edit" → 수정
-form:StockForm; //폼 데이터 전체 객체
-onClose: () => void; //닫기 버튼 눌렀을 때 실행될 함수
-onChange:(patch: Partial<StockForm>) => void;
-//입력값 변경 시 실행될 함수 Partial<StockForm> = 일부 필드만 전달 가능
-onSave:() => void; //저장 버튼 클릭 시 실행될 함수
-onDelete?:() => void; //삭제 버튼 함수 (선택값, 수정 모드일 때만 사용)
+export type StockForm = {
+  id?: number;
+  itemId: number | null;
+  itemCode: string;
+  itemName: string;
+  stockQty: number; // 화면표시용 = onHandQty
+  unitPrice: number; // 품목 단가(표시용)
 };
 
-export default function StockModal({//컴포넌트 시작
-show, mode, form, onClose, onChange, onSave, onDelete,    
-} : Props){
-    //재고금액 계산
-    const totalAmount =
-    (Number(form.stockQty) || 0) * (Number(form.unitPrice) || 0);
-    //재고수량 × 단가 계산 Number()로 숫자 변환 값이 없으면 0 처리
-    return(
-        <Modal show={show} onHide={onClose} centered size ="lg">
-        {/*show → 보이기 여부  onHide → 닫기 함수 */} 
-            
-            <Modal.Header closeButton>
-                <Modal.Title>
-                    {mode === "create" ? "재고 등록":"재고 수정"}
-                </Modal.Title>
-            </Modal.Header>  
+type ItemOption = {
+  id: number;
+  itemCode: string;
+  itemName: string;
+  unitPrice?: number;
+};
 
-            <Modal.Body>
-            <Row className="g-3">
+type Props = {
+  show: boolean;
+  mode: "create" | "edit";
+  form: StockForm;
 
-                <Col md={6}>
-                    <Form.Label>품목코드</Form.Label>
-                    <Form.Control
-                        value={form.itemCode}
-                        onChange={(e) => onChange({itemCode:e.target.value})}
-                        placeholder="예) A001"
-                    />{/*입력값을 form.itemCode에 연결  입력 시 onChange 실행*/}
-                </Col>
+  // ✅ 품목 선택용 목록
+  itemList: ItemOption[];
 
-                <Col md={6}>
-                    <Form.Label>품목명</Form.Label>
-                    <Form.Control
-                        value={form.itemName}
-                        onChange={(e) => onChange({itemName:e.target.value})}
-                        placeholder="예) 샘플품목"
-                    />
-                </Col>
+  onClose: () => void;
+  onChange: (patch: Partial<StockForm>) => void;
 
-                <Col md={6}>
-                    <Form.Label>재고 수량</Form.Label>
-                    <Form.Control
-                        type="number"
-                        value={form.stockQty}
-                        onChange={(e) => onChange({stockQty:Number(e.target.value)})}
-                       min={0}
-                    />
-                </Col>
+  onSave: () => void;
+  onDelete?: () => void;
+};
 
-                <Col md={6}>
-                    <Form.Label>단가</Form.Label>
-                    <Form.Control
-                    type="number"
-                    value={form.unitPrice}
-                    onChange={(e) => onChange({unitPrice:Number(e.target.value)})}
-                    min={0}     
-                    />
-                </Col>
+export default function StockModal({
+  show,
+  mode,
+  form,
+  itemList,
+  onClose,
+  onChange,
+  onSave,
+  onDelete,
+}: Props) {
+  const totalAmount = useMemo(() => {
+    const qty = Number(form.stockQty) || 0;
+    const price = Number(form.unitPrice) || 0;
+    return qty * price;
+  }, [form.stockQty, form.unitPrice]);
 
-                <Col md={12}>
-                    <Form.Label>재고금액</Form.Label>
-                    <Form.Control
-                    value={totalAmount.toLocaleString()}
-                    readOnly
-                    />
-                </Col>
+  const handleSelectItem = (rawId: string) => {
+    const id = rawId ? Number(rawId) : null;
+    const it = itemList.find((x) => x.id === id);
 
-            </Row>
-            </Modal.Body>    
+    onChange({
+      itemId: id,
+      itemCode: it?.itemCode ?? "",
+      itemName: it?.itemName ?? "",
+      unitPrice: Number(it?.unitPrice ?? 0),
+    });
+  };
 
-            <Modal.Footer>
-            {mode === "edit" && onDelete &&(
-                <Button variant="danger" onClick={onDelete}>
-                    삭제
-                </Button>
-            )}
-            <Button variant="secondary" onClick={onClose}>
-                닫기
-            </Button>
-            <Button onClick={onSave}>
-                {mode === "create" ? "저장":"수정"}
-            </Button>
-            </Modal.Footer>     
-        </Modal>
-    )
+  return (
+    <Modal show={show} onHide={onClose} centered size="lg">
+      <Modal.Header closeButton>
+        <Modal.Title>{mode === "create" ? "재고 등록" : "재고 수정"}</Modal.Title>
+      </Modal.Header>
+
+      <Modal.Body>
+        <Row className="g-3">
+          <Col md={12}>
+            <Form.Label>품목 선택</Form.Label>
+            <Form.Select
+              value={form.itemId ?? ""}
+              onChange={(e) => handleSelectItem(e.target.value)}
+              disabled={mode === "edit"} // ✅ 수정모드에서는 품목 변경 막기(중복/정합성 방지)
+            >
+              <option value="">-- 품목을 선택하세요 --</option>
+              {itemList.map((it) => (
+                <option key={it.id} value={it.id}>
+                  {it.itemCode} / {it.itemName}
+                </option>
+              ))}
+            </Form.Select>
+            <Form.Text className="text-muted">
+              * 수정 모드에서는 품목 변경이 제한됩니다.
+            </Form.Text>
+          </Col>
+
+          <Col md={6}>
+            <Form.Label>품목코드</Form.Label>
+            <Form.Control value={form.itemCode ?? ""} readOnly />
+          </Col>
+
+          <Col md={6}>
+            <Form.Label>품목명</Form.Label>
+            <Form.Control value={form.itemName ?? ""} readOnly />
+          </Col>
+
+          <Col md={6}>
+            <Form.Label>재고수량</Form.Label>
+            <Form.Control
+              type="number"
+              value={Number(form.stockQty ?? 0)}
+              onChange={(e) =>
+                onChange({ stockQty: Number(e.target.value ?? 0) })
+              }
+              min={0}
+            />
+          </Col>
+
+          <Col md={6}>
+            <Form.Label>단가</Form.Label>
+            <Form.Control
+              type="number"
+              value={Number(form.unitPrice ?? 0)}
+              onChange={(e) =>
+                onChange({ unitPrice: Number(e.target.value ?? 0) })
+              }
+              min={0}
+              readOnly // ✅ 단가는 품목에서 따라오게(원하면 readOnly 제거)
+            />
+            <Form.Text className="text-muted">
+              * 단가는 품목 단가를 사용합니다.
+            </Form.Text>
+          </Col>
+
+          <Col md={12}>
+            <Form.Label>재고금액</Form.Label>
+            <Form.Control value={totalAmount.toLocaleString()} readOnly />
+          </Col>
+        </Row>
+      </Modal.Body>
+
+      <Modal.Footer>
+        {mode === "edit" && onDelete && (
+          <Button variant="danger" onClick={onDelete}>
+            삭제
+          </Button>
+        )}
+        <Button variant="secondary" onClick={onClose}>
+          닫기
+        </Button>
+        <Button
+          onClick={() => {
+            if (!form.itemId) return alert("품목을 선택해 주세요.");
+            if ((Number(form.stockQty) || 0) < 0) return alert("수량은 0 이상이어야 합니다.");
+            onSave();
+          }}
+        >
+          {mode === "create" ? "저장" : "수정"}
+        </Button>
+      </Modal.Footer>
+    </Modal>
+  );
 }

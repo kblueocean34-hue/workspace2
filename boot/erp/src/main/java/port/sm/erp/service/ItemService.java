@@ -175,6 +175,9 @@ public class ItemService {
 
         item.setImageUrl(req.getImageUrl());
         item.setUseYn(Yn.toYn(req.isUseYn()));
+        if (item.getId() == null && "N".equals(item.getUseYn())) { // create인데 N이면
+            item.setUseYn("Y"); // ✅ 등록 기본은 사용(Y)
+        }
     }
 
     private ItemResponse toResponse(Item item, Map<String, String> extraFields) {
