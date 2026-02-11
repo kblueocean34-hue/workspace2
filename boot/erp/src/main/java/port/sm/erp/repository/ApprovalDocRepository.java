@@ -1,31 +1,42 @@
+// ✅ ApprovalDocRepository.java
 package port.sm.erp.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
-import port.sm.erp.entity.Trade;
+
+import port.sm.erp.entity.ApprovalDoc;
 
 import java.util.List;
 
-public interface TradeRepository extends JpaRepository<Trade, Long> {
+public interface ApprovalDocRepository extends JpaRepository<ApprovalDoc, Long> {
 
-    // ✅ 상세: customer + tradeLines + item까지 한번에 로딩
     @Query("""
-        select distinct t
-        from Trade t
-        left join fetch t.customer c
-        left join fetch t.tradeLines tl
-        left join fetch tl.item i
-        where t.id = :id
+        select d
+        from ApprovalDoc d
+        left join fetch d.drafter dr
+        left join fetch d.approver ap
+        order by d.id desc
     """)
-    Trade findDetail(@Param("id") Long id);
+    List<ApprovalDoc> findList();
 
-    // ✅ 목록: customer만 fetch (중복 방지용 distinct 추가)
     @Query("""
-        select distinct t
-        from Trade t
-        left join fetch t.customer c
-        order by t.id desc
+        select d
+        from ApprovalDoc d
+        left join fetch d.drafter dr
+        left join fetch d.approver ap
+        where d.id = :id
     """)
-    List<Trade> findListWithCustomer();
+    ApprovalDoc findDetail(@Param("id") Long id);
+
+    // ✅ "내 기안문서"용 (drafterId로 조회)
+    @Query("""
+        select d
+        from ApprovalDoc d
+        left join fetch d.drafter dr
+        left join fetch d.approver ap
+        where dr.id = :drafterId
+        order by d.id desc
+    """)
+    List<ApprovalDoc> findMyDrafts(@Param("drafterId") Long drafterId);
 }

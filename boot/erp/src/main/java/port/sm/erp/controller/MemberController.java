@@ -3,14 +3,18 @@ package port.sm.erp.controller;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.security.core.Authentication;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import lombok.RequiredArgsConstructor;
 import port.sm.erp.dto.LoginRequestDTO;
 import port.sm.erp.dto.LoginResponse;
+import port.sm.erp.dto.MemberMeResponseDTO;
 import port.sm.erp.dto.MemberRequestDTO;
 import port.sm.erp.entity.Member;
+import port.sm.erp.repository.MemberRepository;
 import port.sm.erp.service.MemberService;
 import port.sm.erp.security.SecurityJwtConfig; // JwtUtil 통합 버전
 
@@ -22,6 +26,30 @@ public class MemberController {
 
     private final MemberService memberService;
     private final SecurityJwtConfig securityJwtConfig;
+    private final MemberRepository memberRepository;
+
+    @GetMapping("/me")
+    public ResponseEntity<MemberMeResponseDTO> me(Authentication authentication) {
+        if (authentication == null || authentication.getName() == null) {
+            return ResponseEntity.status(401).build();
+        }
+
+        String loginKey = authentication.getName(); // 보통 username or email
+
+        Member m = memberRepository.findByUsername(loginKey)
+                .orElseGet(() -> memberRepository.findByEmail(loginKey)
+                        .orElseThrow(() -> new IllegalArgumentException("회원 없음: " + loginKey)));
+
+        return ResponseEntity.ok(
+                MemberMeResponseDTO.builder()
+                        .id(m.getId())
+                        .username(m.getUsername())
+                        .email(m.getEmail())
+                        .firstName(m.getFirstName())
+                        .lastName(m.getLastName())
+                        .build()
+        );
+    }
 
     // =======================
     // 1️⃣ 모든 회원 조회

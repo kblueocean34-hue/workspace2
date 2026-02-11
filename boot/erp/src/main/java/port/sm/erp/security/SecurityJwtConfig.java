@@ -117,6 +117,7 @@ public class SecurityJwtConfig {
                 .antMatchers("/api/sales/sales/**").permitAll()
                 .antMatchers("/api/acc/trades/**").permitAll()
                 .antMatchers("/api/sales/**").permitAll()
+                .antMatchers("/api/approval/**").permitAll()
 
 
 

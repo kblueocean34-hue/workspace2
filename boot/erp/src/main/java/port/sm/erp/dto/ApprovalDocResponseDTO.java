@@ -1,11 +1,14 @@
 package port.sm.erp.dto;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 
-@Data
-public class ApprovalDocRequestDTO {
+@Data @Builder @NoArgsConstructor @AllArgsConstructor
+public class ApprovalDocResponseDTO {
 
-    private String draftDate, title, content, status;
-    private Long drafterId, approverId;
+    private String draftDate, title, content, status, drafterName, approverName, createdAt, updatedAt;
+    private Long drafterId, approverId, id;
 }

@@ -24,6 +24,17 @@ const Login = () => {
         password,
       });
 
+      const myId =
+  res.data?.id ??
+  res.data?.memberId ??
+  res.data?.userId ??
+  res.data?.member?.id ??
+  res.data?.user?.id;
+
+if (myId) {
+  localStorage.setItem("memberId", String(myId));
+}
+
       // ✅ 여기서 백엔드가 토큰을 내려준다고 가정: res.data.token
       const token = res.data?.token;
 
