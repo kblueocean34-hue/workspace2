@@ -7,5 +7,8 @@ public class TradeLineRequestDTO {
     private Long itemId;
     private Long qty;
     private Long unitPrice;
-    private String remark; // 선택
+    private Long supplyAmount;
+    private Long vatAmount;
+    private Long totalAmount;
+    private String remark;
 }

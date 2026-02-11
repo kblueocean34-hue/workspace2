@@ -1,6 +1,7 @@
 package port.sm.erp.controller;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import port.sm.erp.dto.TradeRequestDTO;
 import port.sm.erp.dto.TradeResponseDTO;
@@ -16,27 +17,28 @@ public class SalesController {
     private final TradeService tradeService;
 
     @GetMapping
-    public List<TradeResponseDTO> list() {
-        return tradeService.getAllTrades();
+    public ResponseEntity<List<TradeResponseDTO>> list() {
+        return ResponseEntity.ok(tradeService.getAllTrades());
     }
 
     @GetMapping("/{id}")
-    public TradeResponseDTO get(@PathVariable Long id) {
-        return tradeService.getTradeById(id);
+    public ResponseEntity<TradeResponseDTO> detail(@PathVariable Long id) {
+        return ResponseEntity.ok(tradeService.getTradeById(id));
     }
 
     @PostMapping
-    public TradeResponseDTO create(@RequestBody TradeRequestDTO dto) {
-        return tradeService.createTrade(dto);
+    public ResponseEntity<TradeResponseDTO> create(@RequestBody TradeRequestDTO dto) {
+        return ResponseEntity.ok(tradeService.createTrade(dto));
     }
 
     @PutMapping("/{id}")
-    public TradeResponseDTO update(@PathVariable Long id, @RequestBody TradeRequestDTO dto) {
-        return tradeService.updateTrade(id, dto);
+    public ResponseEntity<TradeResponseDTO> update(@PathVariable Long id, @RequestBody TradeRequestDTO dto) {
+        return ResponseEntity.ok(tradeService.updateTrade(id, dto));
     }
 
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable Long id) {
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
         tradeService.deleteTrade(id);
+        return ResponseEntity.ok().build();
     }
 }

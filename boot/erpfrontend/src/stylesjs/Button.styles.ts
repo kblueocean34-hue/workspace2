@@ -63,16 +63,17 @@ padding:12px 24px;;
 
 export const WhiteBtn = styled.button`
 background-color:white;
+padding:12px 0px;
 color:#999;
-width:200px;
+width:100px;
 max-width:100%;
 display:flex;
 justify-content:center;
 align-items:center;
 font-size:14px;
 letter-spacing:-2%;
-border:none;
-border-radius:3px;
+border:1px solid #ccc;
+border-radius:10px;
 opacity:.8;
 transition:all 1s;
     &hover{

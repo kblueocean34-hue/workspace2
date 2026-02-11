@@ -57,12 +57,6 @@ const Header:React.FC = () => { //jsx
         </>
     )
 }
-/*
-  <nav>
-    <Link to="/">Home</Link>|{" "}
-    <Link to="/about">about</Link>|{" "}
-    <Link to="/contact">contact</Link>
-  </nav>
-*/
+
 export default Header;
 /*Bootstrap에 반응형구간(breakpoint)를 의미합니다 배열에 각요소에 대해 콜백함수를 실행하여 새로운 JSX요소 목록을 만듭니다*/

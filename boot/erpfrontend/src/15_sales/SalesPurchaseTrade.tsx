@@ -104,6 +104,7 @@ const emptyTrade = (type: TradeType): Trade => {
     remark: "",
     status: "DRAFT",
     lines: [],
+    tradeLines: [],
   };
 };
 
@@ -230,23 +231,38 @@ export default function SalesPurchaseTrade() {
   }, []);
 
   // ✅ 목록조회
-  const fetchList = async () => {
-    try {
-      const res = await api.get(API_BASE, {
-        params: {
-          page: 0,
-          size: 20,
-          q: keyword || undefined,
-          type: typeFilter,
-        },
-      });
+ // ✅ 목록조회 (Page/List/커스텀 응답 모두 대응)
+const fetchList = async () => {
+  try {
+    const res = await api.get(API_BASE, {
+      params: {
+        page: 0,
+        size: 20,
+        q: keyword?.trim() ? keyword.trim() : undefined,
+        type: typeFilter, // 백엔드가 안 받으면 무시될 수 있음
+      },
+    });
 
-      const rows = res.data?.content ?? res.data ?? [];
-      setList(rows);
-    } catch (e) {
-      console.error("거래 조회 실패", e);
-    }
-  };
+    console.log("✅ trades raw res.data =", res.data);
+
+    // ✅ rows 후보를 최대한 넓게 잡음
+    const rows =
+      (Array.isArray(res.data) ? res.data : null) ??
+      (Array.isArray(res.data?.content) ? res.data.content : null) ??
+      (Array.isArray(res.data?.items) ? res.data.items : null) ??
+      (Array.isArray(res.data?.data) ? res.data.data : null) ??
+      [];
+
+    console.log("✅ trades rows.length =", rows.length, "sample=", rows?.[0]);
+
+    setList(rows);
+  } catch (e: any) {
+    console.error("거래 조회 실패", e);
+    alert(`거래 조회 실패: ${e?.response?.status ?? ""} (콘솔 확인)`);
+    setList([]);
+  }
+};
+
 
   useEffect(() => {
     fetchList();
@@ -342,6 +358,7 @@ export default function SalesPurchaseTrade() {
         customerId,
         // tradeNo 빈문자면 서버에서 생성하도록 payload에서 제거(있으면 유지)
         tradeNo: trade.tradeNo?.trim() ? trade.tradeNo : undefined,
+        tradeLines: trade.tradeLines ?? [],   // ✅ 추가
       };
 
       if (selectedId) await api.put(`${API_BASE}/${selectedId}`, payload);

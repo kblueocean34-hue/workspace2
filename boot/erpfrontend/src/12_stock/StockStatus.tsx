@@ -1,4 +1,4 @@
-// ✅ StockStatus.tsx (전체 복붙용) — StockModal과 타입/Props 일치 버전
+// ✅ StockStatus.tsx (전체 복붙용) — "리스트 안나옴" 구조 수정 버전
 import axios from "axios";
 import { useEffect, useMemo, useState } from "react";
 import { Container, Row, Col, Table } from "react-bootstrap";
@@ -22,8 +22,8 @@ type StockItem = {
   itemId: number;
   itemCode: string;
   itemName: string;
-  stockQty: number; // 화면 표시용(= onHandQty)
-  unitPrice: number; // 화면 표시용(품목에서 채움)
+  stockQty: number;
+  unitPrice: number;
   totalAmount: number;
 };
 
@@ -37,12 +37,12 @@ type Item = {
 /* =========================
    API 설정
 ========================= */
-const API_STOCK = "http://localhost:8888/api/stock"; // 목록/등록/수정/삭제
-const API_ITEM = "http://localhost:8888/api/inv/items"; // 품목목록
+const API_STOCK = "http://localhost:8888/api/stock";
+const API_ITEM = "http://localhost:8888/api/inv/items";
 
-/* =========================
-   컴포넌트
-========================= */
+// ✅ 숫자 안전
+const n = (v: any) => Number(v ?? 0) || 0;
+
 const StockStatus = () => {
   const [keyword, setKeyword] = useState("");
   const [stockList, setStockList] = useState<StockItem[]>([]);
@@ -64,61 +64,72 @@ const StockStatus = () => {
 
   const [form, setForm] = useState<StockForm>(emptyForm());
 
-  /* ===== 합계 계산 ===== */
+  /* ===== 합계 ===== */
   const totals = useMemo(() => {
-    const totalQty = stockList.reduce((s, i) => s + (Number(i.stockQty) || 0), 0);
-    const totalAmount = stockList.reduce((s, i) => s + (Number(i.totalAmount) || 0), 0);
+    const totalQty = stockList.reduce((s, i) => s + n(i.stockQty), 0);
+    const totalAmount = stockList.reduce((s, i) => s + n(i.totalAmount), 0);
     return { totalQty, totalAmount };
   }, [stockList]);
 
   /* =========================
-     품목 조회 (모달 Select용)
+     품목 조회
      ========================= */
   const fetchItems = async () => {
     try {
       const res = await axios.get(API_ITEM, {
-        params: { includeStopped: true, page: 0, size: 2000, sortKey: "id", dir: "desc" },
+        params: {
+          includeStopped: true,
+          page: 0,
+          size: 2000,
+          sortKey: "id",
+          dir: "desc",
+        },
       });
 
-      const rows = Array.isArray(res.data) ? res.data : (res.data?.content ?? []);
+      const rows = Array.isArray(res.data) ? res.data : res.data?.content ?? [];
+      console.log("✅ items raw sample =", rows?.[0]);
 
       const normalized: Item[] = rows.map((x: any) => ({
-        id: Number(x.id ?? x.itemId ?? x.item_id),
+        id: n(x.id ?? x.itemId ?? x.item_id),
         itemCode: String(x.itemCode ?? x.code ?? x.item_code ?? ""),
         itemName: String(x.itemName ?? x.name ?? x.item_name ?? ""),
-        unitPrice: Number(x.outPrice ?? x.unitPrice ?? 0),
+        unitPrice: n(x.outPrice ?? x.unitPrice ?? 0),
       }));
 
+      console.log("✅ items normalized sample =", normalized?.[0]);
       setItemList(normalized);
-    } catch (e) {
-      console.error("품목 목록 조회 실패", e);
+    } catch (e: any) {
+      console.error("❌ 품목 목록 조회 실패", e?.response?.status, e?.response?.data);
+      // ✅ 품목 실패해도 재고조회는 돌아야 하므로 itemList는 비워두되 진행
       setItemList([]);
     }
   };
 
   /* =========================
-     재고 조회
+     재고 조회 (품목 없어도 표시되게)
      ========================= */
   const fetchStock = async () => {
     try {
       const res = await axios.get(API_STOCK, {
-        params: { q: keyword || undefined, page: 0, size: 2000, sort: "id,desc" },
+        params: { q: keyword?.trim() ? keyword.trim() : undefined, page: 0, size: 2000, sort: "id,desc" },
       });
 
-      const rows = Array.isArray(res.data) ? res.data : (res.data?.content ?? []);
+      const rows = Array.isArray(res.data) ? res.data : res.data?.content ?? [];
+      console.log("✅ stock raw sample =", rows?.[0]);
 
+      // ✅ itemList 기반 단가 매칭(없으면 0으로)
       const itemMap = new Map<number, Item>();
       itemList.forEach((it) => itemMap.set(it.id, it));
 
       const list: StockItem[] = rows.map((i: any) => {
-        const itemId = Number(i.itemId ?? i.item_id ?? i.item?.id ?? 0);
+        const itemId = n(i.itemId ?? i.item_id ?? i.item?.id ?? 0);
         const it = itemMap.get(itemId);
 
-        const stockQty = Number(i.onHandQty ?? i.stockQty ?? 0);
-        const unitPrice = Number(i.unitPrice ?? it?.unitPrice ?? 0);
+        const stockQty = n(i.onHandQty ?? i.stockQty ?? 0);
+        const unitPrice = n(i.unitPrice ?? it?.unitPrice ?? 0);
 
         return {
-          id: Number(i.id),
+          id: n(i.id),
           itemId,
           itemCode: String(i.itemCode ?? it?.itemCode ?? ""),
           itemName: String(i.itemName ?? it?.itemName ?? ""),
@@ -128,20 +139,31 @@ const StockStatus = () => {
         };
       });
 
+      console.log("✅ stock normalized sample =", list?.[0]);
       setStockList(list);
-    } catch (e) {
-      console.error("재고조회 실패", e);
+    } catch (e: any) {
+      console.error("❌ 재고조회 실패", e?.response?.status, e?.response?.data);
+      alert(`재고조회 실패: ${e?.response?.status ?? ""} (콘솔 확인)`);
+      setStockList([]);
     }
   };
 
+  /* =========================
+     최초 로딩: "품목, 재고" 둘 다 무조건 호출
+     ========================= */
   useEffect(() => {
-    fetchItems();
+    fetchItems();   // 품목은 실패해도 됨
+    fetchStock();   // ✅ 재고는 무조건 떠야 함
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // ✅ itemList 로딩된 후 재고 조회 (단가 매칭 위해)
+  /* =========================
+     itemList가 들어오면 단가/코드 매칭 위해 재고 재조회(옵션)
+     ========================= */
   useEffect(() => {
-    if (itemList.length > 0) fetchStock();
+    if (itemList.length > 0) {
+      fetchStock();
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [itemList.length]);
 
@@ -186,7 +208,7 @@ const StockStatus = () => {
   const saveStock = async () => {
     const payload = {
       itemId: form.itemId,
-      onHandQty: Number(form.stockQty ?? 0),
+      onHandQty: n(form.stockQty),
       reservedQty: 0,
       safetyQty: 0,
     };
@@ -198,21 +220,14 @@ const StockStatus = () => {
       if (exists) return alert("이미 재고가 등록된 품목입니다. 수정으로 처리하세요.");
     }
 
-    if (mode === "edit" && !selectedId) {
-      alert("선택된 재고가 없습니다.");
-      return;
-    }
-
     try {
-      if (mode === "edit" && selectedId) {
-        await axios.put(`${API_STOCK}/${selectedId}`, payload);
-      } else {
-        await axios.post(API_STOCK, payload);
-      }
+      if (mode === "edit" && selectedId) await axios.put(`${API_STOCK}/${selectedId}`, payload);
+      else await axios.post(API_STOCK, payload);
+
       await fetchStock();
       closeModal();
-    } catch (e) {
-      console.error("재고 저장 실패", e);
+    } catch (e: any) {
+      console.error("❌ 재고 저장 실패", e?.response?.status, e?.response?.data);
       alert("저장 실패(콘솔확인)");
     }
   };
@@ -228,8 +243,8 @@ const StockStatus = () => {
       await axios.delete(`${API_STOCK}/${selectedId}`);
       await fetchStock();
       closeModal();
-    } catch (e) {
-      console.error("재고 삭제 실패", e);
+    } catch (e: any) {
+      console.error("❌ 재고 삭제 실패", e?.response?.status, e?.response?.data);
       alert("삭제 실패(콘솔 확인)");
     }
   };
@@ -249,11 +264,13 @@ const StockStatus = () => {
               <Left>
                 <Lnb menuList={stockMenu} title="재고현황" />
               </Left>
+
               <Right>
                 <TopWrap />
 
                 <JustifyContent>
                   <TableTitle>재고현황</TableTitle>
+
                   <InputGroup>
                     <Search
                       type="search"
@@ -280,6 +297,7 @@ const StockStatus = () => {
                       <th className="text-end">재고금액</th>
                     </tr>
                   </thead>
+
                   <tbody>
                     {stockList.length === 0 && (
                       <tr>
@@ -293,9 +311,9 @@ const StockStatus = () => {
                       <tr key={i.id} onClick={() => openEdit(i)} style={{ cursor: "pointer" }}>
                         <td>{i.itemCode}</td>
                         <td>{i.itemName}</td>
-                        <td className="text-end">{i.stockQty}</td>
-                        <td className="text-end">{(i.unitPrice ?? 0).toLocaleString()}</td>
-                        <td className="text-end">{(i.totalAmount ?? 0).toLocaleString()}</td>
+                        <td className="text-end">{n(i.stockQty).toLocaleString()}</td>
+                        <td className="text-end">{n(i.unitPrice).toLocaleString()}</td>
+                        <td className="text-end">{n(i.totalAmount).toLocaleString()}</td>
                       </tr>
                     ))}
                   </tbody>
@@ -306,7 +324,7 @@ const StockStatus = () => {
                         <td colSpan={2} className="text-center">
                           합계
                         </td>
-                        <td className="text-end">{totals.totalQty}</td>
+                        <td className="text-end">{totals.totalQty.toLocaleString()}</td>
                         <td></td>
                         <td className="text-end">{totals.totalAmount.toLocaleString()}</td>
                       </tr>
