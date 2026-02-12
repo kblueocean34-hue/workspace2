@@ -31,10 +31,22 @@ public class NoticeController {
         return noticeService.getNoticeDetail(id);
     }
 
-    @PostMapping
+    /*@PostMapping
     public Long create(@RequestParam Long memberId, @RequestBody NoticeCreateRequest request){
         return noticeService.createNotice(memberId, request);
     }
+    @PostMapping
+    public Long create(@RequestBody NoticeCreateRequest request) {
+        return noticeService.createNotice(request.getMemberId(), request);
+    }*/
+    @PostMapping
+    public Long create(@RequestBody NoticeCreateRequest request) {
+        if (request.getMemberId() == null) {
+            throw new IllegalArgumentException("memberId는 필수입니다.");
+        }
+        return noticeService.createNotice(request.getMemberId(), request);
+    }
+
 
     @PutMapping("/{id}")
     public void update(@PathVariable Long id, @RequestBody NoticeUpdateRequest request){

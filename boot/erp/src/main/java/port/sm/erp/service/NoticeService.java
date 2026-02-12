@@ -25,6 +25,25 @@ public class NoticeService {
 
     //등록
     public Long createNotice(Long memberId, NoticeCreateRequest request) {
+        if (memberId == null) {
+            throw new IllegalArgumentException("Member ID가 null입니다.");
+        }
+
+        Member member = memberRepository.findById(memberId)
+                .orElseThrow(() -> new RuntimeException("해당 멤버가 존재하지 않습니다. id=" + memberId));
+
+        Notice notice = Notice.builder()
+                .title(request.getTitle())
+                .content(request.getContent())
+                .isPinned(request.getIsPinned())
+                .member(member)
+                .build();
+
+        noticeRepository.save(notice);
+        return notice.getId();
+    }
+
+    /*public Long createNotice(Long memberId, NoticeCreateRequest request) {
 
         Member member = memberRepository.findById(memberId)
                 .orElseThrow(() -> new RuntimeException("회원 없음"));
@@ -37,7 +56,7 @@ public class NoticeService {
 .build();
 noticeRepository.save(notice);
 return notice.getId();
-    }
+    }*/
 
     //수정
     public void updateNotice(Long id, NoticeUpdateRequest request){
@@ -61,11 +80,21 @@ return notice.getId();
 
     //상세
     public NoticeDetailResponse getNoticeDetail(Long id) {
+        if (id == null) {
+            throw new IllegalArgumentException("공지사항 ID는 null일 수 없습니다.");
+        }
+
+        Notice notice = noticeRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("공지사항이 존재하지 않습니다. id=" + id));
+
+        return toDetailDto(notice);
+    }
+    /*public NoticeDetailResponse getNoticeDetail(Long id) {
         Notice notice = noticeRepository.findById(id)
                 .orElseThrow(()->new RuntimeException("공지 없음"));
         notice.increaseViewCount();//조회수 증가
         return toDetailDto(notice);
-    }
+    }*/
 
     //dto변환
     private NoticeListResponse toListDto(Notice notice) {

@@ -7,4 +7,5 @@ import lombok.*;
 public class NoticeCreateRequest {
     private String title, content;
     private Boolean isPinned;
+    private Long memberId; // 🔥 추가
 }
