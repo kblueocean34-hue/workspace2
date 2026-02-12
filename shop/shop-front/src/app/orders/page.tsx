@@ -1,133 +1,278 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Container, Button, Form } from "react-bootstrap";
-import Header from "@/include/Header"; // Header import 추가
+import Header from "@/include/Header";
+import { useRouter } from "next/navigation";
+
+const API_ROOT = "http://localhost:9999";      // 주문/API 서버
+const IMAGE_ROOT = "http://localhost:9999";    // 이미지 서버 다르면 8888 등으로 변경
+const API_BASE = `${API_ROOT}/api`;
+
+declare global {
+  interface Window {
+    daum: any;
+  }
+}
+
+type CartItem = {
+  id: number;
+  title: string;
+  price: number;
+  imageUrl?: string | null;
+  qty: number;
+};
 
 type OrderDetails = {
   address: string;
-  paymentMethod: string;
+  detailAddress: string;
+  paymentMethod: "kakao" | "card";
+};
+
+type Delivery = {
+  deliveryId: string;
+  createdAt: string;
+  status: "READY" | "SHIPPING" | "DONE";
+  address: string;
+  paymentMethod: "kakao" | "card";
+  totalPrice: number;
+  items: CartItem[];
 };
 
 export default function OrderPage() {
-  const [cart, setCart] = useState<any[]>([]); // 장바구니 상태
+  const router = useRouter();
+
+  const [cart, setCart] = useState<CartItem[]>([]);
   const [isLogin, setIsLogin] = useState<boolean | null>(null);
+
   const [orderDetails, setOrderDetails] = useState<OrderDetails>({
     address: "",
-    paymentMethod: "credit",
-  }); // 주문 정보 타입 지정
+    detailAddress: "",
+    paymentMethod: "card",
+  });
 
+  // =========================
+  // 이미지 경로 보정
+  // =========================
+  const resolveImageSrc = (imageUrl?: string | null) => {
+    if (!imageUrl) return "/no-image.png";
+    const url = String(imageUrl);
+
+    if (url.startsWith("http://") || url.startsWith("https://")) return url;
+    if (url.startsWith("/")) return `${IMAGE_ROOT}${url}`;
+    return `${IMAGE_ROOT}/${url}`;
+  };
+
+  // =========================
   // 장바구니 로드
-  useEffect(() => {
+  // =========================
+  const loadCart = () => {
     const savedCart = localStorage.getItem("cart");
-    if (savedCart) {
-      try {
-        setCart(JSON.parse(savedCart)); // JSON 파싱하여 cart에 저장
-      } catch (err) {
-        console.error("장바구니 로드 실패:", err);
-        setCart([]); // 실패 시 빈 배열로 초기화
-      }
-    } else {
-      setCart([]); // 장바구니가 없을 경우 빈 배열
+    if (!savedCart) {
+      setCart([]);
+      return;
+    }
+    try {
+      const parsed = JSON.parse(savedCart);
+      const normalized: CartItem[] = (Array.isArray(parsed) ? parsed : []).map((item: any) => ({
+        id: Number(item.id),
+        title: String(item.title ?? ""),
+        price: Number(item.price ?? 0),
+        imageUrl: item.imageUrl ?? null,
+        qty: Math.max(1, Number(item.qty ?? 1)),
+      }));
+      setCart(normalized);
+    } catch {
+      setCart([]);
+    }
+  };
+
+  useEffect(() => {
+    loadCart();
+  }, []);
+
+  // =========================
+  // 로그인 체크 (/auth/me)
+  // =========================
+  const checkLogin = async () => {
+    try {
+      const res = await fetch(`${API_BASE}/auth/me`, { credentials: "include" });
+      setIsLogin(res.ok);
+      return res.ok;
+    } catch {
+      setIsLogin(false);
+      return false;
+    }
+  };
+
+  useEffect(() => {
+    checkLogin();
+  }, []);
+
+  // =========================
+  // pm 쿼리 반영
+  // =========================
+  useEffect(() => {
+    const url = new URL(window.location.href);
+    const pm = url.searchParams.get("pm");
+    if (pm === "kakao" || pm === "card") {
+      setOrderDetails((prev) => ({ ...prev, paymentMethod: pm }));
     }
   }, []);
 
-  // 로그인 상태 확인
-  useEffect(() => {
-    const checkLoginStatus = () => {
-      const user = localStorage.getItem("user");
-      setIsLogin(user ? true : false); // 로그인 상태 확인
-    };
-    checkLoginStatus();
-  }, []);
+  // =========================
+  // 총 금액
+  // =========================
+  const totalPrice = useMemo(() => {
+    return cart.reduce((sum, item) => sum + item.price * item.qty, 0);
+  }, [cart]);
 
-  // 결제 정보 처리
-  const handleChange = (
-    e: React.ChangeEvent<HTMLElement & { name: string; value: string }>
-  ) => {
+  // =========================
+  // 입력 변경
+  // =========================
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
-    setOrderDetails((prevState) => ({
-      ...prevState,
-      [name]: value,
-    }));
+
+    if (name === "paymentMethod") {
+      const v = value === "kakao" ? "kakao" : "card";
+      setOrderDetails((prev) => ({ ...prev, paymentMethod: v }));
+      return;
+    }
+
+    setOrderDetails((prev) => ({ ...prev, [name]: value }));
   };
 
-  // 결제 처리
-  const handlePlaceOrder = () => {
-    if (!isLogin) {
+  // =========================
+  // 다음 주소 API
+  // =========================
+  const handleAddressSearch = () => {
+    if (!window.daum || !window.daum.postcode) {
+      alert("주소 API 로딩 중입니다. 잠시 후 다시 시도하세요.");
+      return;
+    }
+
+    new window.daum.Postcode({
+      oncomplete: (data: any) => {
+        setOrderDetails((prev) => ({
+          ...prev,
+          address: data.address ?? "",
+        }));
+      },
+    }).open();
+  };
+
+  // =========================
+  // 주문 처리
+  // =========================
+  const handlePlaceOrder = async () => {
+    const ok = await checkLogin();
+    if (!ok) {
       alert("로그인이 필요합니다.");
       return;
     }
-    if (!orderDetails.address || !orderDetails.paymentMethod) {
-      alert("주소와 결제 방법을 선택해주세요.");
+
+    if (cart.length === 0) {
+      alert("장바구니가 비었습니다.");
       return;
     }
 
-    // 여기서 결제 API 호출 및 처리 (가상으로 처리)
-    alert("결제가 완료되었습니다.");
-    // 결제 후 처리
-    localStorage.setItem("cart", JSON.stringify([])); // 결제 완료 후 장바구니 비우기
-    window.location.href = "/"; // 홈으로 리디렉션
+    if (!orderDetails.address.trim()) {
+      alert("주소검색을 해주세요.");
+      return;
+    }
+
+    if (!orderDetails.detailAddress.trim()) {
+      alert("상세주소를 입력하세요.");
+      return;
+    }
+
+    const fullAddress = `${orderDetails.address} ${orderDetails.detailAddress}`.trim();
+
+    // Delivery 생성 (로컬 저장)
+    const delivery: Delivery = {
+      deliveryId: `D-${Date.now()}`,
+      createdAt: new Date().toISOString(),
+      status: "READY",
+      address: fullAddress,
+      paymentMethod: orderDetails.paymentMethod,
+      totalPrice,
+      items: cart,
+    };
+
+    localStorage.setItem("delivery_current", JSON.stringify(delivery));
+
+    // 장바구니 비우기
+    localStorage.setItem("cart", JSON.stringify([]));
+    setCart([]);
+
+    // 배송 페이지 이동
+    router.push("/delivery");
   };
 
   return (
     <>
+      {/* ✅ 다음 주소 스크립트 */}
+      <script
+        src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"
+        async
+      />
+
       <Header isLogin={isLogin} setIsLogin={setIsLogin} onOpenModal={() => {}} />
 
-      <Container>
+      <Container className="py-4">
         <h1>주문 정보</h1>
 
-        {/* 장바구니에 상품이 없을 경우 */}
-        {cart.length === 0 ? (
-          <p>장바구니에 담긴 상품이 없습니다.</p>
-        ) : (
-          <div>
-            <h2>주문 상품</h2>
-            {cart.map((item: any) => (
-              <div key={item.id} className="d-flex justify-content-between align-items-center mb-3">
-                <img
-                  src={`http://localhost:9999${item.imageUrl}`}
-                  alt={item.title}
-                  style={{ width: 100, height: 100, objectFit: "cover" }}
-                />
-                <div>
-                  <h5>{item.title}</h5>
-                  <p>{item.price?.toLocaleString()}원</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        )}
-
-        {/* 결제 정보 입력 폼 */}
-        <h2 className="mt-4">결제 정보</h2>
-        <Form>
-          <Form.Group controlId="formAddress">
-            <Form.Label>배송 주소</Form.Label>
-            <Form.Control
-              type="text"
-              placeholder="배송 주소를 입력해주세요"
-              name="address"
-              value={orderDetails.address}
-              onChange={handleChange}
+        {cart.map((item) => (
+          <div key={item.id} className="border p-3 mb-3 d-flex gap-3">
+            <img
+              src={resolveImageSrc(item.imageUrl)}
+              alt={item.title}
+              style={{ width: 80, height: 80, objectFit: "cover" }}
+              onError={(e) => {
+                (e.currentTarget as HTMLImageElement).src = "/no-image.png";
+              }}
             />
+            <div>
+              <div>{item.title}</div>
+              <div>
+                {item.price.toLocaleString()}원 x {item.qty}
+              </div>
+            </div>
+          </div>
+        ))}
+
+        <h4 className="text-end">총 금액: {totalPrice.toLocaleString()}원</h4>
+
+        <Form>
+          <Form.Group className="mt-3">
+            <Form.Label>주소</Form.Label>
+            <div className="d-flex gap-2">
+              <Form.Control readOnly value={orderDetails.address} />
+              <Button type="button" onClick={handleAddressSearch}>
+                주소검색
+              </Button>
+            </div>
           </Form.Group>
 
-          <Form.Group controlId="formPaymentMethod" className="mt-3">
-            <Form.Label>결제 방법</Form.Label>
-            <Form.Control
-              as="select"
-              name="paymentMethod"
-              value={orderDetails.paymentMethod}
-              onChange={handleChange}
-            >
-              <option value="credit">신용카드</option>
-              <option value="paypal">PayPal</option>
-              <option value="bank">은행 이체</option>
-            </Form.Control>
-          </Form.Group>
+          <Form.Control
+            className="mt-2"
+            placeholder="상세주소"
+            name="detailAddress"
+            value={orderDetails.detailAddress}
+            onChange={(e) => handleChange(e as any)}
+          />
 
-          <Button variant="success" className="mt-4" onClick={handlePlaceOrder}>
+          <Form.Select
+            className="mt-3"
+            name="paymentMethod"
+            value={orderDetails.paymentMethod}
+            onChange={(e) => handleChange(e as any)}
+          >
+            <option value="card">신용카드</option>
+            <option value="kakao">카카오페이</option>
+          </Form.Select>
+
+          <Button className="mt-4" type="button" onClick={handlePlaceOrder}>
             주문하기
           </Button>
         </Form>

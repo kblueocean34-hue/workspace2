@@ -130,6 +130,9 @@ export default function Home() {
         }}
         productId={currentProductId}
         mode={modalMode}
+
+        //add
+        isLogin={!!isLogin}   // ✅ 추가 (null이면 false 처리)
       />
     </>
   );
