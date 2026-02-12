@@ -9,6 +9,7 @@ import { JustifyContent } from "../stylesjs/Util.styles";
 import { TableTitle } from "../stylesjs/Text.styles";
 import { BtnRight, MainSubmitBtn, WhiteBtn } from "../stylesjs/Button.styles";
 import Lnb from "../include/Lnb";
+import NoticeModal from "../component/notice/NoticeModal";
 
 /** ✅ axios (SalesPurchaseTrade랑 동일 패턴) */
 const api = axios.create({
@@ -52,6 +53,10 @@ type NoticeRow = {
 export default function NoticeList() {
   const [rows, setRows] = useState<NoticeRow[]>([]);
   const [loading, setLoading] = useState(false);
+
+  const [showModal, setShowModal] = useState(false);
+  const[isEditMode, setIsEditMode] = useState(false);
+  const[selected, setSelected] = useState<NoticeRow | null>(null);
 
   const fetchList = async () => {
     setLoading(true);
@@ -202,6 +207,25 @@ export default function NoticeList() {
           </Col>
         </Row>
       </Container>
+
+      <NoticeModal
+show={showModal}   
+onHide={() => setShowModal(false)}  
+data={selected} 
+isEditMode={isEditMode}
+form={form} 
+setForm={setForm}
+onSave={handleSave}
+onDelete={handleDelete} 
+onEditMode={() => {
+  setFlagsFromString({
+    title:selected?.title ?? "",
+    content:selected?.content ?? "",
+    isPinned:selected?.isPinned ?? false,
+  });
+  setIsEditMode(true);
+}}    
+      />
     </>
   );
 }
