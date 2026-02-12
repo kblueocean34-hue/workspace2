@@ -48,6 +48,7 @@ const Top = () => {
 <NavLink to="/mydocs">전자결재</NavLink>
 <NavLink to="/notice">공지사항</NavLink>
 <NavLink to="/order">오더관리</NavLink>
+<NavLink to="/mypage">마이페이지</NavLink>
         </Col>
     </Row>
 </Container>
