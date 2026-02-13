@@ -1,17 +1,16 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Container, Button, NavItem } from "react-bootstrap";
+import { Button,} from "react-bootstrap";
 import { useRouter } from "next/navigation";
 import Header from "@/include/Header";
 import ProductModal from "@/modal/ProductModal";
 import { categories } from "@/lib/Category";
-import { PageWrapper, Sidebar, SidebarBrand, SidebarNav, MainContentWrapper, Content,
-ProductCard, ProductDetails, ButtonGroup, H1,H2, H3, H4, H5, H6, ProductImage,
-ContentInner,P,Pprice,
- 
-} from "@/styled/Admin.styles";
+import { PageWrapper,MainContentWrapper, Content,
+ProductCard, ProductDetails, ButtonGroup, H1,H5, ProductImage,
+ContentInner,P,Pprice,} from "@/styled/Admin.styles";
 import Link from "next/link";
+import SideBar from "./include/SideBar";
 
 
 const API_ROOT = "http://localhost:9999";
@@ -34,7 +33,7 @@ export default function Admin() {
   const [showModal, setShowModal] = useState(false);
   const [modalMode, setModalMode] = useState<"create" | "edit" | "view">("create");
   const [currentProductId, setCurrentProductId] = useState<number | undefined>(undefined);
-  const [isLogin, setIsLogin] = useState<boolean | null>(null);
+  const [isLogin, setIsLogin] = useState<boolean>(false);
 
   // 상품 리스트 조회
   const fetchProducts = async () => {
@@ -101,17 +100,7 @@ export default function Admin() {
     <>
 <PageWrapper>
 
-    <Sidebar>
-        <SidebarBrand href="/">Shop Admin <sup>2</sup></SidebarBrand>
-        <SidebarNav>
-            <NavItem>
-                <Link  href="/admin">Dashboard</Link>
-            </NavItem>
-            <NavItem>
-                <Link  href="/admin">Products</Link>
-            </NavItem>
-        </SidebarNav>
-    </Sidebar>
+<SideBar/>
 
     <MainContentWrapper>
         
@@ -156,6 +145,7 @@ onClose={() => setShowModal(false)}
 onSaved={() => {setShowModal(false); fetchProducts();}}
 productId={currentProductId}
 mode={modalMode}
+isLogin={isLogin ?? false}
 />
     </MainContentWrapper>
 </PageWrapper>    
