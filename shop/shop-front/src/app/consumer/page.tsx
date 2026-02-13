@@ -1,43 +1,90 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Container } from "react-bootstrap"; // 수정: 버튼을 제거했으므로 Button은 필요없음
+import { Container, Button } from "react-bootstrap";
 import { useRouter } from "next/navigation";
 
 import Header from "@/include/Header";
 import ProductModal from "@/modal/ProductModal";
-import { categories } from "@/lib/Category";
 
 const API_ROOT = "http://localhost:9999";
 const API_BASE = `${API_ROOT}/api`;
+
+type CategoryNode = {
+  id: number;
+  name: string;
+  children?: CategoryNode[];
+};
 
 type Product = {
   id: number;
   title: string;
   desc: string;
   price: number;
-  primaryCategory?: number;
-  secondaryCategory?: number;
   imageUrl?: string;
+
+  // 프론트에서 매핑된 카테고리 구조
+  primaryCategory?: { id: number; name: string };
+  secondaryCategory?: { id: number; name: string };
+
+  // 서버에서 id 형태로 내려오는 경우를 대비
+  primaryCategoryId?: number;
+  secondaryCategoryId?: number;
 };
 
 export default function Home() {
   const router = useRouter();
 
   const [products, setProducts] = useState<Product[]>([]);
+  const [categoryList, setCategoryList] = useState<CategoryNode[]>([]);
+
   const [showModal, setShowModal] = useState(false);
   const [modalMode, setModalMode] = useState<"create" | "edit" | "view">("create");
   const [currentProductId, setCurrentProductId] = useState<number | undefined>(undefined);
   const [isLogin, setIsLogin] = useState<boolean | null>(null);
+  const onOpenModal = () => openModal("create");
 
-  // 상품 리스트 조회
+  // 카테고리 리스트 조회
+  const fetchCategories = async () => {
+    try {
+      const res = await fetch(`${API_BASE}/categories`, { cache: "no-store" });
+      if (!res.ok) throw new Error("카테고리 로딩 실패");
+      const data = await res.json();
+      setCategoryList(data);
+    } catch (err) {
+      console.error("카테고리 로딩 실패", err);
+    }
+  };
+
+  // 상품 리스트 조회 (카테고리 매핑 포함)
   const fetchProducts = async () => {
     try {
       const res = await fetch(`${API_BASE}/products`, { cache: "no-store" });
       if (!res.ok) throw new Error("상품 리스트 불러오기 실패");
       const data = await res.json();
-      console.log(data); // 상품 데이터 로깅
-      setProducts(data);
+
+      const mapped = data.map((p: any) => {
+        const primaryId =
+          p.primaryCategory?.id ??
+          p.primaryCategoryId ??
+          p.primaryCategory;
+
+        const secondaryId =
+          p.secondaryCategory?.id ??
+          p.secondaryCategoryId ??
+          p.secondaryCategory;
+
+        const primary = categoryList.find((c) => c.id === primaryId);
+        const secondary = primary?.children?.find((c) => c.id === secondaryId);
+
+        return {
+          ...p,
+          primaryCategory: primary ? { id: primary.id, name: primary.name } : undefined,
+          secondaryCategory: secondary ? { id: secondary.id, name: secondary.name } : undefined,
+        };
+      });
+
+      setProducts(mapped);
     } catch (err) {
       console.error("상품 로딩 실패", err);
     }
@@ -56,22 +103,24 @@ export default function Home() {
 
   // 카테고리 이름 표시
   const getCategoryName = (primaryId?: number, secondaryId?: number) => {
-    console.log("primaryId:", primaryId, "secondaryId:", secondaryId); // 디버깅용
-
-    const primary = categories.find(c => c.id === primaryId);
+    const primary = categoryList.find(c => c.id === primaryId);
     const secondary = primary?.children?.find(c => c.id === secondaryId);
 
-    console.log("Primary:", primary, "Secondary:", secondary); // 디버깅용
-
-    // primary 또는 secondary가 없으면 "카테고리 없음" 출력
     if (!primary || !secondary) return "카테고리 없음";
     return `${primary.name} / ${secondary.name}`;
   };
 
   useEffect(() => {
-    fetchProducts();
+    fetchCategories();
     checkLogin();
   }, []);
+
+  // 카테고리 로딩 후 상품 재조회
+  useEffect(() => {
+    if (categoryList.length > 0) {
+      fetchProducts();
+    }
+  }, [categoryList]);
 
   // 모달 열기
   const openModal = (mode: "create" | "edit" | "view", productId?: number) => {
@@ -89,7 +138,8 @@ export default function Home() {
       />
 
       <Container className="py-4">
-        <h1>쇼핑몰 메인</h1>
+        <h1>쇼핑몰 메인</h1>              
+
 
         <div className="d-flex flex-wrap gap-3 mt-3">
           {products.map(p => (
@@ -97,7 +147,7 @@ export default function Home() {
               key={p.id}
               className="border p-3 d-flex flex-column justify-content-between"
               style={{ width: 200, height: 320, cursor: "pointer" }}
-              onClick={() => openModal("view", p.id)} // 클릭 시 뷰 모드로 모달 열기
+              onClick={() => openModal("view", p.id)}
             >
               {p.imageUrl && (
                 <img
@@ -109,7 +159,9 @@ export default function Home() {
               <div>
                 <h5 className="mt-2 mb-1">{p.title}</h5>
                 <p style={{ fontSize: 12, marginBottom: 4 }}>
-                  {getCategoryName(p.primaryCategory, p.secondaryCategory)}
+                  {p.primaryCategory && p.secondaryCategory
+                    ? `${p.primaryCategory.name} / ${p.secondaryCategory.name}`
+                    : "카테고리 없음"}
                 </p>
                 <p style={{ fontWeight: "bold", marginBottom: 0 }}>
                   {p.price.toLocaleString()}원
@@ -130,9 +182,8 @@ export default function Home() {
         }}
         productId={currentProductId}
         mode={modalMode}
-
-        //add
-        isLogin={!!isLogin}   // ✅ 추가 (null이면 false 처리)
+        isLogin={!!isLogin}
+        categoryList={categoryList}
       />
     </>
   );

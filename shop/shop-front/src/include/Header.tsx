@@ -41,9 +41,7 @@ variant="outline-light"
 onClick={() => window.location.href="/admin"}>
   관리자
 </Button>
-              <Button className="me-2" variant="outline-light" onClick={onOpenModal}>
-                상품 등록
-              </Button>
+
               <Button variant="outline-light" onClick={logout}>
                 로그아웃
               </Button>
