@@ -173,7 +173,7 @@ export default function Category() {
     setPrimaryName("");
   };
 
-  const createSecondary = async () => {
+  /*const createSecondary = async () => {
     const name = secondaryName.trim();
     if (!name) return alert("2차 카테고리명을 입력하세요.");
     if (selectedPrimaryId === "") return alert("부모(1차) 카테고리를 선택하세요.");
@@ -208,7 +208,31 @@ export default function Category() {
       return next;
     });
     setSecondaryName("");
-  };
+  };*/
+const createSecondary = async () => {
+  const name = secondaryName.trim();
+  if (!name) return alert("2차 카테고리명을 입력하세요.");
+  if (selectedPrimaryId === "") return alert("부모(1차) 카테고리를 선택하세요.");
+
+  const parentId = Number(selectedPrimaryId);
+
+  try {
+    const res = await fetch(`${API_BASE}/categories`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ name, parentId }), // parentId 포함
+    });
+    if (res.ok) {
+      await fetchCategories();
+      setSecondaryName("");
+      return;
+    }
+  } catch (e) {
+    console.error("2차 카테고리 생성 실패", e);
+  }
+};
+
+
 
   const deletePrimary = async (primaryId: number) => {
     if (!confirm("1차 카테고리를 삭제할까요? (하위 2차도 같이 삭제됩니다)")) return;

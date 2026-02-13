@@ -7,7 +7,7 @@ import lombok.*;
 @Table(name = "products")
 @Getter @Setter
 @NoArgsConstructor @AllArgsConstructor @Builder
-public class ProductEntity {
+public class Product {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -30,10 +30,12 @@ public class ProductEntity {
     private String imagePath;
 
     // 1차 카테고리 ID (null 허용)
-    @Column(name = "primary_category")
-    private Integer primaryCategory;
+    @ManyToOne
+    @JoinColumn(name = "primary_category", referencedColumnName= "id", nullable = true)
+    private Category primaryCategory;
 
     // 2차 카테고리 ID (null 허용)
-    @Column(name = "secondary_category")
-    private Integer secondaryCategory;
+    @ManyToOne
+    @JoinColumn(name = "secondary_category" , referencedColumnName= "id", nullable = true)
+    private Category secondaryCategory;
 }
